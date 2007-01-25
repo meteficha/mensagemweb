@@ -1,0 +1,25 @@
+<Type Name="LoggedEventHandler" FullName="MensagemWeb.Logging.LoggedEventHandler">
+  <TypeSignature Language="C#" Value="public delegate void LoggedEventHandler(object sender, LoggedEventArgs args);" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Delegate</BaseTypeName>
+  </Base>
+  <Parameters>
+    <Parameter Name="sender" Type="System.Object" />
+    <Parameter Name="args" Type="MensagemWeb.Logging.LoggedEventArgs" />
+  </Parameters>
+  <ReturnValue>
+    <ReturnType>System.Void</ReturnType>
+  </ReturnValue>
+  <Docs>
+    <param name="sender">To be added.</param>
+    <param name="args">To be added.</param>
+    <remarks>To be added.</remarks>
+    <summary>
+            Called everytime Logger.Log is called.
+            </summary>
+  </Docs>
+</Type>

@@ -1,0 +1,56 @@
+<Type Name="ISupported" FullName="MensagemWeb.Engines.ISupported">
+  <TypeSignature Language="C#" Value="public interface ISupported" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Interfaces />
+  <Members>
+    <Member MemberName="IsSupported">
+      <MemberSignature Language="C#" Value="public bool IsSupported (MensagemWeb.Phones.Phone phone);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="phone" Type="MensagemWeb.Phones.Phone" />
+      </Parameters>
+      <Docs>
+        <param name="phone">The phone number to be tested for support.</param>
+        <returns>
+          <see langword="true" /> if the <paramref name="phone" /> is supported, or <see langword="false" /> otherwise.</returns>
+        <remarks>
+          <para>
+See also <see cref="T:MensagemWeb.Engines.SupportedRange" />,
+ <see cref="T:MensagemWeb.Engines.SupportedList" /> and 
+<see cref="T:MensagemWeb.Engines.SupportedXRange" />.
+</para>
+        </remarks>
+        <summary>Checks if the phone number is supported.</summary>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <remarks>
+      <para>
+To decide which <see cref="T:MensagemWeb.Engine.IEngine" /> to use when
+sending a message to a given phone number, the first thing that should be
+known is which of the available <see cref="T:MensagemWeb.Engine.IEngine" />s
+actually support this phone number. This interface, through 
+<see cref="M:MensagemWeb.Engine.ISupported.IsSupported(MensagemWeb.Phones.Phone)" />,
+provides a mean of checking this availability 
+(see <see cref="P:MensagemWeb.Engine.IEngine.Valid" />).
+
+</para>
+      <para>
+This interface comes from a nice idea taken from jSMS. Thanks!
+</para>
+      <para>
+See also <see cref="T:MensagemWeb.Engines.SupportedRange" />,
+ <see cref="T:MensagemWeb.Engines.SupportedList" /> and 
+<see cref="T:MensagemWeb.Engines.SupportedXRange" />.
+</para>
+    </remarks>
+    <summary>Keeps track of phone numbers supported by an <see cref="T:MensagemWeb.Engines.IEngine" />.</summary>
+  </Docs>
+</Type>

@@ -1,0 +1,48 @@
+<Type Name="RetryEngine" FullName="MensagemWeb.Engines.RetryEngine">
+  <TypeSignature Language="C#" Value="public sealed class RetryEngine : MensagemWeb.Engines.EngineContainer" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>MensagemWeb.Engines.EngineContainer</BaseTypeName>
+  </Base>
+  <Interfaces>
+  </Interfaces>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public RetryEngine (MensagemWeb.Engines.IEngine engine);" />
+      <MemberType>Constructor</MemberType>
+      <Parameters>
+        <Parameter Name="engine" Type="MensagemWeb.Engines.IEngine" />
+      </Parameters>
+      <Docs>
+        <param name="engine">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public RetryEngine (MensagemWeb.Engines.IEngine engine, int retryTime, int wait);" />
+      <MemberType>Constructor</MemberType>
+      <Parameters>
+        <Parameter Name="engine" Type="MensagemWeb.Engines.IEngine" />
+        <Parameter Name="retryTime" Type="System.Int32" />
+        <Parameter Name="wait" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="engine">To be added.</param>
+        <param name="retryTime">To be added.</param>
+        <param name="wait">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <remarks>To be added.</remarks>
+    <summary>
+            This EngineContainer calls its IEngine as much as it can within a time.
+            </summary>
+  </Docs>
+</Type>

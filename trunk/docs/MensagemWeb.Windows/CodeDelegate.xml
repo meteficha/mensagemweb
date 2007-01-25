@@ -1,0 +1,23 @@
+<Type Name="CodeDelegate" FullName="MensagemWeb.Windows.CodeDelegate">
+  <TypeSignature Language="C#" Value="public delegate void CodeDelegate(string code);" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Delegate</BaseTypeName>
+  </Base>
+  <Parameters>
+    <Parameter Name="code" Type="System.String" />
+  </Parameters>
+  <ReturnValue>
+    <ReturnType>System.Void</ReturnType>
+  </ReturnValue>
+  <Docs>
+    <param name="code">To be added.</param>
+    <remarks>To be added.</remarks>
+    <summary>
+            Describes the callback used in the VerificationWindow.
+            </summary>
+  </Docs>
+</Type>

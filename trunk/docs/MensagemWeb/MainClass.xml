@@ -1,0 +1,46 @@
+<Type Name="MainClass" FullName="MensagemWeb.MainClass">
+  <TypeSignature Language="C#" Value="public abstract sealed class MainClass" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName="Exit">
+      <MemberSignature Language="C#" Value="public static void Exit ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>Quits the program.</summary>
+        <remarks>Currently this is implemented by throwing and not catching a private exception.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Main">
+      <MemberSignature Language="C#" Value="public static void Main (string[] args);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="args" Type="System.String[]" />
+      </Parameters>
+      <Docs>
+        <param name="args">Arguments passed on the command line.</param>
+        <remarks>Currently <paramref name="args" /> is not processed at all.</remarks>
+        <summary>
+            Main function called when the program is executed.
+            </summary>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <remarks />
+    <summary>MensagemWeb's class containing the entry point.</summary>
+  </Docs>
+</Type>

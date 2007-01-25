@@ -1,0 +1,21 @@
+<Type Name="VerificationDelegate" FullName="MensagemWeb.Engines.VerificationDelegate">
+  <TypeSignature Language="C#" Value="public delegate void VerificationDelegate(Stream imageStream);" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Delegate</BaseTypeName>
+  </Base>
+  <Parameters>
+    <Parameter Name="imageStream" Type="System.IO.Stream" />
+  </Parameters>
+  <ReturnValue>
+    <ReturnType>System.Void</ReturnType>
+  </ReturnValue>
+  <Docs>
+    <param name="imageStream">To be added.</param>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>

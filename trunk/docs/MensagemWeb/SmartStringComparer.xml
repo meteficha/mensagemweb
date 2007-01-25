@@ -1,0 +1,70 @@
+<Type Name="SmartStringComparer" FullName="MensagemWeb.SmartStringComparer">
+  <TypeSignature Language="C#" Value="public sealed class SmartStringComparer : System.Collections.Generic.IComparer&lt;string&gt;" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces>
+    <Interface>
+      <InterfaceName>System.Collections.Generic.IComparer&lt;System.String&gt;</InterfaceName>
+    </Interface>
+  </Interfaces>
+  <Members>
+    <Member MemberName="This">
+      <MemberSignature Language="C#" Value="public static readonly MensagemWeb.SmartStringComparer This;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.SmartStringComparer</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>A static instance of this class.</summary>
+        <remarks>
+          <para>To avoid creating new instances, this field must be used. 
+As the class doesn't keep any state information, it may be shared freely
+even across different threads.</para>
+        </remarks>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <remarks>
+      <para>Used for sorting, compare strings case insensitively. If they seem equal, compare them
+            case sensitively. This way it's possible to have a case insensitive sort that allows and consistently handles
+            strings that are equal but have different cases.</para>
+      <para>
+An example showing this comparer being used on <see cref="T:System.Collections.Generic.SortedList&lt;K,V&gt;" />:
+<example><code lang="C#">using System;
+using System.Collections.Generic;
+using MensagemWeb;
+
+public class Test {
+        public static void Main() {
+                SortedList&lt;string,int&gt; list = new SortedList&lt;string,int&gt; (SmartStringComparer.This);
+                list.Add("aaa", 1);
+                list.Add("AAA", 2);
+                list.Add("aAa", 3);
+                try {
+                        list.Add("AAA", 4);
+                } catch (ArgumentException) {
+                        Console.WriteLine("AAA already exists!");
+                }
+
+                foreach (KeyValuePair&lt;string,int&gt; kvp in list)
+                        Console.WriteLine(kvp);
+        }
+}
+
+// Prints:
+// AAA already exists!
+// [aaa, 1]
+// [aAa, 3]
+// [AAA, 2]
+</code></example></para>
+    </remarks>
+    <summary>
+A smart <see cref="T:System.Collections.Generic.IComparer&lt;T&gt;" />, similar to <see cref="T:System.StringComparer" />.</summary>
+  </Docs>
+</Type>

@@ -1,0 +1,146 @@
+<Type Name="IEngine" FullName="MensagemWeb.Engines.IEngine">
+  <TypeSignature Language="C#" Value="public interface IEngine" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Interfaces />
+  <Members>
+    <Member MemberName="Abort">
+      <MemberSignature Language="C#" Value="public void Abort ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <remarks>To be added.</remarks>
+        <summary>
+            If possible, cancel any operations.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Aborted">
+      <MemberSignature Language="C#" Value="public bool Aborted { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            Should be false before Abort() is called, true afterwards and before Clear().
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Clear">
+      <MemberSignature Language="C#" Value="public void Clear ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <remarks>To be added.</remarks>
+        <summary>
+            Clear any saved data of this instance, this way leaving it ready for
+            being reused.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="MaxTotalChars">
+      <MemberSignature Language="C#" Value="public int MaxTotalChars { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            The maximum number of characters that can be sent on each
+            message through this IEngine.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Name">
+      <MemberSignature Language="C#" Value="public string Name { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            The name of the IEngine. Can be showed to the user.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="SendCode">
+      <MemberSignature Language="C#" Value="public MensagemWeb.Engines.EngineResult SendCode (string code);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Engines.EngineResult</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="code" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="code">To be added.</param>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+        <summary>
+            Should be called after SendMessage with the code typed by the user.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="SendMessage">
+      <MemberSignature Language="C#" Value="public MensagemWeb.Engines.EngineResult SendMessage (MensagemWeb.Messages.Message msg, MensagemWeb.Engines.VerificationDelegate callback);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Engines.EngineResult</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="msg" Type="MensagemWeb.Messages.Message" />
+        <Parameter Name="callback" Type="MensagemWeb.Engines.VerificationDelegate" />
+      </Parameters>
+      <Docs>
+        <param name="msg">To be added.</param>
+        <param name="callback">To be added.</param>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+        <summary>
+            Sends the Message msg through this IEngine. The callback is called
+            with the image of the code to be typed by the user.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Valid">
+      <MemberSignature Language="C#" Value="public MensagemWeb.Engines.ISupported Valid { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Engines.ISupported</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            Supported phones of the engine.
+            </summary>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <remarks>
+      <para>
+This interface provides everything needed to describe the access
+to some system for sending messages. Its main purpose is to hide
+the details of the inner implementations from the higher lever layer
+that deals with queuing or the user.
+</para>
+    </remarks>
+    <summary>Sends messages to cellular phones.</summary>
+  </Docs>
+</Type>

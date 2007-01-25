@@ -1,0 +1,125 @@
+<Type Name="PhoneContainer" FullName="MensagemWeb.Phones.PhoneContainer">
+  <TypeSignature Language="C#" Value="public sealed class PhoneContainer : System.IComparable&lt;MensagemWeb.Phones.PhoneContainer&gt;" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces>
+    <Interface>
+      <InterfaceName>System.IComparable&lt;MensagemWeb.Phones.PhoneContainer&gt;</InterfaceName>
+    </Interface>
+  </Interfaces>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public PhoneContainer (MensagemWeb.Phones.Phone phone, MensagemWeb.Engines.IEngine engine);" />
+      <MemberType>Constructor</MemberType>
+      <Parameters>
+        <Parameter Name="phone" Type="MensagemWeb.Phones.Phone" />
+        <Parameter Name="engine" Type="MensagemWeb.Engines.IEngine" />
+      </Parameters>
+      <Docs>
+        <param name="phone">To be added.</param>
+        <param name="engine">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public PhoneContainer (string ddd, string number, string engine);" />
+      <MemberType>Constructor</MemberType>
+      <Parameters>
+        <Parameter Name="ddd" Type="System.String" />
+        <Parameter Name="number" Type="System.String" />
+        <Parameter Name="engine" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="ddd">To be added.</param>
+        <param name="number">To be added.</param>
+        <param name="engine">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CompareTo">
+      <MemberSignature Language="C#" Value="public int CompareTo (MensagemWeb.Phones.PhoneContainer ot);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="ot" Type="MensagemWeb.Phones.PhoneContainer" />
+      </Parameters>
+      <Docs>
+        <param name="ot">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Null">
+      <MemberSignature Language="C#" Value="public static readonly MensagemWeb.Phones.PhoneContainer Null;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Phones.PhoneContainer</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="RealEngine">
+      <MemberSignature Language="C#" Value="public MensagemWeb.Engines.IEngine RealEngine { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Engines.IEngine</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Engine">
+      <MemberSignature Language="C#" Value="public readonly MensagemWeb.Engines.IEngine Engine;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Engines.IEngine</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Null">
+      <MemberSignature Language="C#" Value="public static readonly MensagemWeb.Phones.PhoneContainer Null;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Phones.PhoneContainer</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Phone">
+      <MemberSignature Language="C#" Value="public readonly MensagemWeb.Phones.Phone Phone;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Phones.Phone</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <remarks>To be added.</remarks>
+    <summary>
+            Container for the data that each name have in the phone book.
+            </summary>
+  </Docs>
+</Type>

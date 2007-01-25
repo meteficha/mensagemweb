@@ -1,0 +1,99 @@
+<Type Name="EngineResultType" FullName="MensagemWeb.Engines.EngineResultType">
+  <TypeSignature Language="C#" Value="public enum EngineResultType" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Enum</BaseTypeName>
+  </Base>
+  <Members>
+    <Member MemberName="LimitsExceeded">
+      <MemberSignature Language="C#" Value="LimitsExceeded" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Engines.EngineResultType</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="MaxTryExceeded">
+      <MemberSignature Language="C#" Value="MaxTryExceeded" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Engines.EngineResultType</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="PhoneNotEnabled">
+      <MemberSignature Language="C#" Value="PhoneNotEnabled" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Engines.EngineResultType</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="ServerMaintenence">
+      <MemberSignature Language="C#" Value="ServerMaintenence" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Engines.EngineResultType</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Success">
+      <MemberSignature Language="C#" Value="Success" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Engines.EngineResultType</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Unknown">
+      <MemberSignature Language="C#" Value="Unknown" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Engines.EngineResultType</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="UserCancel">
+      <MemberSignature Language="C#" Value="UserCancel" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Engines.EngineResultType</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="WrongPassword">
+      <MemberSignature Language="C#" Value="WrongPassword" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Engines.EngineResultType</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <remarks>To be added.</remarks>
+    <summary>
+            The possible results of an action of sending a message or a code through an IEngine.
+            Note that IEngines can also throw exceptions!
+            </summary>
+  </Docs>
+</Type>

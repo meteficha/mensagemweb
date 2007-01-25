@@ -1,0 +1,158 @@
+<Type Name="Phone" FullName="MensagemWeb.Phones.Phone">
+  <TypeSignature Language="C#" Value="public class Phone : System.IComparable&lt;MensagemWeb.Phones.Phone&gt;" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces>
+    <Interface>
+      <InterfaceName>System.IComparable&lt;MensagemWeb.Phones.Phone&gt;</InterfaceName>
+    </Interface>
+  </Interfaces>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public Phone (int ddd, int number);" />
+      <MemberType>Constructor</MemberType>
+      <Parameters>
+        <Parameter Name="ddd" Type="System.Int32" />
+        <Parameter Name="number" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="ddd">DDD of the number.</param>
+        <param name="number">Phone number itself.</param>
+        <exception cref="T:System.ArgumentOutOfRangeException">
+          <para>
+            <paramref name="ddd" /> is not valid.</para>
+          <para>
+            <paramref name="number" /> is not valid.</para>
+        </exception>
+        <remarks>To be added.</remarks>
+        <summary>
+            Create a new immutable instance of the Phone class.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Engine">
+      <MemberSignature Language="C#" Value="public MensagemWeb.Engines.IEngine Engine { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Engines.IEngine</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            Returns the IEngine corresponding to this phone number.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public Phone (string ddd, string number);" />
+      <MemberType>Constructor</MemberType>
+      <Parameters>
+        <Parameter Name="ddd" Type="System.String" />
+        <Parameter Name="number" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="ddd">To be added.</param>
+        <param name="number">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DDD">
+      <MemberSignature Language="C#" Value="public readonly int DDD;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Number">
+      <MemberSignature Language="C#" Value="public readonly int Number;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Equality">
+      <MemberSignature Language="C#" Value="public static bool op_Equality (MensagemWeb.Phones.Phone x, MensagemWeb.Phones.Phone y);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="x" Type="MensagemWeb.Phones.Phone" />
+        <Parameter Name="y" Type="MensagemWeb.Phones.Phone" />
+      </Parameters>
+      <Docs>
+        <param name="x">To be added.</param>
+        <param name="y">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Inequality">
+      <MemberSignature Language="C#" Value="public static bool op_Inequality (MensagemWeb.Phones.Phone x, MensagemWeb.Phones.Phone y);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="x" Type="MensagemWeb.Phones.Phone" />
+        <Parameter Name="y" Type="MensagemWeb.Phones.Phone" />
+      </Parameters>
+      <Docs>
+        <param name="x">To be added.</param>
+        <param name="y">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Prefix">
+      <MemberSignature Language="C#" Value="public readonly int Prefix;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidDDD">
+      <MemberSignature Language="C#" Value="public static bool ValidDDD (int ddd);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="ddd" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="ddd">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <remarks>All instances of this type are immutable.</remarks>
+    <summary>
+            A class that represents a phone number.
+            </summary>
+  </Docs>
+</Type>

@@ -1,0 +1,102 @@
+<Type Name="Update" FullName="MensagemWeb.Update">
+  <TypeSignature Language="C#" Value="public sealed class Update : System.IComparable&lt;MensagemWeb.Update&gt;" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces>
+    <Interface>
+      <InterfaceName>System.IComparable&lt;MensagemWeb.Update&gt;</InterfaceName>
+    </Interface>
+  </Interfaces>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public Update (string version, string released, string changes);" />
+      <MemberType>Constructor</MemberType>
+      <Parameters>
+        <Parameter Name="version" Type="System.String" />
+        <Parameter Name="released" Type="System.String" />
+        <Parameter Name="changes" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="version">Version of the update. Should be in the format "X.Y.Z".</param>
+        <param name="released">The date of the release. Should be in the format "YYYY-MM-DD".</param>
+        <param name="changes">Some text describing the changes made.</param>
+        <summary>Creates a new <see cref="T:MensagemWeb.Update" /> from the given strings.</summary>
+        <remarks>This constructor is usually called from <see cref="T:MensagemWeb.UpdateManager" />.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public Update (System.Version version, System.DateTime released, string changes);" />
+      <MemberType>Constructor</MemberType>
+      <Parameters>
+        <Parameter Name="version" Type="System.Version" />
+        <Parameter Name="released" Type="System.DateTime" />
+        <Parameter Name="changes" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="version">Version of the update.</param>
+        <param name="released">The date of release.</param>
+        <param name="changes">Some text describing the changes made.</param>
+        <summary>Creates a new <see cref="T:MensagemWeb.Update" /> containing the given information.</summary>
+        <remarks>This constructor is usually called from <see cref="T:MensagemWeb.Config.UpdateConfig" />.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Changes">
+      <MemberSignature Language="C#" Value="public readonly string Changes;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Changes made between this release and the previous one.</summary>
+        <remarks>
+          <para>
+This text is probably going to shown to the user, so it should state the 
+main changes in a user-friendly way, leaving the technical details
+to a separate ChangeLog file.
+</para>
+        </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Released">
+      <MemberSignature Language="C#" Value="public readonly System.DateTime Released;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>System.DateTime</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Date when this update was released.</summary>
+        <remarks>This should be the same as those available on other sources.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Version">
+      <MemberSignature Language="C#" Value="public readonly System.Version Version;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Version</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>The version of this released.</summary>
+        <remarks>This should be represent the same as that of
+<see cref="F:MensagemWeb.UpdateManager.CurrentVersion" />
+on the assembly of the given release.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <remarks>
+      <block subset="none" type="note">
+        <para>
+The name of this class is not "Version" to avoid clashing with <see cref="T:System.Version" />.
+            
+  </para>
+      </block>
+    </remarks>
+    <summary>
+            Represents one released MensagemWeb version. </summary>
+  </Docs>
+</Type>

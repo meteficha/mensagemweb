@@ -1,0 +1,19 @@
+#!/bin/bash
+gmcs \
+        /resource:images/emblem-people.png,emblem-people.png \
+        /resource:images/icone64.png,icone64.png \
+        /resource:images/icone16.png,icone16.png \
+        /resource:images/icone48.png,icone48.png \
+        /win32icon:images/icon.ico \
+        /warn:4 \
+        /r:System.Xml \
+        /pkg:gtk-sharp-2.0 \
+        /out:MensagemWeb.exe \
+        /target:winexe \
+        /codepage:utf8 \
+        /optimize \
+        /debug \
+        ./code/*.cs   ./gtk-gui/*.cs \
+	./code/{Config,Engines,Logging,Messages,Misc,Phones,Windows}/*.cs
+
+exit $?

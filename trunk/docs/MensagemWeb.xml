@@ -1,0 +1,11 @@
+<Namespace Name="MensagemWeb">
+  <Docs>
+    <summary>Classes that are useful everywhere, or that didn't fit well in other namespaces.</summary>
+    <remarks><para>
+There are many different classes on this basic namespace.
+In common they only have the fact that they're not bounded
+to just one of the categories that the other specific namespaces
+impose.
+</para></remarks>
+  </Docs>
+</Namespace>

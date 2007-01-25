@@ -1,0 +1,171 @@
+<Type Name="RichTextBuffer" FullName="MensagemWeb.Windows.RichTextBuffer">
+  <TypeSignature Language="C#" Value="public class RichTextBuffer : Gtk.TextBuffer" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>Gtk.TextBuffer</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName="AddBoldText">
+      <MemberSignature Language="C#" Value="public void AddBoldText (string text);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="text" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="text">To be added.</param>
+        <remarks>To be added.</remarks>
+        <summary>
+            Append bold text to this buffer.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="AddItem">
+      <MemberSignature Language="C#" Value="public void AddItem (string text);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="text" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="text">To be added.</param>
+        <remarks>To be added.</remarks>
+        <summary>
+            Append an item to this buffer.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="AddLink">
+      <MemberSignature Language="C#" Value="public void AddLink (string text, string link);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="text" Type="System.String" />
+        <Parameter Name="link" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="text">To be added.</param>
+        <param name="link">To be added.</param>
+        <remarks>To be added.</remarks>
+        <summary>
+            Append a link to the text that points to a website.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="AddMensagemWebSite">
+      <MemberSignature Language="C#" Value="public void AddMensagemWebSite ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <remarks>To be added.</remarks>
+        <summary>
+            Appends our website to this buffer.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="AddSubtitle">
+      <MemberSignature Language="C#" Value="public void AddSubtitle (string text);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="text" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="text">To be added.</param>
+        <remarks>To be added.</remarks>
+        <summary>
+            Append subtitle text to this buffer.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="AddText">
+      <MemberSignature Language="C#" Value="public void AddText (string text);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="text" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="text">To be added.</param>
+        <remarks>To be added.</remarks>
+        <summary>
+            Append text without any special tags to this buffer.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="AddTitle">
+      <MemberSignature Language="C#" Value="public void AddTitle (string text);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="text" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="text">To be added.</param>
+        <remarks>To be added.</remarks>
+        <summary>
+            Append title text to this buffer.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Clear">
+      <MemberSignature Language="C#" Value="public void Clear ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <remarks>To be added.</remarks>
+        <summary>
+            Clears this buffer.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="NewTextView">
+      <MemberSignature Language="C#" Value="public static Gtk.ScrolledWindow NewTextView (out MensagemWeb.Windows.RichTextBuffer buffer);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>Gtk.ScrolledWindow</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="buffer" Type="MensagemWeb.Windows.RichTextBuffer&amp;" RefType="out" />
+      </Parameters>
+      <Docs>
+        <param name="buffer">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <remarks>To be added.</remarks>
+    <summary>
+            A customized TextBuffer designed to ease putting titles, subtitles,
+            items and links on a TextView.
+            WARNING: The only safe methods to use are the ones created or
+            overriden on this class, all others may corrupt the state held
+            on this class.
+            </summary>
+  </Docs>
+</Type>
