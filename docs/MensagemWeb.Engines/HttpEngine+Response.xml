@@ -1,0 +1,55 @@
+<Type Name="HttpEngine+Response" FullName="MensagemWeb.Engines.HttpEngine+Response">
+  <TypeSignature Language="C#" Value="protected sealed class HttpEngine.Response : System.IDisposable" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces>
+    <Interface>
+      <InterfaceName>System.IDisposable</InterfaceName>
+    </Interface>
+  </Interfaces>
+  <Members>
+    <Member MemberName="CallVerification">
+      <MemberSignature Language="C#" Value="public void CallVerification (MensagemWeb.Engines.VerificationDelegate callback);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="callback" Type="MensagemWeb.Engines.VerificationDelegate" />
+      </Parameters>
+      <Docs>
+        <param name="callback">To be added.</param>
+        <remarks>To be added.</remarks>
+        <summary>
+            Calls a VerificationDelegate using this response's data as pixbuf.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Text">
+      <MemberSignature Language="C#" Value="public string Text { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            Access this response as a string.
+            </summary>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <remarks>To be added.</remarks>
+    <summary>
+            Class that represents a response. You should use the "using" pattern and
+            access/request only one of its results.
+            </summary>
+  </Docs>
+</Type>

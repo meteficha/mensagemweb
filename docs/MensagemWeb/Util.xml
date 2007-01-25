@@ -1,0 +1,732 @@
+<Type Name="Util" FullName="MensagemWeb.Util">
+  <TypeSignature Language="C#" Value="public abstract sealed class Util" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName="CreateMessageDialog">
+      <MemberSignature Language="C#" Value="public static Gtk.MessageDialog CreateMessageDialog (Gtk.Window parent, Gtk.DialogFlags flags, Gtk.MessageType type, Gtk.ButtonsType bt, bool use_markup, string title, string text);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>Gtk.MessageDialog</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="parent" Type="Gtk.Window" />
+        <Parameter Name="flags" Type="Gtk.DialogFlags" />
+        <Parameter Name="type" Type="Gtk.MessageType" />
+        <Parameter Name="bt" Type="Gtk.ButtonsType" />
+        <Parameter Name="use_markup" Type="System.Boolean" />
+        <Parameter Name="title" Type="System.String" />
+        <Parameter Name="text" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="parent">The parent <see cref="T:Gtk.Window" />.</param>
+        <param name="flags">Flags passed to the dialog's constructor.</param>
+        <param name="type">The type of the dialog.</param>
+        <param name="bt">The type of the buttons of the dialog.</param>
+        <param name="use_markup">
+          <see langword="true" /> if there's any markup on the strings <paramref name="title" /> or <paramref name="text" />.</param>
+        <param name="title">The title of the message.</param>
+        <param name="text">The message's text. This is a detailed description of <paramref name="title" />.</param>
+        <returns>The newly created and ready to be used <see cref="T:Gtk.MessageDialog" />.</returns>
+        <remarks>
+          <para>The "best way available" depends on the Gtk# version being run. More specifically, it depends on the availability of <see cref="P:Gtk.MessageDialog.SecondaryText" />.</para>
+          <para>See <see cref="C:Gtk.MessageDialog(Gtk.Window,Gtk.DialogFlags,Gtk.MessageType,Gtk.ButtonsType,System.Boolean,System.String,System.Object[])" />
+for more information about the meaning of the parameters, but note that <paramref name="use_markup" />
+here has a different meaning than on <see cref="T:Gtk.MessageDialog" /> constructors.</para>
+          <para>
+See also <see cref="M:MensagemWeb.Util.ShowMessage(Gtk.Window,System.String,System.String,Gtk.MessageType,System.Boolean)" /> for an easier way of showing a message.
+</para>
+        </remarks>
+        <summary>
+            Creates a MessageDialog using the best way available.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="GetProperty&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static T GetProperty&lt;T&gt; (object obj, string prop);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>T</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="obj" Type="System.Object" />
+        <Parameter Name="prop" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="obj">The object that contains the property.</param>
+        <param name="prop">The name of the property.</param>
+        <summary>Try to access an object's property and return it.</summary>
+        <returns>If the <paramref name="obj" /> contains the given property and it has a <see langword="get" /> accessor, its value. Otherwise, the <see langword="default" />  value of <paramref name="T" /> is returned.</returns>
+        <remarks>
+          <block subset="none" type="note">
+This method works with properties, and not fields.
+</block>
+          <para>The <paramref name="obj" />'s property is accessed by reflection, so it doesn't need to be known by the compiler.
+This way, some Gtk# features not available in its earlier versions may be accessed easily by this method.</para>
+          <example>
+            <code lang="C#">using System;
+using MensagemWeb;
+
+public class Test {
+	public static void Main() {
+		string str = "MensagemWeb!";
+		object obj = str as object;
+		
+		Console.WriteLine("Direct:      {0}", str.Length);
+		Console.WriteLine("GetProperty: {0}", Util.GetProperty&lt;int&gt;(obj, "Length"));
+		// Of course this could be done with a cast,
+		// but this is just an example ;-)
+	}
+}
+
+// This example prints:
+// Direct:      12
+// GetProperty: 12
+</code>
+          </example>
+          <para>See also <see cref="M:MensagemWeb.Util.GetProperty&lt;T&gt;(object,string,T,object[])" /> and <see cref="M:MensagemWeb.Util.GetProperty&lt;T&gt;(object,string,T)" />.</para>
+        </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetProperty&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static T GetProperty&lt;T&gt; (object obj, string prop, T default_);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>T</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="obj" Type="System.Object" />
+        <Parameter Name="prop" Type="System.String" />
+        <Parameter Name="default_" Type="T" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="obj">The object that contains the property.</param>
+        <param name="prop">The name of the property.</param>
+        <param name="default_">The default value to be used.</param>
+        <summary>Try to access an object's property and return it.</summary>
+        <returns>If the <paramref name="obj" /> contains the given property and it has a <see langword="get" /> accessor, its value. Otherwise, <paramref name="default_" /> is returned.</returns>
+        <remarks>
+          <block subset="none" type="note">
+This method works with properties, and not fields.
+</block>
+          <para>The <paramref name="obj" />'s property is accessed by reflection, so it doesn't need to be known by the compiler.
+This way, some Gtk# features not available in its earlier versions may be accessed easily thru this method.</para>
+          <example>
+            <code lang="C#">using System;
+using MensagemWeb;
+
+public class Test {
+	public static void Main() {
+		object obj = "MensagemWeb" as object;
+		int length = Util.GetProperty(obj, "Length", -1);
+		Console.WriteLine("Length on a string:  {0}", length);
+
+		obj = new object();
+		length = Util.GetProperty(obj, "Length", -1);
+		Console.WriteLine("Length on an object: {0}", length);
+	}
+}
+
+// This example prints:
+// Length on a string:  11
+// Length on an object: -1
+</code>
+          </example>
+          <para>See also <see cref="M:MensagemWeb.Util.GetProperty&lt;T&gt;(object,string,T,object[])" /> and <see cref="M:MensagemWeb.Util.GetProperty&lt;T&gt;(object,string)" />.</para>
+        </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetProperty&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static T GetProperty&lt;T&gt; (object obj, string prop, T default_, object[] index);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>T</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="obj" Type="System.Object" />
+        <Parameter Name="prop" Type="System.String" />
+        <Parameter Name="default_" Type="T" />
+        <Parameter Name="index" Type="System.Object[]" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="obj">The object that contains the property.
+</param>
+        <param name="prop">The name of the property.</param>
+        <param name="default_">The default value to be used.</param>
+        <param name="index">The index of the property.</param>
+        <summary>Try to access an object's indexed property and return it.</summary>
+        <returns>If the <paramref name="obj" /> contains the given indexed property and it has a <see langword="get" /> accessor, its value of the specified index. Otherwise, <paramref name="default_" /> is returned.</returns>
+        <remarks>
+          <block subset="none" type="note">
+This method works with properties, and not fields.
+</block>
+          <para>The <paramref name="obj" />'s property is accessed by reflection, so it doesn't need to be known by the compiler.
+This way, some Gtk# features not available in its earlier versions may be accessed easily thru this method.</para>
+          <example>
+            <code lang="C#">using System;
+using MensagemWeb;
+
+public class Test {
+	public static void Main() {
+		object obj = "MensagemWeb" as object;
+		object[] index = new object[] {0};
+		char first = Util.GetProperty(obj, "Chars", '\0', index);
+		Console.WriteLine("Chars[0] on a string:  '{0}'", first);
+
+		obj = new object();
+		first = Util.GetProperty(obj, "Chars", '-', index);
+		Console.WriteLine("Chars[0] on an object: '{0}'", first);
+	}
+}
+
+// This example prints:
+// Chars[0] on a string:  'M'
+// Chars[0] on an object: '-'
+</code>
+          </example>
+          <para>See also <see cref="M:MensagemWeb.Util.GetProperty&lt;T&gt;(object,string)" /> and <see cref="M:MensagemWeb.Util.GetProperty&lt;T&gt;(object,string,T)" />.</para>
+        </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GtkSharp">
+      <MemberSignature Language="C#" Value="public static readonly System.Reflection.Assembly GtkSharp;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Reflection.Assembly</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <remarks>This <see cref="T:System.Reflection.Assembly" /> may be used to access some optional features not available in earlier Gtk# versions.</remarks>
+        <summary>
+            Gtk#'s assembly.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Number">
+      <MemberSignature Language="C#" Value="public static string Number (int asInt, bool masculine);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="asInt" Type="System.Int32" />
+        <Parameter Name="masculine" Type="System.Boolean" />
+      </Parameters>
+      <Docs>
+        <param name="asInt">The <see cref="T:System.Int32" /> that represents the number.</param>
+        <param name="masculine">
+          <see langword="true" /> if the word is going to be used on a context with masculine gender, 
+or <see langword="false" /> if it's going to be used on a context with feminine gender.</param>
+        <returns>The string that best represents the word.</returns>
+        <remarks>
+          <example>
+            <code lang="C#">using System;
+using MensagemWeb;
+
+public class Test {
+	public static void Main() {
+		for (int i = 1; i &lt; 25; i += 4)
+			Console.WriteLine("{0}: {1} or {2}", i, Util.Number(i, false), Util.Number(i, true));
+	}
+}
+
+// This example prints:
+// 1: uma or um
+// 5: cinco or cinco
+// 9: nove or nove
+// 13: treze or treze
+// 17: dezessete or dezessete
+// 21: 21 or 21
+</code>
+          </example>
+        </remarks>
+        <summary>
+            Returns a number in its prefered way to be shown to the user.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="OnWindows">
+      <MemberSignature Language="C#" Value="public static readonly bool OnWindows;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <remarks>
+          <para>
+Using this field should be avoided and is not recommended, 
+as it may lead to inconsistences between platforms.
+</para>
+        </remarks>
+        <summary>If this program is being run on a Microsoft Windows platform.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="OpenLink">
+      <MemberSignature Language="C#" Value="public static void OpenLink (string address);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="address" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="address">The address to which the browser should point (e.g. "http://mensagemweb.codigolivre.org.br/").</param>
+        <remarks>
+          <para>Although it may work elsewhere, this method was reported to work just on Linux and Windows platforms.</para>
+          <block subset="none" type="note">
+The link possibly will be opened on another thread to avoid blocking. 
+</block>
+        </remarks>
+        <summary>
+            Tries to open a link on the user's web browser.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Replace">
+      <MemberSignature Language="C#" Value="public static string Replace (string str);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="str" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="str">The original text.</param>
+        <summary>Escapes all characters that have some special meaning to <see cref="N:Pango" />.</summary>
+        <returns>The escaped string.</returns>
+        <remarks>
+          <para>
+This method escapes angle brackets and ampersands 
+to let all the text visible when showing in a <see cref="N:Pango" />
+markup property, such as <see cref="P:Gtk.Label.Markup" />.
+</para>
+          <para>
+See also <see cref="M:MensagemWeb.Util.Replace(System.Text.StringBuilder)" />.
+</para>
+        </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Replace">
+      <MemberSignature Language="C#" Value="public static System.Text.StringBuilder Replace (System.Text.StringBuilder str);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Text.StringBuilder</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="str" Type="System.Text.StringBuilder" />
+      </Parameters>
+      <Docs>
+        <param name="str">The original text.</param>
+        <summary>Escapes all characters that have some special meaning to <see cref="N:Pango" />.</summary>
+        <returns>The escaped <see cref="T:System.Text.StringBuilder" />, the same one as <paramref name="str" />.</returns>
+        <remarks>
+          <para>
+As <see cref="T:System.Text.StringBuilder" /> is mutable, all changes
+are made in-place, which means that the original argument
+is changed and returned.
+</para>
+          <para>
+This method escapes angle brackets and ampersands 
+to let all the text visible when showing in a <see cref="N:Pango" />
+markup property, such as <see cref="P:Gtk.Label.Markup" />.
+</para>
+          <para>
+See also <see cref="M:MensagemWeb.Util.Replace(string)" />.
+</para>
+        </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SetColor">
+      <MemberSignature Language="C#" Value="public static void SetColor (Gtk.Widget wd, bool normal);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="wd" Type="Gtk.Widget" />
+        <Parameter Name="normal" Type="System.Boolean" />
+      </Parameters>
+      <Docs>
+        <param name="wd">The widget going to affected.</param>
+        <param name="normal">
+          <see langword="true" /> if the color should be the normal one, or <see langword="false" /> otherwise.</param>
+        <remarks>See also 
+            <see cref="M:MensagemWeb.Util.SetColorNormal(Gtk.Widget)" /> and
+<see cref="M:MensagemWeb.Util.SetColorRed(Gtk.Widget)" />.
+            </remarks>
+        <summary>
+            Calls <see cref="M:MensagemWeb.Util.SetColorNormal(Gtk.Widget)" /> 
+if <paramref name="normal" /> is <see langword="true" /> or 
+<see cref="M:MensagemWeb.Util.SetColorRed(Gtk.Widget)" /> otherwise.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="SetColorNormal">
+      <MemberSignature Language="C#" Value="public static void SetColorNormal (Gtk.Widget wd);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="wd" Type="Gtk.Widget" />
+      </Parameters>
+      <Docs>
+        <param name="wd">The widget whose background color is changed.</param>
+        <remarks>
+          <para>The "normal" color is theme dependent. See also <see cref="M:MensagemWeb.Util.SetColorRed(Gtk.Widget)" /> and <see cref="M:MensagemWeb.Util.SetColor(Gtk.Widget,System.Boolean)" />.</para>
+        </remarks>
+        <summary>
+            Set the background color of the widget <paramref name="wd" /> as the normal color.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="SetColorRed">
+      <MemberSignature Language="C#" Value="public static void SetColorRed (Gtk.Widget wd);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="wd" Type="Gtk.Widget" />
+      </Parameters>
+      <Docs>
+        <param name="wd">The widget whose background color is changed.</param>
+        <summary>            Set the background color of the widget <paramref name="wd" /> as a redish color.</summary>
+        <remarks>
+          <para>See also <see cref="M:MensagemWeb.Util.SetColorNormal(Gtk.Widget)" /> and <see cref="M:MensagemWeb.Util.SetColor(Gtk.Widget,System.Boolean)" />.</para>
+        </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SetProperty">
+      <MemberSignature Language="C#" Value="public static bool SetProperty (object obj, string prop, object value_);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="obj" Type="System.Object" />
+        <Parameter Name="prop" Type="System.String" />
+        <Parameter Name="value_" Type="System.Object" />
+      </Parameters>
+      <Docs>
+        <param name="obj">The object which contains the property.</param>
+        <param name="prop">The name of the property.</param>
+        <param name="value_">The value to be assigned.</param>
+        <remarks>
+          <block subset="none" type="note">
+This method works with properties, and not fields.
+</block>
+          <para>
+If <paramref name="obj" /> does not contain a property named
+<paramref name="prop" />, or if the property is of a different type
+or doesn't have a <see langword="set" /> accessor,
+this method just returns <see langword="false" />
+(i.e. it doesn't throw any exceptions).
+</para>
+          <para>
+            This is mainly used for properties implemented only in newer versions of
+            Gtk#.
+</para>
+          <para>
+See also <see cref="M:MensagemWeb.Util.GetProperty&lt;T&gt;(object,string,T)" />.
+</para>
+        </remarks>
+        <summary>
+            Trys to set a property on an object.</summary>
+        <returns>
+          <see langword="true" /> if the property was set, <see langword="false" /> otherwise.
+            </returns>
+      </Docs>
+    </Member>
+    <Member MemberName="SetProperty">
+      <MemberSignature Language="C#" Value="public static bool SetProperty (object obj, string prop, object value_, object[] index);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="obj" Type="System.Object" />
+        <Parameter Name="prop" Type="System.String" />
+        <Parameter Name="value_" Type="System.Object" />
+        <Parameter Name="index" Type="System.Object[]" />
+      </Parameters>
+      <Docs>
+        <param name="obj">The object which contains the property.</param>
+        <param name="prop">The name of the property.</param>
+        <param name="value_">The value to be assigned.</param>
+        <param name="index">The index of the property.</param>
+        <summary>            Trys to set an indexed property on an object.</summary>
+        <returns>
+          <see langword="true" /> if the property was set, <see langword="false" /> otherwise.</returns>
+        <remarks>
+          <block subset="none" type="note">
+This method works with properties, and not fields.
+</block>
+          <para>
+If <paramref name="obj" /> does not contain a property named
+<paramref name="prop" />, or if the property is of a different type
+or doesn't have a <see langword="set" /> accessor,
+this method just returns <see langword="false" />
+(i.e. it doesn't throw any exceptions).
+</para>
+          <para>
+            This is mainly used for properties implemented only in newer versions of
+            Gtk#.
+</para>
+          <para>
+See also <see cref="M:MensagemWeb.Util.GetProperty&lt;T&gt;(object,string,T,object[])" />.
+</para>
+        </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ShowMessage">
+      <MemberSignature Language="C#" Value="public static void ShowMessage (Gtk.Window parent, string title, string msg, Gtk.MessageType type, bool replace);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="parent" Type="Gtk.Window" />
+        <Parameter Name="title" Type="System.String" />
+        <Parameter Name="msg" Type="System.String" />
+        <Parameter Name="type" Type="Gtk.MessageType" />
+        <Parameter Name="replace" Type="System.Boolean" />
+      </Parameters>
+      <Docs>
+        <param name="parent">The parent <see cref="T:Gtk.Window" />.</param>
+        <param name="title">The title of the message.</param>
+        <param name="msg">The message's text. This is a detailed description of <paramref name="title" />.</param>
+        <param name="type">The type of the message.</param>
+        <param name="replace">
+          <see langword="true" /> if all characters that could look like <see cref="N:Pango" /> markup should be escaped, or <see langword="false" /> if not.</param>
+        <remarks>
+          <para>If <paramref name="replace" /> is <see langword="true" />, <see cref="M:MensagemWeb.Util.Replace(System.String)" /> is applied to both <paramref name="title" /> and <paramref name="msg" /> parameters before creating the <see cref="T:Gtk.MessageDialog" />.</para>
+        </remarks>
+        <summary>
+            Shows a message with a close button.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="ShowMessage">
+      <MemberSignature Language="C#" Value="public static void ShowMessage (string title, string msg, Gtk.MessageType type, bool replace);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="title" Type="System.String" />
+        <Parameter Name="msg" Type="System.String" />
+        <Parameter Name="type" Type="Gtk.MessageType" />
+        <Parameter Name="replace" Type="System.Boolean" />
+      </Parameters>
+      <Docs>
+        <param name="title">The title of the message.</param>
+        <param name="msg">The message's text. This is a detailed description of <paramref name="title" />.</param>
+        <param name="type">The type of the message.</param>
+        <param name="replace">
+          <see langword="true" /> if all characters that could look like <see cref="N:Pango" /> markup should be escaped, or <see langword="false" /> if not.</param>
+        <summary>Shows a message with a close button.</summary>
+        <remarks>
+          <para>If <paramref name="replace" /> is <see langword="true" />, <see cref="M:MensagemWeb.Util.Replace(System.String)" /> is applied to both <paramref name="title" /> and <paramref name="msg" /> parameters before creating the <see cref="T:Gtk.MessageDialog" />.</para>
+          <para>Calling this method is equivalent to calling <see cref="M:MensagemWeb.Util.ShowMessage(Gtk.Window,System.String,System.String,Gtk.MessageType,System.Boolean)" /> and passing <see cref="P:MensagemWeb.Windows.MainWindow.This" /> as the first argument.</para>
+        </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Split">
+      <MemberSignature Language="C#" Value="public static string Split (string str, int maxchars);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="str" Type="System.String" />
+        <Parameter Name="maxchars" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="str">The original string.</param>
+        <param name="maxchars">Maximum number of characters that a given line may contain.</param>
+        <returns>The splitted string.</returns>
+        <remarks>
+          <para>It should be noted that:</para>
+          <list type="bullet">
+            <item>
+              <term>All whitespace is lost and changed to a newline or to a single space.</term>
+            </item>
+            <item>
+              <term>The returned string may still contains lines with more than <paramref name="maxchars" />
+	characters if, for example, <paramref name="str" /> contains a word with length greater than
+	<paramref name="maxchars" />.</term>
+            </item>
+            <item>
+              <term>
+                <see cref="N:Pango" /> markup tags are accounted just as if they were words.
+</term>
+            </item>
+          </list>
+          <example>
+            <code lang="C#">using System;
+using MensagemWeb;
+
+public class Test {
+	public static void Main() {
+		string original = "This is the original string. It's quite long, " +
+		                  "I had even to break it on the source code! But, " +
+		                  "as you'll see, it can be nicely breaked to fit " +
+		                  "anywhere you want! =)";
+		Console.WriteLine("|234567890123456789|");
+		Console.WriteLine(Util.Split(original, 20));
+	}
+}
+
+// This example prints:
+// |234567890123456789|
+// This is the original
+// string. It's quite
+// long, I had even to
+// break it on the
+// source code! But, as
+// you'll see, it can
+// be nicely breaked to
+// fit anywhere you
+// want! =)
+</code>
+          </example>
+        </remarks>
+        <summary>
+            Splits a string inserting new lines whenever a line would have more then the maximum
+            number of characters given.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="ToBytes">
+      <MemberSignature Language="C#" Value="public static byte[] ToBytes (string str);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Byte[]</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="str" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="str">The string from which the bytes will be taken.</param>
+        <returns>The byte array that represents the string.</returns>
+        <remarks>
+          <para>
+The bytes are encoded with the Latin1 encoding, and not UTF8.
+</para>
+        </remarks>
+        <summary>
+            Returns the string as a byte array.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="ToSecureASCII">
+      <MemberSignature Language="C#" Value="public static string ToSecureASCII (string str);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="str" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="str">The string going to be encoded.</param>
+        <returns>The encoded string.</returns>
+        <remarks>
+          <para>
+The bytes are encoded with the Latin1 encoding, and not UTF8.
+</para>
+          <para>
+The returned string is specially useful when doing GET or POST requests with arbitrary Unicode characters.
+</para>
+          <example>
+            <code lang="C#">using System;
+using MensagemWeb;
+
+public class Test {
+     public static void Main() {
+          string[] strings = new string[] {
+               "A simple string.",
+               "Unicode: Ã¯ÂªÂ©â‚¬",
+               "          ", // only spaces
+               String.Empty};
+          foreach (string str in strings)
+               Console.WriteLine("\"{0}\" -&gt; \"{1}\"", str, Util.ToSecureASCII(str));
+     }
+}
+
+// This example prints:
+// "A simple string." -&gt; "%41%20%73%69%6d%70%6c%65%20%73%74%72%69%6e%67%2e"
+// "Unicode: Ã¯ÂªÂ©â‚¬" -&gt; "%55%6e%69%63%6f%64%65%3a%20%c3%af%c2%aa%c2%a9%e2%3f%ac"
+// "          " -&gt; "%20%20%20%20%20%20%20%20%20%20"
+// "" -&gt; ""
+</code>
+          </example>
+        </remarks>
+        <summary>
+            Encodes the string for HTTP requests escaping all characteres.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="WriteProperty">
+      <MemberSignature Language="C#" Value="public static void WriteProperty (System.Xml.XmlWriter writer, string name, string value_);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="writer" Type="System.Xml.XmlWriter" />
+        <Parameter Name="name" Type="System.String" />
+        <Parameter Name="value_" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="writer">Where the tag is going to be written.</param>
+        <param name="name">The name of the tag.</param>
+        <param name="value_">The value enclosed by the tag.</param>
+        <remarks>
+          <para>This method writes one simple tag like:<code lang="XML">&lt;name&gt;value_&lt;/name&gt;</code></para>
+        </remarks>
+        <summary>Writes a simple XML tag.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="WriteProperty">
+      <MemberSignature Language="C#" Value="public static void WriteProperty (System.Xml.XmlWriter writer, string name, string value_, System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.KeyValuePair&lt;string,string&gt;&gt; attrs);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="writer" Type="System.Xml.XmlWriter" />
+        <Parameter Name="name" Type="System.String" />
+        <Parameter Name="value_" Type="System.String" />
+        <Parameter Name="attrs" Type="System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.KeyValuePair&lt;System.String,System.String&gt;&gt;" />
+      </Parameters>
+      <Docs>
+        <param name="writer">Where the tag is going to be written.</param>
+        <param name="name">The name of the tag.</param>
+        <param name="value_">he value enclosed by the tag.</param>
+        <param name="attrs">A collection used to write the attributes of the tag.</param>
+        <summary>Writes a simple XML tag with some attributes.</summary>
+        <remarks>
+          <para>This method writes one simple tag like:<code lang="XML">&lt;name key1="value1" ... keyN="valueN"&gt;value_&lt;/name&gt;</code></para>
+        </remarks>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <remarks />
+    <summary>
+            Static class containing some functions that didn't fit well
+            elsewhere or were used by more than one class.
+            </summary>
+  </Docs>
+</Type>

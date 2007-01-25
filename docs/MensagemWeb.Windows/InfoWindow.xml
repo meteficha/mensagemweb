@@ -1,0 +1,48 @@
+<Type Name="InfoWindow" FullName="MensagemWeb.Windows.InfoWindow">
+  <TypeSignature Language="C#" Value="public class InfoWindow : Gtk.Window" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>Gtk.Window</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName="ShowThis">
+      <MemberSignature Language="C#" Value="public void ShowThis ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <remarks>To be added.</remarks>
+        <summary>
+            Shows the help window.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="This">
+      <MemberSignature Language="C#" Value="public static MensagemWeb.Windows.InfoWindow This { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Windows.InfoWindow</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            Creates or reuses an instance of this class.
+            </summary>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <remarks>To be added.</remarks>
+    <summary>
+            Shows the logs of the Logger class to the user and
+            some information about the program.
+            </summary>
+  </Docs>
+</Type>

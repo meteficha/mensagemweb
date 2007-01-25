@@ -1,0 +1,152 @@
+MensagemWeb 1.XX   XX/XX/2007
+	* Novo sistema de fila de mensagens. Além de ser mais fácil visualizar
+	que mensagens já foram enviadas e que mensagens ainda faltam, o envio
+	para mais de um destinatário está muito mais rápido (operadoras
+	diferentes são usadas ao mesmo tempo) e robusto (nunca mais todas as
+	mensagens serão perdidas devido a um erro no meio delas).
+	* Mostrar mensagens explicativas quando alguma mensagem não puder ser
+	entregue devido a uma restrição imposta pela operadora (inclusive
+	a TIM).
+	* Quando um destinatário não-reconhecido for selecionado dentre
+	vários, mostrar qual tem problemas (corrige o bug #200890).
+	* Mostrar a janela de verificação como urgente para chamar a atenção
+	do usuário.
+	* Permitir reordenação dos contatos na janela de telefones.
+	* Corrigidos pequenos bugs que não comprometiam muito o funcionamento.
+
+MensagemWeb 1.7.2   10/12/2006
+	* Corrigido problema introduzido na versão 1.7.1 que fazia o
+	MensagemWeb travar quando mais de uma mensagem fosse enviada.
+
+MensagemWeb 1.7.1   5/12/2006
+	* Corrigido um grande bug no qual o MensagemWeb não saía completamente
+	quando rodando no Windows.
+	* O instalador do Windows foi enxugado e diminuiu de 7.1 para 5.7 MiB.
+
+MensagemWeb 1.7     2/12/2006
+	* Importação e exportação dos contatos para vCard (arquivos VCF).
+	Compatibilidade testada com o Evolution.
+	* Novas operadoras Amazônia Celular, CTBC, Nextel e Telemig, baseado
+	no código do jSMS (muito obrigado, Renato Costa).
+	* Performance muito maior, especialmente ao editar a lista de
+	contatos.
+	* Ao enviar mensagens para muitos destinatários, ao invés de a janela
+	principal aumentar de tamanho, utiliza-se uma barra de rolagem.
+	* Precisa do .NET 2.0 porém funciona com qualquer versão do Gtk#
+	superior ou igual a 2.4 (ou seja, qualquer download do Mono feito a
+	partir do site rodará).
+	* Corrigido bug no gerenciamento de cookies que dependia da versão do
+	Mono/.NET que estava sendo usada.
+	* Corrigido o envio para a operadora Oi (obrigado, Guilherme Mesquita
+	Gondim).
+	* Ícones menores para que as caixas de seleção dos destinatários
+	fiquem mais agradáveis.
+	* Corrigidos *vários* bugs no gerenciamento de contatos.
+	* Revisão geral do código com várias reestruturações.
+
+MensagemWeb 1.6.1   4/6/2006
+	* Novamente a Claro modificou seu sistema. Nesta versão do MensagemWeb
+	já é possível enviar mensagens por esta operadora.
+
+MensagemWeb 1.6     10/3/2006
+	* Finalmente agora é possível cancelar o envio a qualquer momento.
+	Algumas operadoras, quando com problemas, demoram a responder e agora
+	você não é mais obrigado a esperá-las.
+	* Agora algumas imagens são ampliadas mais. Isso é principalmente útil
+	para a Claro, que agora está usando algumas imagens bem pequenas.
+	* Muitas pequenas melhorias cosméticas.
+	* Resolvido um bug que travava o MensagemWeb na primeira vez que você
+	executava ele depois de tê-lo fechado com dois ou mais destinatários
+	selecionados. Aproveitando o ensejo, agora os arquivos de configuração
+	são salvos de uma forma mais tolerante a falhas.
+	* Qualquer problema inesperado que ocorra agora mostra uma mensagem
+	com instruções sobre como proceder, ao invés de simplesmente fechar o
+	programa sem nenhum motivo aparente. Isso deve funcionar na maioria
+	dos casos, então se você tinha algum problema estranho antes, ele deve
+	mostrar sua face agora.
+
+MensagemWeb 1.5.3   10/2/2006
+	* A operadora Claro modificou a forma como as mensagens são enviadas,
+	quebrando versões anteriores do MensagemWeb. Esta aqui já possui
+	suporte ao novo sistema.
+
+MensagemWeb 1.5.2   31/1/2006
+	* Algumas vezes o programa abria e logo em seguida fechava, este bug
+	foi corrigido.
+
+MensagemWeb 1.5.1   4/1/2006
+	* Agora são mostradas mais informações sobre a mensagem que está sendo
+	enviada na janela de progresso. Tais informações são especialmente
+	interessantes principalmente quando você está enviando uma mensagem
+	para mais de uma pessoa.
+	* As mensagens agora estão com um destaque maior para a informação
+	mais importante, facilitando a leitura para quem já conhece o
+	programa. Além disso, foram postos textos mais explicativos onde
+	possível.
+	* Como sempre, várias outras mudanças e correções pequenas que não 
+	merecem menção nesta lista =).
+
+MensagemWeb 1.5     29/12/2005
+	* Possibilidade de envio a múltiplos destinatários ao mesmo tempo. Bem
+	a tempo para o ano novo ;-).
+	* Várias imagens deixam mais claro o papel de cada parte do programa,
+	além deixá-lo mais bonito também.
+	* Alguns textos que aparecem para o usuário foram reescritos para
+	clarificar as idéias expressas por eles.
+	* Várias pequenas melhorias e muitos bugs corrigidos.
+
+MensagemWeb 1.4     22/12/2005
+	* Adicionado o suporte à procura de novas versões na Internet. Também
+	há a possibilidade de ver o que há de novo em novas versões e o que
+	foi mudado em versões anteriores. Para facilitar ainda mais, o
+	MensagemWeb procura por novas versões de cinco em cinco dias.
+	* Adicionada uma seta no botão de menu para torná-lo mais intuitivo.
+	* Redigido um texto melhor para a janela de Ajuda. Agora ela serve
+	para algo.
+
+MensagemWeb 1.3.1   20/12/2005
+	* Fazer cada consulta à operadora um estágio diferente que, depois de
+	completado, não tenha que ser repetido. No caso da Claro, por exemplo,
+	que tem dois estágios para pegar a imagem do código, no caso do
+	servidor estar congestinado antes era necessário que você tivesse a
+	sorte de conseguir baixar os dois estágios com sucesso de uma só vez.
+	Agora, depois que o primeiro é pego, só o segundo é tentado (o estado
+	do primeiro é salvo).
+
+MensagemWeb 1.3     20/12/2005
+	* Adicionado suporte à Oi. Ainda é experimental, mas deve estar
+	funcionando ;-).
+	* Existe agora uma janela onde informações sobre o programa e sobre o
+	que aconteceu nele (principalmente erros) são exibidas.
+	* Adicionado suporte a proxy e também um pequeno menu na janela
+	principal.
+	* O formato da agenda mudou novamente, mas desta vez qualquer mudança
+	posterior não irá afetar tanto versões antigas. Mais uma vez, sua agenda
+	anterior não será perdida.
+	* Várias mudanças externas e internas.
+
+MensagemWeb 1.2     14/12/2005
+	* Agora é possível ver de que operadora é cada número e forçar que uma
+	determinada operadora seja usada para enviar mensagens para alguém.
+	* Suporte à edição de telefones e nomes na agenda (não há mais
+	necessidade de excluir e adicionar novamente na hora de fazer uma
+	mudança).
+	* O símbolo de ajuda agora é um botão para mostrar que é clickável.
+	Além disso várias mensagens foram adicionadas e outras modificadas para
+	melhorar a experiência do usuário ao usar o programa.
+	* Vários bugs pequenos resolvidos antes de causar muitos problemas.
+	* Esta versão altera a forma como a lista de telefones é salva, portanto
+	não use versões antigas do MensagemWeb após usar esta nova.
+
+MensagemWeb 1.1     10/12/2005
+	* Interface redesenhada para melhorar a experiência do usuário, 
+	inclusive com textos mais explicativos.
+	* Aumento automático do tamanho da imagem do código usando um filtro 
+	bilinear.
+	* Remoção do suporte à TCO visto que os celulares novos da Vivo não são
+	cadastrados automaticamente nesse sistema.
+	* Vários bugs corrigidos e grandes aumentos de performance enquanto o
+	usuário digita.
+
+MensagemWeb 1.0     8/12/2005
+	* Primeira versão lançada publicamente.

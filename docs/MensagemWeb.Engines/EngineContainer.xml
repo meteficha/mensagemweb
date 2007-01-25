@@ -1,0 +1,44 @@
+<Type Name="EngineContainer" FullName="MensagemWeb.Engines.EngineContainer">
+  <TypeSignature Language="C#" Value="public abstract class EngineContainer : MensagemWeb.Engines.IEngine" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces>
+    <Interface>
+      <InterfaceName>MensagemWeb.Engines.IEngine</InterfaceName>
+    </Interface>
+  </Interfaces>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="protected EngineContainer (MensagemWeb.Engines.IEngine engine);" />
+      <MemberType>Constructor</MemberType>
+      <Parameters>
+        <Parameter Name="engine" Type="MensagemWeb.Engines.IEngine" />
+      </Parameters>
+      <Docs>
+        <param name="engine">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Engine">
+      <MemberSignature Language="C#" Value="public readonly MensagemWeb.Engines.IEngine Engine;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Engines.IEngine</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>

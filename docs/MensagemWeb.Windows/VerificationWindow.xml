@@ -1,0 +1,89 @@
+<Type Name="VerificationWindow" FullName="MensagemWeb.Windows.VerificationWindow">
+  <TypeSignature Language="C#" Value="public class VerificationWindow : Gtk.Window" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>Gtk.Window</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public VerificationWindow (Gdk.Pixbuf pixbuf, MensagemWeb.Windows.CodeDelegate callback);" />
+      <MemberType>Constructor</MemberType>
+      <Parameters>
+        <Parameter Name="pixbuf" Type="Gdk.Pixbuf" />
+        <Parameter Name="callback" Type="MensagemWeb.Windows.CodeDelegate" />
+      </Parameters>
+      <Docs>
+        <param name="pixbuf">To be added.</param>
+        <param name="callback">To be added.</param>
+        <remarks>To be added.</remarks>
+        <summary>
+            Creates a new VerificationWindow with the image from loader_,
+            calling the engine_ with the code and using the callback_ to say
+            what was the result.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Cancel">
+      <MemberSignature Language="C#" Value="public void Cancel ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <remarks>To be added.</remarks>
+        <summary>
+            Cancels the request for the code (closing the window).
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="SendCode">
+      <MemberSignature Language="C#" Value="protected void SendCode (object sender, System.EventArgs args);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="sender" Type="System.Object" />
+        <Parameter Name="args" Type="System.EventArgs" />
+      </Parameters>
+      <Docs>
+        <param name="sender">To be added.</param>
+        <param name="args">To be added.</param>
+        <remarks>To be added.</remarks>
+        <summary>
+            Sends the code.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="TryToClose">
+      <MemberSignature Language="C#" Value="protected void TryToClose (object sender, System.EventArgs args);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="sender" Type="System.Object" />
+        <Parameter Name="args" Type="System.EventArgs" />
+      </Parameters>
+      <Docs>
+        <param name="sender">To be added.</param>
+        <param name="args">To be added.</param>
+        <remarks>To be added.</remarks>
+        <summary>
+            Tries to close this window.
+            </summary>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <remarks>To be added.</remarks>
+    <summary>
+            This window presents the user the possibility of typing the code. Useful, uh? ;-)
+            </summary>
+  </Docs>
+</Type>

@@ -1,0 +1,36 @@
+<Type Name="MultipleMsgsDialog" FullName="MensagemWeb.Messages.MultipleMsgsDialog">
+  <TypeSignature Language="C#" Value="public sealed class MultipleMsgsDialog : Gtk.Dialog" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>Gtk.Dialog</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public MultipleMsgsDialog (MensagemWeb.Messages.Message[] msgsToSend);" />
+      <MemberType>Constructor</MemberType>
+      <Parameters>
+        <Parameter Name="msgsToSend" Type="MensagemWeb.Messages.Message[]" />
+      </Parameters>
+      <Docs>
+        <param name="msgsToSend">To be added.</param>
+        <remarks>To be added.</remarks>
+        <summary>
+            Public constructor. Always give at least *two* messages.
+            </summary>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <remarks>To be added.</remarks>
+    <summary>
+            This is the dialog that shows to the user the messages that are
+            going to be sent and asks if him/her wants to send them or not.
+            Use it like any other Gtk.Dialog (Run &amp; Destroy). The possible
+            responses are ResponseType.Yes or ResponseType.No.
+            </summary>
+  </Docs>
+</Type>

@@ -1,0 +1,6 @@
+<Namespace Name="MensagemWeb.Config">
+  <Docs>
+    <summary>Classes that handle saving and loading configurations to a persistent storage.</summary>
+    <remarks />
+  </Docs>
+</Namespace>

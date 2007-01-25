@@ -1,0 +1,86 @@
+<Type Name="SupportedXRange" FullName="MensagemWeb.Engines.SupportedXRange">
+  <TypeSignature Language="C#" Value="public class SupportedXRange : MensagemWeb.Engines.ISupported" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces>
+    <Interface>
+      <InterfaceName>MensagemWeb.Engines.ISupported</InterfaceName>
+    </Interface>
+  </Interfaces>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public SupportedXRange (int firstDDD, int lastDDD, int firstPrefix, int lastPrefix);" />
+      <MemberType>Constructor</MemberType>
+      <Parameters>
+        <Parameter Name="firstDDD" Type="System.Int32" />
+        <Parameter Name="lastDDD" Type="System.Int32" />
+        <Parameter Name="firstPrefix" Type="System.Int32" />
+        <Parameter Name="lastPrefix" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="firstDDD">The first DDD in the range.</param>
+        <param name="lastDDD">The last DDD on the range.</param>
+        <param name="firstPrefix">The first N-digit prefix on the range.</param>
+        <param name="lastPrefix">The last N-digit prefix on the range.</param>
+        <exception cref="T:System.ArgumentOutOfRangeException">
+          <para>
+            <paramref name="firstDDD" /> does not have exactly two digits.</para> or
+          <para><paramref name="lastDDD" /> does not have exactly two digits.</para> or
+          <para><paramref name="firstPrefix" /> does not have three to eight digits.</para> or
+          <para><paramref name="lastPrefix" /> does not have three to eight digits.</para></exception>
+        <exception cref="T:System.ArgumentException">
+          <para>
+            <paramref name="firstDDD" /> is greater than <paramref name="lastDDD" /></para> or
+          <para><paramref name="firstPrefix" /> is greater than <paramref name="lastPrefix" /></para> or
+          <para><paramref name="firstPrefix" /> has a different number of digits than <paramref name="lastPrefix" /></para></exception>
+        <summary>Creates a new <see cref="T:MensagemWeb.Engines.SupportedXRange" />.</summary>
+        <remarks>
+          <para>
+A phone number is said to be within the range created with this constructor
+if its DDD is greater or equal to <paramref name="firstDDD" /> and lesser
+or equal to <paramref name="lastDDD" />, and if its N-digit prefix is greater
+or equal to <paramref name="firstPrefix" /> and lesser or equal to
+<paramref name="lastPrefix" />.
+</para>
+          <para>
+This is class is intended to be used when 
+<see cref="T:MensagemWeb.Engines.SupportedRange" />
+can't be used, i.e. when more than 2 digits need to taken in account
+when checking the prefix. This way, <paramref name="firstPrefix" /> and 
+<paramref name="lastPrefix" /> may represent prefixes of 3 to 8
+digits, provided both have the same number of digits.
+</para>
+          <para>
+See also <see cref="T:MensagemWeb.Engines.SupportedList" /> and 
+<see cref="T:MensagemWeb.Engines.SupportedRange" />.
+</para>
+        </remarks>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <summary>Checks phones for support in a fixed range of DDDs and N-digit prefixes.</summary>
+    <remarks>
+      <para>
+This class'
+<see cref="M:MensagemWeb.Engines.ISupported.IsSupported(MensagemWeb.Phones.Phone)" />
+method is O(lg n).
+  </para>
+      <para>
+Usually one <see cref="T:MensagemWeb.Engines.IEngine" /> doesn't 
+support just one contiguous range of phone numbers. Usually
+more than one <see cref="T:MensagemWeb.Engines.SupportedXRange" />
+are combined together with <see cref="T:MensagemWeb.Engines.SupportedList" />.
+</para>
+      <para>
+See also <see cref="T:MensagemWeb.Engines.SupportedList" /> and 
+<see cref="T:MensagemWeb.Engines.SupportedRange" />.
+</para>
+    </remarks>
+  </Docs>
+</Type>

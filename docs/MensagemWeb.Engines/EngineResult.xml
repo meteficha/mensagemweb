@@ -1,0 +1,231 @@
+<Type Name="EngineResult" FullName="MensagemWeb.Engines.EngineResult">
+  <TypeSignature Language="C#" Value="public class EngineResult" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public EngineResult (MensagemWeb.Engines.EngineResultType type);" />
+      <MemberType>Constructor</MemberType>
+      <Parameters>
+        <Parameter Name="type" Type="MensagemWeb.Engines.EngineResultType" />
+      </Parameters>
+      <Docs>
+        <param name="type">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public EngineResult (MensagemWeb.Engines.EngineResultType type, string message);" />
+      <MemberType>Constructor</MemberType>
+      <Parameters>
+        <Parameter Name="type" Type="MensagemWeb.Engines.EngineResultType" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="type">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Equals">
+      <MemberSignature Language="C#" Value="public bool Equals (MensagemWeb.Engines.EngineResult other);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="other" Type="MensagemWeb.Engines.EngineResult" />
+      </Parameters>
+      <Docs>
+        <param name="other">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="LimitsExceeded">
+      <MemberSignature Language="C#" Value="public static readonly MensagemWeb.Engines.EngineResult LimitsExceeded;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Engines.EngineResult</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="MaxTryExceeded">
+      <MemberSignature Language="C#" Value="public static readonly MensagemWeb.Engines.EngineResult MaxTryExceeded;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Engines.EngineResult</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="message">
+      <MemberSignature Language="C#" Value="protected string message;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Message">
+      <MemberSignature Language="C#" Value="public string Message { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Equality">
+      <MemberSignature Language="C#" Value="public static bool op_Equality (MensagemWeb.Engines.EngineResult x, MensagemWeb.Engines.EngineResult y);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="x" Type="MensagemWeb.Engines.EngineResult" />
+        <Parameter Name="y" Type="MensagemWeb.Engines.EngineResult" />
+      </Parameters>
+      <Docs>
+        <param name="x">To be added.</param>
+        <param name="y">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Inequality">
+      <MemberSignature Language="C#" Value="public static bool op_Inequality (MensagemWeb.Engines.EngineResult x, MensagemWeb.Engines.EngineResult y);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="x" Type="MensagemWeb.Engines.EngineResult" />
+        <Parameter Name="y" Type="MensagemWeb.Engines.EngineResult" />
+      </Parameters>
+      <Docs>
+        <param name="x">To be added.</param>
+        <param name="y">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="PhoneNotEnabled">
+      <MemberSignature Language="C#" Value="public static readonly MensagemWeb.Engines.EngineResult PhoneNotEnabled;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Engines.EngineResult</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ServerMaintenence">
+      <MemberSignature Language="C#" Value="public static readonly MensagemWeb.Engines.EngineResult ServerMaintenence;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Engines.EngineResult</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Success">
+      <MemberSignature Language="C#" Value="public static readonly MensagemWeb.Engines.EngineResult Success;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Engines.EngineResult</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="type">
+      <MemberSignature Language="C#" Value="protected MensagemWeb.Engines.EngineResultType type;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Engines.EngineResultType</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Type">
+      <MemberSignature Language="C#" Value="public MensagemWeb.Engines.EngineResultType Type { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Engines.EngineResultType</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Unknown">
+      <MemberSignature Language="C#" Value="public static readonly MensagemWeb.Engines.EngineResult Unknown;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Engines.EngineResult</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="UserCancel">
+      <MemberSignature Language="C#" Value="public static readonly MensagemWeb.Engines.EngineResult UserCancel;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Engines.EngineResult</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="WrongPassword">
+      <MemberSignature Language="C#" Value="public static readonly MensagemWeb.Engines.EngineResult WrongPassword;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Engines.EngineResult</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <remarks>To be added.</remarks>
+    <summary>
+            Class that holds an EngineResultType and possibly an explanation of what happened.
+            </summary>
+  </Docs>
+</Type>

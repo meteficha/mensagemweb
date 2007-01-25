@@ -1,0 +1,114 @@
+<Type Name="VCard" FullName="MensagemWeb.Phones.VCard">
+  <TypeSignature Language="C#" Value="public abstract sealed class VCard" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName="DestinationToVCard">
+      <MemberSignature Language="C#" Value="public static string DestinationToVCard (MensagemWeb.Phones.Destination[] destinations);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="destinations" Type="MensagemWeb.Phones.Destination[]" />
+      </Parameters>
+      <Docs>
+        <param name="destinations">To be added.</param>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+        <summary>
+            Converts a group of Destination's to a vCard.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="PhoneBookToVCard">
+      <MemberSignature Language="C#" Value="public static string PhoneBookToVCard ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+        <summary>
+            Converts the PhoneBook to a vCard.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="PhoneToVCard">
+      <MemberSignature Language="C#" Value="public static string PhoneToVCard (System.Collections.Generic.IDictionary&lt;string,MensagemWeb.Phones.Phone&gt; phones);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="phones" Type="System.Collections.Generic.IDictionary&lt;System.String,MensagemWeb.Phones.Phone&gt;" />
+      </Parameters>
+      <Docs>
+        <param name="phones">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VCardToPhone">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IDictionary&lt;string,MensagemWeb.Phones.Phone&gt; VCardToPhone (string vCards, string defaultDDD);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IDictionary&lt;System.String,MensagemWeb.Phones.Phone&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="vCards" Type="System.String" />
+        <Parameter Name="defaultDDD" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="vCards">To be added.</param>
+        <param name="defaultDDD">To be added.</param>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+        <summary>
+            Converts a vCard into a dictionary in the form name:phone.
+            Does not handle contacts with more than one cellular phone.
+            Does handle more than one person per vCard.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="VCardToPhoneBook">
+      <MemberSignature Language="C#" Value="public static string[] VCardToPhoneBook (string vcard, string defaultDDD);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String[]</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="vcard" Type="System.String" />
+        <Parameter Name="defaultDDD" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="vcard">To be added.</param>
+        <param name="defaultDDD">To be added.</param>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+        <summary>
+            Reads a vCard and appends it to the PhoneBook, renaming duplicates.
+            </summary>
+        <return>
+            The list of imported names.
+            </return>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <remarks>To be added.</remarks>
+    <summary>
+            Contains useful functions for exporting and importing vCards.
+            Its name should be "vCard" but is "VCard" to follow name conventions.
+            </summary>
+  </Docs>
+</Type>

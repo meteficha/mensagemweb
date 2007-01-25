@@ -1,0 +1,64 @@
+<Type Name="QueueWindow" FullName="MensagemWeb.Windows.QueueWindow">
+  <TypeSignature Language="C#" Value="public sealed class QueueWindow : Gtk.Window" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>Gtk.Window</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName="AddMessage">
+      <MemberSignature Language="C#" Value="public void AddMessage (MensagemWeb.Messages.Message message);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="message" Type="MensagemWeb.Messages.Message" />
+      </Parameters>
+      <Docs>
+        <param name="message">To be added.</param>
+        <remarks>To be added.</remarks>
+        <summary>
+            Add a message to the queue. The message may be split in several QueueItem's.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="ExitOk">
+      <MemberSignature Language="C#" Value="public bool ExitOk ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+        <summary>
+            If the queue is empty, return true. If something is being delivered, asks the user
+            for permission to close the program. Returns true if the user conceeds.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="This">
+      <MemberSignature Language="C#" Value="public static MensagemWeb.Windows.QueueWindow This { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Windows.QueueWindow</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            Reuses an instance of this class.
+            </summary>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>

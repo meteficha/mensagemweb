@@ -1,0 +1,30 @@
+<Type Name="TimEngine" FullName="MensagemWeb.Engines.TimEngine">
+  <TypeSignature Language="C#" Value="public sealed class TimEngine : MensagemWeb.Engines.IEngine" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces>
+    <Interface>
+      <InterfaceName>MensagemWeb.Engines.IEngine</InterfaceName>
+    </Interface>
+  </Interfaces>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public TimEngine ();" />
+      <MemberType>Constructor</MemberType>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <summary>Warns the user about the lack of support for TIM.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>
