@@ -13,7 +13,7 @@
       </source>
     </icon-set>
   </icon-factory>
-  <widget class="Gtk.Window" id="MensagemWeb.Windows.QueueWindow" design-size="573 560">
+  <widget class="Gtk.Window" id="MensagemWeb.Windows.QueueWindow" design-size="922 509">
     <action-group name="Default">
       <action id="cancelAction">
         <property name="ShortLabel">Interromper</property>
@@ -155,7 +155,7 @@ uma nova mensagem na fila para ser enviada.</property>
               </widget>
               <packing>
                 <property name="Position">0</property>
-                <property name="AutoSize">True</property>
+                <property name="AutoSize">False</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
               </packing>
@@ -176,7 +176,7 @@ uma nova mensagem na fila para ser enviada.</property>
                   </widget>
                   <packing>
                     <property name="Position">0</property>
-                    <property name="AutoSize">True</property>
+                    <property name="AutoSize">False</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>
                   </packing>
@@ -184,8 +184,7 @@ uma nova mensagem na fila para ser enviada.</property>
                 <child>
                   <widget class="Gtk.Label" id="label2">
                     <property name="LabelProp">Uma ou mais mensagens não puderam ser
-enviadas. Para tentar enviá-las novamente,
-selecione-as e clique no botão Reenviar.</property>
+enviadas e estão marcadas abaixo.</property>
                     <property name="Xalign">0</property>
                     <property name="Yalign">0</property>
                     <property name="Events">0</property>
@@ -194,6 +193,38 @@ selecione-as e clique no botão Reenviar.</property>
                   <packing>
                     <property name="Position">1</property>
                     <property name="AutoSize">False</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.HButtonBox" id="hbuttonbox2">
+                    <property name="Size">1</property>
+                    <property name="LayoutStyle">Start</property>
+                    <property name="Events">0</property>
+                    <property name="MemberName" />
+                    <child>
+                      <widget class="Gtk.Button" id="errorbutton">
+                        <property name="Type">TextAndIcon</property>
+                        <property name="Icon">stock:gtk-refresh Menu</property>
+                        <property name="Label">Tentar reenviar as que falharam</property>
+                        <property name="IsDialogButton">False</property>
+                        <property name="CanFocus">True</property>
+                        <property name="Events">0</property>
+                        <property name="MemberName" />
+                        <signal name="Clicked" handler="ResendWithError" />
+                      </widget>
+                      <packing>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="Position">2</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
                   </packing>
                 </child>
               </widget>
