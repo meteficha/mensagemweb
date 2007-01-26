@@ -23,7 +23,7 @@ using MensagemWeb.Phones;
 
 namespace MensagemWeb.Messages {
 	public class Message {		
-		public readonly IList<Destination> Destinations;
+		public readonly IList<string> Destinations;
 		public readonly Phone FromPhone;
 		public readonly string FromName;
 		public readonly string Contents;
@@ -33,12 +33,12 @@ namespace MensagemWeb.Messages {
 		
 		public Phone Destination { get {
 			if (Destinations.Count == 1)
-				return Destinations[0].Container.Phone;
+				return PhoneBook.Get(Destinations[0]).Phone;
 			else
 				throw new ArgumentException("More than one destination here");
 		} }
 		
-		public Message(IList<Destination> destinations, Phone fromPhone, 
+		public Message(IList<string> destinations, Phone fromPhone, 
 				string fromName, string contents) {
 				
 			// Lots of sanity checks
@@ -60,7 +60,7 @@ namespace MensagemWeb.Messages {
 //				throw new ArgumentException("Falta um destinatátio");
 			if (destinations.Count < 1)
 				throw new ArgumentException("Falta um destinatátio");
-			foreach (Destination d in (IEnumerable<Destination>)destinations)
+			foreach (string d in (IEnumerable<string>)destinations)
 				if (d == null) throw new ArgumentException("Falta um destinatátio"); 
 			
 			
@@ -89,10 +89,10 @@ namespace MensagemWeb.Messages {
 			
 			// The destinations
 			System.Text.StringBuilder dests = new System.Text.StringBuilder();
-			foreach (Destination dest in Destinations as IEnumerable<Destination>) {
+			foreach (string dest in Destinations as IEnumerable<string>) {
 				if (dests.Length > 0)
 					dests.Append(", ");
-				dests.Append(dest.ToString());
+				dests.Append(dest);
 			}
 			
 			// Is this going to a markup?
@@ -115,14 +115,14 @@ namespace MensagemWeb.Messages {
 		
 		
 		
-		public Message ChangeDestination(IList<Destination> newDests) {
+		public Message ChangeDestination(IList<string> newDests) {
 			return new Message(newDests, FromPhone, FromName, Contents);
 		}
 		
 		
 		
-		public Message ChangeDestination(Destination newDest) {
-			return new Message(new Destination[] {newDest}, FromPhone, FromName, Contents);
+		public Message ChangeDestination(string newDest) {
+			return new Message(new string[] {newDest}, FromPhone, FromName, Contents);
 		}
 		
 		
@@ -162,8 +162,8 @@ namespace MensagemWeb.Messages {
 		
 		private int MaxContentsSize() {
 			int maxContentsSize = Int32.MaxValue;
-			foreach (Destination dest in Destinations as IEnumerable<Destination>) {
-				int thisMax = dest.Container.RealEngine.MaxTotalChars;
+			foreach (string dest in Destinations as IEnumerable<string>) {
+				int thisMax = PhoneBook.Get(dest).RealEngine.MaxTotalChars;
 				if (thisMax < maxContentsSize)
 					maxContentsSize = thisMax;
 			}

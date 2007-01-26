@@ -111,10 +111,10 @@
       </Docs>
     </Member>
     <Member MemberName="savedDests">
-      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;MensagemWeb.Phones.Destination&gt; savedDests;" />
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; savedDests;" />
       <MemberType>Field</MemberType>
       <ReturnValue>
-        <ReturnType>System.Collections.Generic.IEnumerable&lt;MensagemWeb.Phones.Destination&gt;</ReturnType>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
       </ReturnValue>
       <Docs>
         <summary>To be added.</summary>

@@ -42,7 +42,7 @@ namespace MensagemWeb.Config {
 		public static bool Sent = true;
 		
 		// This attribute MainWindow sets before being destroyed
-		public static IEnumerable<Destination> savedDests = null;
+		public static IEnumerable<string> savedDests = null;
 #endif
 		
 		string IConfigurable.Section { get { return "mainwindow"; } }
@@ -61,9 +61,9 @@ namespace MensagemWeb.Config {
 			if (savedDests == null)
 				savedDests = mw.Destinations;
 			if (savedDests != null) {
-				foreach (Destination dest in savedDests)
+				foreach (string dest in savedDests)
 					if (dest != null)
-						Util.WriteProperty(writer, "Destination", XmlConvert.EncodeName(dest.Name));
+						Util.WriteProperty(writer, "Destination", XmlConvert.EncodeName(dest));
 				savedDests = null;
 			}
 #else

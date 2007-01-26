@@ -47,15 +47,14 @@ namespace MensagemWeb.Windows {
 				
 		
 		// This affects/reflects the current selection
-		private IList<Destination> Destinations {
+		private IList<string> Destinations {
 			get {
 				TreePath[] selected = treeView.Selection.GetSelectedRows();
-				Destination[] destinations = new Destination[selected.Length];
+				string[] destinations = new string[selected.Length];
 				TreeIter iter;
 				for (int i = 0; i < selected.Length; i++) {
 					if (treeStore.GetIter(out iter, selected[i])) {
-						string name = (string)treeStore.GetValue(iter, 0);
-						destinations[i] =  Destination.GetDestination(name);
+						destinations[i] = treeStore.GetValue(iter, 0) as string;
 					} else {
 						Logger.Log(this, "Strange. {0}?", selected[i]);
 						return null;
@@ -67,9 +66,9 @@ namespace MensagemWeb.Windows {
 			set {
 				// We can take just the names because they're guaranteed to be unique
 				List<string> names = new List<string>(value.Count);
-				foreach (Destination dest in (IEnumerable<Destination>)value)
+				foreach (string dest in (IEnumerable<string>)value)
 					if (dest != null)
-						names.Add(dest.Name);
+						names.Add(dest);
 				names.Sort();
 				
 				treeView.Selection.Changed -= SelectionChanged;
@@ -233,7 +232,7 @@ namespace MensagemWeb.Windows {
 		
 		public void ShowThis() {
 			// Don't lose the user's selection
-			IList<Destination> selected = MainWindow.This.Destinations;
+			IList<string> selected = MainWindow.This.Destinations;
 			UpdateList(null, null);
 			Destinations = selected;
 			
@@ -438,21 +437,21 @@ namespace MensagemWeb.Windows {
 		
 			
 		private void RemoveClicked(object sender, EventArgs args) {
-			IList<Destination> destinations = Destinations;
+			IList<string> destinations = Destinations;
 			int destinationsCount = destinations.Count;
 			if (destinationsCount < 1)
 				return;
 			System.Text.StringBuilder names = new System.Text.StringBuilder();
-			names.Append(destinations[0].Name);
+			names.Append(destinations[0]);
 			string plural = String.Empty;
 			if (destinationsCount > 1) {
 				plural = "s";
 				for (int i = 1; i < destinationsCount; i++) {
-					Destination dest = destinations[i];
 					if (i == (destinationsCount-1))
-						names.AppendFormat(" e {0}", Util.Replace(dest.Name));
+						names.Append(" e ");
 					else
-						names.AppendFormat(", {0}", Util.Replace(dest.Name));
+						names.Append(", ");
+					names.Append(Util.Replace(destinations[i]));
 				}
 			}
 			MessageDialog md = Util.CreateMessageDialog(PhoneBookWindow.This,
@@ -467,8 +466,8 @@ namespace MensagemWeb.Windows {
 				MainWindow.This.Destinations = null;	
 				PhoneBook.Hold();
 				try {
-					foreach (Destination dest in (IEnumerable<Destination>)destinations)
-						PhoneBook.Remove(dest.Name);
+					foreach (string dest in (IEnumerable<string>)destinations)
+						PhoneBook.Remove(dest);
 				} finally {
 					PhoneBook.Thew();
 				}

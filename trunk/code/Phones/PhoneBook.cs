@@ -129,11 +129,15 @@ namespace MensagemWeb.Phones {
 		} 
 		
 		public static PhoneContainer TryGet(string name) {
+			return TryGet(name, null);
+		} 
+		
+		public static PhoneContainer TryGet(string name, PhoneContainer default_) {
 			PhoneContainer result;
 			if (Container.TryGetValue(name, out result))
 				return result;
 			else
-				return null;
+				return default_;
 		} 
 		
 		// WARNING: O(n)!

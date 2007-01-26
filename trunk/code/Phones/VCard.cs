@@ -166,10 +166,10 @@ namespace MensagemWeb.Phones {
 		/// <summary>
 		/// Converts a group of Destination's to a vCard.
 		/// </summary>
-		public static string DestinationToVCard(Destination[] destinations) {
+		public static string DestinationToVCard(string[] destinations) {
 			Dictionary<string, Phone> dict = new Dictionary<string, Phone>();
-			foreach (Destination destination in destinations) {
-				dict[destination.Name] = destination.Container.Phone;
+			foreach (string destination in destinations) {
+				dict[destination] = PhoneBook.Get(destination).Phone;
 			}
 			return PhoneToVCard(dict);
 		}

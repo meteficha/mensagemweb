@@ -56,7 +56,6 @@
     <File name="./code/Windows/DestinationWidget.cs" subtype="Code" buildaction="Compile" />
     <File name="./images/emblem-people.png" subtype="Code" buildaction="EmbedAsResource" />
     <File name="./code/Phones/PhoneContainer.cs" subtype="Code" buildaction="Compile" />
-    <File name="./code/Phones/Destination.cs" subtype="Code" buildaction="Compile" />
     <File name="./code/Windows/DestinationComboBox.cs" subtype="Code" buildaction="Compile" />
     <File name="./code/Phones/VCard.cs" subtype="Code" buildaction="Compile" />
     <File name="./code/Engines/WaitEngine.cs" subtype="Code" buildaction="Compile" />

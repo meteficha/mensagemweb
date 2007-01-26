@@ -59,11 +59,11 @@ namespace MensagemWeb.Windows {
 		
 		
 		
-		public IList<Destination> Selected {
+		public IList<string> Selected {
 			get {
-				List<Destination> result = new List<Destination>(DestWidgets.Count);
+				List<string> result = new List<string>(DestWidgets.Count);
 				foreach (SingleDestinationWidget sdw in DestWidgets) {
-					Destination d = sdw.ComboBox.Destination; 
+					string d = sdw.ComboBox.Destination; 
 					if (d != null) result.Add(d);
 				}
 				return result;
@@ -84,7 +84,7 @@ namespace MensagemWeb.Windows {
 				}
 				
 				using (IEnumerator<SingleDestinationWidget> en = DestWidgets.GetEnumerator())
-					foreach (Destination d in (IEnumerable<Destination>)value) {
+					foreach (string d in (IEnumerable<string>)value) {
 						en.MoveNext();
 						en.Current.ComboBox.Destination = d;
 					}

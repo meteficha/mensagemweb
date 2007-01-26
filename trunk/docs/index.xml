@@ -103,7 +103,6 @@ http://mensagemweb.codigolivre.org.br/.
       <Type Name="MultipleMsgsDialog" />
     </Namespace>
     <Namespace Name="MensagemWeb.Phones">
-      <Type Name="Destination" />
       <Type Name="PhoneBook" />
       <Type Name="PhoneContainer" />
       <Type Name="Phone" />

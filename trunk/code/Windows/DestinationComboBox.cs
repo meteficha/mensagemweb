@@ -29,8 +29,8 @@ namespace MensagemWeb.Windows {
 		private sealed class DestinationComboBox : ComboBox, IDisposable {
 			private static DestinationModel model;
 			private DestinationWidget wd;
-			private Destination LastState = null;
-			private Destination CurrentState = null;
+			private string LastState = null;
+			private string CurrentState = null;
 			private bool forcingChanges = false;
 			
 			public DestinationComboBox(DestinationWidget wd)
@@ -66,7 +66,7 @@ namespace MensagemWeb.Windows {
 			
 			
 			// Returns or sets the Destination of this widget.
-			public Destination Destination {
+			public string Destination {
 				get {
 					return CurrentState;
 				}
@@ -80,7 +80,7 @@ namespace MensagemWeb.Windows {
 						
 						TreeIter? iter = model.GetIter(
 							delegate (Tuple<string, string> values) {
-								return (values.ValueA == value.Name);
+								return (values.ValueA == value);
 							});
 						
 						if (iter.HasValue) {
@@ -105,8 +105,8 @@ namespace MensagemWeb.Windows {
 						this.Destination = LastState;
 						model.DoSpecialAction(this, iter);
 					} else {
-						Destination newDest = model.GetDestination(iter);
-						ICollection<Destination> selected = wd.Selected;
+						string newDest = model.GetDestination(iter);
+						ICollection<string> selected = wd.Selected;
 						if (selected.Count <= 1 || !selected.Contains(newDest)) {
 							SaveState(null, null);
 							wd.FireChanged();
@@ -123,11 +123,9 @@ namespace MensagemWeb.Windows {
 			
 			private void SelectFirst() {
 				// Get the Destinations that we cannot select
-				ICollection<Destination> dontSelect = wd.Selected;
+				ICollection<string> dontSelect = wd.Selected;
 				List<string> names = new List<string>(dontSelect.Count);
-				foreach (Destination d in (IEnumerable<Destination>)dontSelect)
-					if (d != null)
-						names.Add(d.Name);
+				names.AddRange(dontSelect);
 				names.Sort(); // BinarySearch
 							
 				// Get the first name in alphabetical order that is valid
@@ -263,14 +261,14 @@ namespace MensagemWeb.Windows {
 				
 				// Get the destination represented by an iter.
 				// If it's not a valid destination, null is returned.
-				public Destination GetDestination(TreeIter iter) {
+				public string GetDestination(TreeIter iter) {
 					try {
 						string str = iterCache[iter].ValueA;
 						if (str == null || str.Length == 0 || str == OpenPhoneBookWindow
 						 		|| str == AddSomeone || str == OpenNewPhoneWindow)
 							return null;
 						else
-							return Destination.GetDestination(str);
+							return str;
 					} catch (Exception e) {
 						Logger.Log(this, e.ToString());
 						return null;

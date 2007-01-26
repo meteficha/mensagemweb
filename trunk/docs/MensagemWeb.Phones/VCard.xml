@@ -10,20 +10,20 @@
   <Interfaces />
   <Members>
     <Member MemberName="DestinationToVCard">
-      <MemberSignature Language="C#" Value="public static string DestinationToVCard (MensagemWeb.Phones.Destination[] destinations);" />
+      <MemberSignature Language="C#" Value="public static string DestinationToVCard (System.String[] destinations);" />
       <MemberType>Method</MemberType>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="destinations" Type="MensagemWeb.Phones.Destination[]" />
+        <Parameter Name="destinations" Type="System.String[]" />
       </Parameters>
       <Docs>
         <param name="destinations">To be added.</param>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
         <summary>
-            Converts a group of Destination's to a vCard.
+            Converts a group of destination's to a vCard.
             </summary>
       </Docs>
     </Member>

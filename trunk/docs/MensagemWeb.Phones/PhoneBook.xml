@@ -255,6 +255,24 @@
             </summary>
       </Docs>
     </Member>
+    <Member MemberName="TryGet">
+      <MemberSignature Language="C#" Value="public static MensagemWeb.Phones.PhoneContainer TryGet (string name, MensagemWeb.Phones.PhoneContainer default_);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Phones.PhoneContainer</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="name" Type="System.String" />
+        <Parameter Name="default_" Type="MensagemWeb.Phones.PhoneContainer" />
+      </Parameters>
+      <Docs>
+        <param name="name">To be added.</param>
+        <param name="default_">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
   </Members>
   <Docs>
     <remarks>To be added.</remarks>
