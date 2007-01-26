@@ -62,7 +62,7 @@ namespace MensagemWeb.Windows {
 				this.engine = message.Destinations[0].Container.RealEngine;
 				this.number = DateTime.Now.Ticks;
 				
-				messageContents = Util.Split(message.Contents, 30);
+				messageContents = Util.Split(message.Contents, 40);
 				destinationName = message.Destinations[0].Name;
 			}
 			
@@ -163,7 +163,7 @@ namespace MensagemWeb.Windows {
 								}
 							msg = "<span weight=\"bold\">" + msg + "</span>";
 							if (compl != null)
-								return msg + "\n" + Util.Split(compl, 30);
+								return msg + "\n" + Util.Split(compl, 40);
 							else
 								return msg;
 						default:
@@ -314,12 +314,10 @@ namespace MensagemWeb.Windows {
 		// If possible, reset the message counters
 		private void ResetCounters() {
 			lock (queue) {
-				if (sentCount > 0)
-					return;
 				foreach (Queue<QueueItem> q in queue.Values)
 					if (q.Count > 0)
 						return;
-				msgCount = 0;
+				msgCount = sentCount = 0;
 			}
 		}
 		
@@ -744,6 +742,31 @@ namespace MensagemWeb.Windows {
 					}
 				}
 				CheckQueue(changed);
+			}
+		}
+
+		private void ResendWithError(object sender, System.EventArgs e) {
+			lock (queue) {
+				CheckQueue(false); // assure that everything is on its places
+				
+				// Extract the items that will be resent
+				List<QueueItem> newItems = new List<QueueItem>(sent.Count);
+				foreach (QueueItem item in sent)
+					if (item.status == QueueStatus.Error)
+						newItems.Add(item);
+				foreach (QueueItem item in newItems) {
+					--sentCount;
+					--msgCount;
+					sent.Remove(item);
+				}
+				
+				// Put the messages in the queue (like AddMessage)
+				ResetCounters();
+				foreach (QueueItem item in newItems) {
+					queue[item.engine].Enqueue(item.Clone());
+					++msgCount;
+				}
+				CheckQueue(true);
 			}
 		}
 #pragma warning restore 169
