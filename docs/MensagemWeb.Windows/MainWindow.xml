@@ -41,10 +41,10 @@
       </Docs>
     </Member>
     <Member MemberName="Destinations">
-      <MemberSignature Language="C#" Value="public System.Collections.Generic.IList&lt;MensagemWeb.Phones.Destination&gt; Destinations { set; get; };" />
+      <MemberSignature Language="C#" Value="public System.Collections.Generic.IList&lt;string&gt; Destinations { set; get; };" />
       <MemberType>Property</MemberType>
       <ReturnValue>
-        <ReturnType>System.Collections.Generic.IList&lt;MensagemWeb.Phones.Destination&gt;</ReturnType>
+        <ReturnType>System.Collections.Generic.IList&lt;System.String&gt;</ReturnType>
       </ReturnValue>
       <Docs>
         <value>To be added.</value>

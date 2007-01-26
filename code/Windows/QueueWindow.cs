@@ -59,11 +59,11 @@ namespace MensagemWeb.Windows {
 						"destination to be put in the queue.");
 				
 				this.message = message;
-				this.engine = message.Destinations[0].Container.RealEngine;
+				this.engine = PhoneBook.Get(message.Destinations[0]).RealEngine;
 				this.number = DateTime.Now.Ticks;
 				
 				messageContents = Util.Split(message.Contents, 40);
-				destinationName = message.Destinations[0].Name;
+				destinationName = message.Destinations[0];
 			}
 			
 			public QueueItem Clone() {
@@ -340,7 +340,7 @@ namespace MensagemWeb.Windows {
 				
 				ResetCounters();
 				
-				foreach (Destination dest in (IEnumerable<Destination>)message.Destinations)
+				foreach (string dest in (IEnumerable<string>)message.Destinations)
 					foreach (Message msg in msgs) {
 						QueueItem item = new QueueItem(msg.ChangeDestination(dest));
 						queue[item.engine].Enqueue(item);

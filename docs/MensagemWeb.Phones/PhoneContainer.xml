@@ -59,17 +59,6 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
-    <Member MemberName="Null">
-      <MemberSignature Language="C#" Value="public static readonly MensagemWeb.Phones.PhoneContainer Null;" />
-      <MemberType>Field</MemberType>
-      <ReturnValue>
-        <ReturnType>MensagemWeb.Phones.PhoneContainer</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
     <Member MemberName="RealEngine">
       <MemberSignature Language="C#" Value="public MensagemWeb.Engines.IEngine RealEngine { get; };" />
       <MemberType>Property</MemberType>

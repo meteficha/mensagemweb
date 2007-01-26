@@ -37,8 +37,6 @@ namespace MensagemWeb.Phones {
 			}
 		}
 		
-		public static readonly PhoneContainer Null = new PhoneContainer(null, null);
-		
 		public PhoneContainer(string ddd, string number, string engine) :
 			this(new Phone(ddd, number), EngineCatalog.ByName(engine)) { }
 		

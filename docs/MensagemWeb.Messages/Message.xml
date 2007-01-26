@@ -9,24 +9,6 @@
   </Base>
   <Interfaces />
   <Members>
-    <Member MemberName=".ctor">
-      <MemberSignature Language="C#" Value="public Message (System.Collections.Generic.IList&lt;MensagemWeb.Phones.Destination&gt; destinations, MensagemWeb.Phones.Phone fromPhone, string fromName, string contents);" />
-      <MemberType>Constructor</MemberType>
-      <Parameters>
-        <Parameter Name="destinations" Type="System.Collections.Generic.IList&lt;MensagemWeb.Phones.Destination&gt;" />
-        <Parameter Name="fromPhone" Type="MensagemWeb.Phones.Phone" />
-        <Parameter Name="fromName" Type="System.String" />
-        <Parameter Name="contents" Type="System.String" />
-      </Parameters>
-      <Docs>
-        <param name="destinations">To be added.</param>
-        <param name="fromPhone">To be added.</param>
-        <param name="fromName">To be added.</param>
-        <param name="contents">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
     <Member MemberName="ChangeDestination">
       <MemberSignature Language="C#" Value="public MensagemWeb.Messages.Message ChangeDestination (MensagemWeb.Phones.Destination newDest);" />
       <MemberType>Method</MemberType>
@@ -93,10 +75,10 @@
       </Docs>
     </Member>
     <Member MemberName="Destinations">
-      <MemberSignature Language="C#" Value="public System.Collections.Generic.IList&lt;MensagemWeb.Phones.Destination&gt; Destinations { get; };" />
+      <MemberSignature Language="C#" Value="public System.Collections.Generic.IList&lt;string&gt; Destinations { get; };" />
       <MemberType>Property</MemberType>
       <ReturnValue>
-        <ReturnType>System.Collections.Generic.IList&lt;MensagemWeb.Phones.Destination&gt;</ReturnType>
+        <ReturnType>System.Collections.Generic.IList&lt;string&gt;</ReturnType>
       </ReturnValue>
       <Docs>
         <value>To be added.</value>
@@ -231,6 +213,24 @@
         <summary>
             Returns the same message but with all accentuation removed (for pt_BR)
             </summary>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public Message (System.Collections.Generic.IList&lt;string&gt; destinations, MensagemWeb.Phones.Phone fromPhone, string fromName, string contents);" />
+      <MemberType>Constructor</MemberType>
+      <Parameters>
+        <Parameter Name="destinations" Type="System.Collections.Generic.IList&lt;System.String&gt;" />
+        <Parameter Name="fromPhone" Type="MensagemWeb.Phones.Phone" />
+        <Parameter Name="fromName" Type="System.String" />
+        <Parameter Name="contents" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="destinations">To be added.</param>
+        <param name="fromPhone">To be added.</param>
+        <param name="fromName">To be added.</param>
+        <param name="contents">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
   </Members>

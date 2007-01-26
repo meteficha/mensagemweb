@@ -134,7 +134,7 @@ namespace MensagemWeb.Windows {
 			set { fromNumber.Text = value; }
 		}
 		
-		public IList<Destination> Destinations {
+		public IList<string> Destinations {
 			get { return destination.Selected; }
 			set { 
 				destination.Selected = value;
@@ -414,13 +414,9 @@ namespace MensagemWeb.Windows {
 				Contents = MainWindowConfig.Contents;
 				Resize(MainWindowConfig.Width, MainWindowConfig.Height);
 				if (MainWindowConfig.Destinations.Count > 0) {
-					Destination[] dests = new Destination[MainWindowConfig.Destinations.Count];
-					int i = 0; foreach (string str in MainWindowConfig.Destinations)
-						dests[i++] = Destination.GetDestination(str);
-					Destinations = dests;
+					Destinations = MainWindowConfig.Destinations;
 				} else if (MainWindowConfig.DestPhoneStr.Length > 0) {
-					Destinations = new Destination[] { 
-						Destination.GetDestination(MainWindowConfig.DestPhoneStr) };
+					Destinations = new string[] { MainWindowConfig.DestPhoneStr };
 				} else
 					Destinations = null;
 			}
@@ -542,9 +538,9 @@ namespace MensagemWeb.Windows {
 					text = String.Empty;
 				else {
 					List<string> unsupported = new List<string>();
-					foreach (Destination dest in (IEnumerable<Destination>)Destinations)
-						if (dest != null && dest.Container.RealEngine == null)
-							unsupported.Add(dest.Name);
+					foreach (string dest in (IEnumerable<string>)Destinations)
+						if (dest != null && PhoneBook.Get(dest).RealEngine == null)
+							unsupported.Add(dest);
 						
 					int count = unsupported.Count;	
 					if (count == 1)
@@ -662,13 +658,13 @@ namespace MensagemWeb.Windows {
 			ActivatedWidgets result = ActivatedWidgets.Dest;
 			
 			// Check if all destinations are ok to send messages to
-			ICollection<Destination> dests = Destinations;
+			ICollection<string> dests = Destinations;
 			if (dests.Count < 1)
 				destsOk = false;
 			else {
 				destsOk = true;
-				foreach (Destination dest in (IEnumerable<Destination>)dests)
-					if (dest == null || dest.Container.RealEngine == null) {
+				foreach (string dest in (IEnumerable<string>)dests)
+					if (dest == null || PhoneBook.Get(dest).RealEngine == null) {
 						destsOk = false;
 						break;
 					}
