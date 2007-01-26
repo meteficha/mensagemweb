@@ -1,0 +1,26 @@
+#summary Perguntas mais freqüentes
+#labels Featured
+
+= Perguntas mais freqüentes (FAQ) =
+
+=== Eu gostaria de enviar mensagens para a operadora XYZ que não está na lista de operadoras suportadas pelo MensagemWeb. O que posso fazer? ===
+Adicionar suporte a uma nova operadora em geral é algo fácil e rápido, porém é necessário que eu seja capaz de saber se a mensagem chegou ou não. Em outras palavras, preciso de um celular dessa operadora ou de alguém que tenha um e possa me dizer se o teste deu certo ou não.
+
+=== Tenho um celular de uma operadora não suportada e gostaria de ajudar a suportá-la no MensagemWeb. O que devo fazer? ===
+Se essa operadora for a TIM, me desculpe mas não haverá suporte a ela, visto que o envio de mensagens para a mesma não é gratuito. Desculpe-me. Se for outra operadora, seremos muito gratos por sua ajuda, apenas entre em contato conosco para ajustarmos os detalhes.
+
+=== Existe suporte a envio de mensagens multimídia (fotos, sons...)? ===
+Não. A maioria das operadoras ou não tem esse serviço disponível na Internet ou tem porém de forma paga. É bem provável que nunca haja suporte a esse tipo de mensagem no MensagemWeb, nem mesmo parcial (apenas para operadoras que suportem gratuitamente).
+
+=== Ao enviar mensagens para um celular da operadora Vivo, eu recebo uma mensagem dizendo "Telefone desconhecido ou não-habilitado a receber mensagens da web." O que isso significa? ===
+A Vivo atualmente não está permitindo que mensagens sejam enviadas pela Internet para os estados de Espírito Santo, Paraná, Rio de Janeiro, Santa Catarina e São Paulo. Veja mais informações no [http://www.vivo.com.br/portal/cobertura_do_vivo_torpedo_web.php site da Vivo].
+
+=== Estou tentando mandar mensagens para uma operadora XYZ e não estou conseguindo. O que pode ser? ===
+Existem alguns problemas comuns, entre eles:
+
+    * Congestionamento do site da operadora: para saber se é isso mesmo, tente enviar uma mensagem fora de horários de pico (geralmente das 10h às 19h algumas operadoras se congestionam).
+    * Algum problema na operadora: tente enviar uma mensagem a partir do site da operadora do celular do seu destinatário. Se você conseguir, veja abaixo como nos contatar sobre esse problema no MensagemWeb.
+    * Reconhecimento errado da operadora: isso é improvável mas pode acontecer. Verifique se a operadora que o MensagemWeb identificou (aquela que aparece na mesma linha do nome da pessoa na sua agenda de telefones) é realmente a operadora que o seu destinatário usa. Se não for, veja abaixo como nos contatar sobre esse problema no MensagemWeb.
+
+=== Eu achei um problema (bug) no seu programa e gostaria de tê-lo resolvido. ===
+Por favor preencha [http://code.google.com/p/mensagemweb/issues/entry o formulário de problemas] para nos informar exatamente o que aconteceu. Procuraremos resolver o problema assim que possível.
