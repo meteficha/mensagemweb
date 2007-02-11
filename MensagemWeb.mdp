@@ -1,4 +1,4 @@
-<Project name="MensagemWeb" fileversion="2.0" language="C#" clr-version="Net_2_0" ctype="DotNetProject">
+<Project defaultDeployTarget="/deploy" name="MensagemWeb" fileversion="2.0" language="C#" clr-version="Net_2_0" ctype="DotNetProject">
   <Configurations active="Debug">
     <Configuration name="Debug" ctype="DotNetProjectConfiguration">
       <Output directory="./bin/Debug" assembly="MensagemWeb" />

@@ -225,15 +225,10 @@ namespace MensagemWeb.Windows {
 			// Some properties
 			this.TypeHint = Gdk.WindowTypeHint.Normal;
 			this.WindowPosition = WindowPosition.Center;
-			this.DeleteEvent += delegate (object sender, DeleteEventArgs a) {
-				if (activatedWidgets != ActivatedWidgets.None && 
-						CheckSent("Você realmente deseja sair do MensagemWeb?") &&
-						QueueWindow.This.ExitOk()) {
-					MainWindowConfig.savedDests = Destinations;
-					this.Hide();
-					MainClass.Exit();
-				} else
-					a.RetVal = true;
+			this.DeleteEvent += TryToClose;
+			this.KeyReleaseEvent += delegate (object o, KeyReleaseEventArgs args) {
+				if (args.Event.Key == Gdk.Key.Escape)
+					TryToClose(o, null);
 			};
 			
 			// Creates the table that will contain the widgets
@@ -425,6 +420,7 @@ namespace MensagemWeb.Windows {
 			// finish to setup everything.
 			CheckDestination(null, null);
 			UpdateMsgNo(null, null);
+			sent = true;
 			
 			// Show the window (finally...)
 			this.ShowAll();
@@ -676,6 +672,18 @@ namespace MensagemWeb.Windows {
 			
 			// Now do the dirty work over there =P
 			activatedWidgets = result;
+		}
+		
+		
+		private void TryToClose(object sender, DeleteEventArgs a) {
+			if (activatedWidgets != ActivatedWidgets.None && 
+					CheckSent("Você realmente deseja sair do MensagemWeb?") &&
+					QueueWindow.This.ExitOk()) {
+				MainWindowConfig.savedDests = Destinations;
+				this.Hide();
+				MainClass.Exit();
+			} else if (a != null)
+				a.RetVal = true;
 		}
 		
 		
