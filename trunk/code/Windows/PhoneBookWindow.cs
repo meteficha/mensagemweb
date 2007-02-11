@@ -108,17 +108,20 @@ namespace MensagemWeb.Windows {
 			this.DefaultSize = new Gdk.Size(573, 357); // Magic size -- *DONT*CHANGE*!
 			PhoneBook.Updated += UpdateList;
 			
-			// Just hide us when the window is closed
 			this.DeleteEvent += delegate (object sender, DeleteEventArgs a) {				
 				this.Hide();
-				if (Util.OnWindows)
-					MainWindow.This.Present();
 				a.RetVal = true;
+			};
+			this.KeyReleaseEvent += delegate (object o, KeyReleaseEventArgs args) {
+				if (args.Event.Key == Gdk.Key.Escape)
+					this.Hide();
 			};
 			
 			// Updates MainWindows's list of destinations (previously in SelectionChanged method)
 			this.Hidden += delegate {
 				MainWindow.This.Destinations = this.Destinations;
+				if (Util.OnWindows)
+					MainWindow.This.Present();
 			};
 			
 			// HBox that will hold the widgets

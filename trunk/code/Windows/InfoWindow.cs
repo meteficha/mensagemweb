@@ -53,6 +53,10 @@ namespace MensagemWeb.Windows {
 				this.Hide();
 				a.RetVal = true;
 			};
+			this.KeyReleaseEvent += delegate (object o, KeyReleaseEventArgs args) {
+				if (args.Event.Key == Gdk.Key.Escape)
+					this.Hide();
+			};
 			
 			// We need to stop listening to log events when we're destroyed
 			// to avoid calling Gtk objects that don't exist.

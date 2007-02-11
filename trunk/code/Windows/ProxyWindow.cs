@@ -191,6 +191,10 @@ namespace MensagemWeb.Windows {
 			this.TypeHint = Gdk.WindowTypeHint.Dialog;
 			this.DeleteEvent += WhenClosing;
 			this.Modal = Util.OnWindows;
+			this.KeyReleaseEvent += delegate (object o, KeyReleaseEventArgs args) {
+				if (args.Event.Key == Gdk.Key.Escape)
+					WhenClosing(this, null);
+			};
 			
 			// Main box
 			VBox mainBox = new VBox();
@@ -349,7 +353,8 @@ namespace MensagemWeb.Windows {
 				this.Hide();
 			
 			// We'll never destroy this window
-			args.RetVal = true;
+			if (args != null)
+				args.RetVal = true;
 		}
 	}
 }

@@ -48,6 +48,10 @@ namespace MensagemWeb.Windows {
 				this.Hide();
 				a.RetVal = true;
 			};
+			this.KeyReleaseEvent += delegate (object o, KeyReleaseEventArgs args) {
+				if (args.Event.Key == Gdk.Key.Escape)
+					this.Hide();
+			};
 			
 			// Main VBox
 			VBox mainBox = new VBox();

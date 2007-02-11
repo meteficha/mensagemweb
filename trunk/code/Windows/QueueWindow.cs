@@ -248,6 +248,10 @@ namespace MensagemWeb.Windows {
 				a.RetVal = true;
 				CloseWindow(sender, a);
 			};
+			this.KeyReleaseEvent += delegate (object o, KeyReleaseEventArgs args) {
+				if (args.Event.Key == Gdk.Key.Escape)
+					CloseWindow(o, null);
+			};
 			
 			// Initialize the nodeview
 			nodes = new NodeStore(typeof(QueueItem));
@@ -667,8 +671,24 @@ namespace MensagemWeb.Windows {
 		
 		
 		private void CloseWindow(object sender, EventArgs e) {
-			if (closebutton.Sensitive)
-				this.Hide();
+			if (!closebutton.Sensitive) {
+				lock (toVerify) {
+					int rem = msgCount - sentCount;
+					MessageDialog m = Util.CreateMessageDialog(this, DialogFlags.DestroyWithParent,
+						MessageType.Question, ButtonsType.YesNo, true, 
+						"Você deseja cancelar o envio das mensagens da fila?",
+						"Ainda falta enviar " + rem + " mensagem" + (rem > 1 ? "s" : "") + ". " +
+						"Fechando esta janela, você interromperá o envio dessas mensagens.");
+					m.DefaultResponse = ResponseType.Yes;
+					int result = m.Run();
+					m.Destroy();
+					if (result != (int) ResponseType.Yes)
+						return;
+					nodeview.NodeSelection.SelectAll();
+					CancelClicked(null, null);
+				}
+			}
+			this.Hide();
 		}
 
 

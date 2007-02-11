@@ -59,6 +59,10 @@ namespace MensagemWeb.Windows {
 				this.Hide();
 				a.RetVal = true;
 			};
+			this.KeyReleaseEvent += delegate (object o, KeyReleaseEventArgs args) {
+				if (args.Event.Key == Gdk.Key.Escape)
+					this.Hide();
+			};
 			
 			// Main table
 			Table mainTable = new Table(4, 3, false);
