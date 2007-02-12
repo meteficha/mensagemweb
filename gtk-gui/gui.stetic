@@ -29,7 +29,7 @@
         <property name="ShortLabel">Reenviar</property>
         <property name="IsImportant">True</property>
         <property name="Sensitive">False</property>
-        <property name="Label">Reenviar</property>
+        <property name="Label">_Reenviar</property>
         <property name="Tooltip">Envia novamente as mensagens selecionadas</property>
         <property name="Type">Action</property>
         <property name="StockId">gtk-go-forward</property>
@@ -38,11 +38,17 @@
       <action id="clearAction">
         <property name="ShortLabel">Limpar</property>
         <property name="IsImportant">True</property>
-        <property name="Label">Limpar</property>
+        <property name="Label">_Limpar</property>
         <property name="Tooltip">Retira da lista todos os itens enviados ou com erro</property>
         <property name="Type">Action</property>
         <property name="StockId">gtk-clear</property>
         <signal name="Activated" handler="ClearClicked" />
+      </action>
+      <action id="deleteAction">
+        <property name="Label" />
+        <property name="Type">Action</property>
+        <property name="StockId">gtk-delete</property>
+        <signal name="Activated" handler="DeleteClicked" />
       </action>
     </action-group>
     <property name="Title" translatable="yes">Fila de mensagens</property>

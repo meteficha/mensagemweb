@@ -65,7 +65,8 @@ namespace MensagemWeb.Windows {
 				this.number = number;
 				
 				messageContents = Util.Split(message.Contents, 40);
-				destinationName = message.Destinations[0];
+				destinationName = message.Destinations[0] + "\n<small><i>" +
+				                  engine.Name + "</i></small>";
 			}
 			
 			public QueueItem Clone(int newNumber) {
@@ -221,7 +222,7 @@ namespace MensagemWeb.Windows {
 		private const string sendingTitle = "<span size=\"large\" weight=" +
 			"\"bold\">Enviando mensagens...</span>";
 		private const string sendingSub = 
-			"Suas mensagens estão sendo enviadas aos seus destinatários...";
+			"Suas mensagens estão sendo enviadas aos seus destinatários.";
 			
 		// Menu
 		private Menu nodeviewMenu;
@@ -239,6 +240,7 @@ namespace MensagemWeb.Windows {
 		private Gtk.Action resendAction;
 		private Gtk.Action cancelAction;
 		private Gtk.Action clearAction;
+		private Gtk.Action deleteAction;
 		private Gtk.CheckButton autoclosecheckbutton;
 #pragma warning restore 649
 			
@@ -280,6 +282,7 @@ namespace MensagemWeb.Windows {
 			nodeviewMenu.Append(resendAction.CreateMenuItem());
 			nodeviewMenu.Append(new SeparatorMenuItem());
 			nodeviewMenu.Append(cancelAction.CreateMenuItem());
+			nodeviewMenu.Append(deleteAction.CreateMenuItem());
 			nodeviewMenu.Append(clearAction.CreateMenuItem());
 			nodeviewMenu.ShowAll();
 			nodeview.ButtonPressEvent += ShowNodeviewMenu;
@@ -294,7 +297,7 @@ namespace MensagemWeb.Windows {
 			state.PackStart(cell, true);
 			state.AddAttribute(cell, "markup", 1);
 			nodeview.AppendColumn(state); 
-			nodeview.AppendColumn("Destinatário", new CellRendererText(), "text", 2);
+			nodeview.AppendColumn("Destinatário", new CellRendererText(), "markup", 2);
 			nodeview.AppendColumn("Mensagem", new CellRendererText(), "text", 3);
 			
 			
@@ -412,7 +415,8 @@ namespace MensagemWeb.Windows {
 				"ser enviada.";
 			
 			// Show the dialog
-			MessageDialog m = Util.CreateMessageDialog(MainWindow.This, DialogFlags.DestroyWithParent,
+			Gtk.Window parent = this.Visible ? (this as Gtk.Window) : MainWindow.This;
+			MessageDialog m = Util.CreateMessageDialog(parent, DialogFlags.DestroyWithParent,
 				MessageType.Question, ButtonsType.YesNo, true, 
 				"Você deseja deixar de enviar as mensagens na fila?", message);
 			m.DefaultResponse = ResponseType.Yes;
@@ -656,7 +660,7 @@ namespace MensagemWeb.Windows {
 		
 		private void NodeSelectionChanged(object sender, EventArgs args) {
 			ITreeNode[] selected = nodeview.NodeSelection.SelectedNodes;
-			resendAction.Sensitive = selected.Length > 0;
+			resendAction.Sensitive = deleteAction.Sensitive = selected.Length > 0;
 			
 			bool cancelable = false;
 			foreach (ITreeNode node in selected)
@@ -689,7 +693,8 @@ namespace MensagemWeb.Windows {
 					MessageDialog m = Util.CreateMessageDialog(this, DialogFlags.DestroyWithParent,
 						MessageType.Question, ButtonsType.YesNo, true, 
 						"Você deseja cancelar o envio das mensagens da fila?",
-						"Ainda falta enviar " + rem + " mensagem" + (rem > 1 ? "s" : "") + ". " +
+						"Ainda falta enviar " + Util.Number(rem, false) + " mensage" + 
+						(rem > 1 ? "ns" : "m") + ". " +
 						"Fechando esta janela, você interromperá o envio dessas mensagens.");
 					m.DefaultResponse = ResponseType.Yes;
 					int result = m.Run();
@@ -756,7 +761,7 @@ namespace MensagemWeb.Windows {
 		
 		private void CancelClicked(object sender, System.EventArgs e) {
 			lock (queue) {
-				bool changed = false;
+				bool changed = false, cancelVerification = false;
 				ITreeNode[] selected = nodeview.NodeSelection.SelectedNodes;
 				foreach (ITreeNode node in selected) {
 					QueueItem item = node as QueueItem;
@@ -766,7 +771,7 @@ namespace MensagemWeb.Windows {
 							item.engine.Abort();
 							item.Result = EngineResult.UserCancel;
 							if (verifying.HasValue && verifying.Value.ValueA == item)
-								verificationWindow.Cancel();
+								cancelVerification = true;
 							break;
 						case QueueStatus.Waiting:
 							changed = true;
@@ -775,6 +780,7 @@ namespace MensagemWeb.Windows {
 					}
 				}
 				CheckQueue(changed);
+				if (cancelVerification) verificationWindow.Cancel();
 			}
 		}
 
@@ -801,6 +807,68 @@ namespace MensagemWeb.Windows {
 					++msgCount;
 				}
 				CheckQueue(true);
+			}
+		}
+
+		private void DeleteClicked(object sender, System.EventArgs e) {
+			lock (queue) {
+				// See how many items would need to be canceled
+				ITreeNode[] selection = nodeview.NodeSelection.SelectedNodes;
+				int toCancel = 0;
+				foreach (ITreeNode node in selection) {
+					QueueItem item = node as QueueItem;
+					switch (item.status) {
+						case QueueStatus.Waiting:
+						case QueueStatus.Sending:
+							toCancel++;
+							break;
+					}
+				}
+				
+				// See if the user really wants to do it
+				if (toCancel > 0) {
+					selection = null;
+					MessageDialog m = Util.CreateMessageDialog(this, DialogFlags.DestroyWithParent,
+						MessageType.Question, ButtonsType.YesNo, true, 
+						"Você realmente deseja remover as mensagens selecionadas?",
+						"Entre as mensagens que você selecionou há " + Util.Number(toCancel, false)
+						+ (toCancel >= 2 ? " mensagens que não foram enviadas. "
+						                 : " mensagem que não foi enviada. ")
+						+ "Não será possível desfazer a remoção.");
+					m.DefaultResponse = ResponseType.Yes;
+					int result = m.Run();
+					m.Destroy();
+					if (result != (int) ResponseType.Yes) return;
+					selection = nodeview.NodeSelection.SelectedNodes;
+				}
+				
+				// Cancel the relevant messages
+				bool changed = false, cancelVerification = false;
+				foreach (ITreeNode node in selection) {
+					QueueItem item = node as QueueItem;
+					switch (item.status) {
+						case QueueStatus.Sending:
+							changed = true;
+							item.engine.Abort();
+							item.Result = EngineResult.UserCancel;
+							if (verifying.HasValue && verifying.Value.ValueA == item)
+								cancelVerification = true;
+							break;
+						case QueueStatus.Waiting:
+							changed = true;
+							item.Result = EngineResult.UserCancel;
+							break;
+					}
+				}
+				CheckQueue(changed);
+				if (cancelVerification) verificationWindow.Cancel();
+				
+				// Remove them
+				foreach (ITreeNode node in selection) {
+					if (sent.Remove(node as QueueItem))
+						sentCount -= 1;
+				}
+				UpdateQueue();
 			}
 		}
 #pragma warning restore 169
