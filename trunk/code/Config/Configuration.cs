@@ -140,23 +140,15 @@ namespace MensagemWeb.Config {
 			
 			// Check if this version knows about this section
 			if (conn == null) {
-				// No :'(...
-				goto End;
+				Logger.Log(typeof(Configuration), "Section \"" + sectionName + "\" unknown...");
+			} else {
+				conn.LoadConfiguration(reader);
+				connections[i] = null;
 			}
 			
-			// Call the connection
-			conn.LoadConfiguration(reader);
-			
-			// Set this connection to null
-			connections[i] = null;
-			
-			// Find the end element, just to be sure
-			End:
-			while (true) {
-				if (reader.NodeType == XmlNodeType.EndElement && reader.Name == sectionName)
-					break;
-				else if (!reader.Read())
-					break;
+			// Find the end element just to be sure
+			while (reader.NodeType != XmlNodeType.EndElement || reader.Name.ToLower() != sectionName) {
+				if (!reader.Read()) return;
 			}
 		}
 		
@@ -164,11 +156,14 @@ namespace MensagemWeb.Config {
 		
 		public static bool Save() {
 			// Check if we're reading
-			if (reading == true)
+			if (reading == true) {
+				Logger.Log(typeof(Configuration), "We're reading, not saving configuration...");
 				return false;
+			}
 			
 			// Check if we're being postponed
 			if (held == true) {
+				Logger.Log(typeof(Configuration), "We're in hold, not saving configuration...");
 				postponed = true;
 				return true;
 			}

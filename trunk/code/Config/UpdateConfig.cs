@@ -54,36 +54,32 @@ namespace MensagemWeb.Config {
 		
 		public void LoadConfiguration(XmlReader reader) {
 			// Read the lastUpdate
-			while (true) {
+			while (reader.Read()) {
 				if (reader.NodeType == XmlNodeType.Element && reader.Name == "lastUpdate")
 					break;
 				else if (reader.NodeType == XmlNodeType.EndElement && reader.Name == Section)
 					return;
-				else if (!reader.Read())
-					return;
 			}
-			reader.Read();
+			if (!reader.Read()) return; // -> Text
 			lastUpdate = XmlConvert.ToDateTime(reader.Value, XmlDateTimeSerializationMode.Utc);
+			reader.Read(); // -> EndElement
 			
 			// Read the lastAutomaticCheck
-			while (true) {
+			while (reader.Read()) {
 				if (reader.NodeType == XmlNodeType.Element && reader.Name == "lastAutomaticCheck")
 					break;
 				else if (reader.NodeType == XmlNodeType.EndElement && reader.Name == Section)
 					return;
-				else if (!reader.Read())
-					return;
 			}
-			reader.Read();
+			if (!reader.Read()) return; // -> Text
 			lastAutomaticCheck = XmlConvert.ToDateTime(reader.Value, XmlDateTimeSerializationMode.Utc);
+			reader.Read(); // -> EndElement
 			
 			// Read the updates
-			while (true) {
+			while (reader.Read()) {
 				if (reader.NodeType == XmlNodeType.Element && reader.Name == "mensagemweb")
 					break;
 				else if (reader.NodeType == XmlNodeType.EndElement && reader.Name == Section)
-					return;
-				else if (!reader.Read())
 					return;
 			}
 			Xml = String.Format("<mensagemweb>{0}</mensagemweb>", reader.ReadInnerXml());
@@ -93,8 +89,7 @@ namespace MensagemWeb.Config {
 			
 			// Clear everything
 			Xml = null;
-			lastUpdate = null;
-			lastAutomaticCheck = null;
+			lastUpdate = lastAutomaticCheck = null;
 		}
 		
 		public void DefaultConfiguration() {

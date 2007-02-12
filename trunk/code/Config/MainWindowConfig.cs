@@ -74,12 +74,15 @@ namespace MensagemWeb.Config {
 		void IConfigurable.LoadConfiguration(XmlReader reader) {
 #if !LITE
 			// Read the values
-			reader.Read();
 			string section = (this as IConfigurable).Section; 
-			while (true) {
+			while (reader.Read()) {
 				if (reader.NodeType == XmlNodeType.Element) {
 					string name = reader.Name;
-					string inner = reader.ReadInnerXml();
+					string inner = "";
+					if (reader.Read() && reader.NodeType == XmlNodeType.Text) {
+						inner = reader.Value;
+						reader.Read(); // -> EndElement
+					}
 					switch (name) {
 						case "FromPhoneDDD":
 							FromPhoneDDD = XmlConvert.DecodeName(inner); break;
@@ -100,8 +103,6 @@ namespace MensagemWeb.Config {
 					}
 				} else if (reader.NodeType == XmlNodeType.EndElement && reader.Name == section)
 					break;
-				else
-					reader.Read();
 			}
 			
 			// We read them

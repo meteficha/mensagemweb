@@ -30,11 +30,14 @@ namespace MensagemWeb.Config {
 		}
 		
 		public void LoadConfiguration(XmlReader reader) {
-			reader.Read();
-			while (true) {
+			while (reader.Read()) {
 				if (reader.NodeType == XmlNodeType.Element) {
 					string name = reader.Name;
-					string inner = reader.ReadInnerXml();
+					string inner = "";
+					if (reader.Read() && reader.NodeType == XmlNodeType.Text) {
+						inner = reader.Value;
+						reader.Read(); // -> EndElement
+					}
 					switch (name) {
 						case "AutoClose":
 							AutoClose = XmlConvert.ToBoolean(inner);
@@ -43,8 +46,6 @@ namespace MensagemWeb.Config {
 				} else if (reader.NodeType == XmlNodeType.EndElement &&
 						   reader.Name == Section)
 					return;
-				else
-					reader.Read();
 			}
 		}
 		
