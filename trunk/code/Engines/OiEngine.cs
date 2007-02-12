@@ -23,6 +23,7 @@ using MensagemWeb.Logging;
 
 namespace MensagemWeb.Engines {
 	// Inspired on code from Flávio R. Sampaio.
+	// Updated with code from jSMS (www.jsms.com.br)
 	public sealed class OiEngine : HttpEngine, IEngine {
 		private static readonly ISupported valid = new SupportedList(new ISupported[]
 			{new SupportedRange(21, 28, 86, 89), new SupportedRange(31, 38, 86, 89),
@@ -32,27 +33,17 @@ namespace MensagemWeb.Engines {
 		string IEngine.Name { get { return "Oi"; } }
 		int IEngine.MaxTotalChars { get { return 151; } }
 		
-		protected override string BaseURL { get { return "http://www.oiloja.com.br/"; } }
+		protected override string BaseURL { get { return "http://torpedo.oiloja.com.br/"; } }
 		private const string homeURL = "http://www.oiloja.com.br/index.jsp";
 		
-		private bool stage1 = false;
 		private Dictionary<string, string> postData = new Dictionary<string, string>();
 		
 		void IEngine.Clear() {
 			base.Clear();
-			stage1 = false;
 		}
 		
 		EngineResult IEngine.SendMessage(Message msg, VerificationDelegate callback) {
-			if (!stage1) {
-				postData.Clear();
-				postData["STATE"] = "12|PE|Pernambuco";
-				using (Response response = Post("index.jsp", homeURL, postData))
-					stage1 = true;
-			} else
-				Logger.Log(this, "Skipping stage1");
-			
-			using (Response response = Get("captcha.jsp", BaseURL + "wb/POi/POi_confirmacao"))
+			using (Response response = Get("captcha.jsp", BaseURL + "wb/POi/POi_oi_torpedo_mundooi"))
 				response.CallVerification(callback);
 			
 			// Save the message data for the SendCode method
