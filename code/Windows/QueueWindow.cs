@@ -48,10 +48,11 @@ namespace MensagemWeb.Windows {
 			private EngineResult result = null;
 			public string sendingStatus = "???";
 			public double progress = 0.0;
-			private double number;
-			private const double cloneProp = 1 + 1e-15;
 			
-			public QueueItem(Message message) {
+			private int number;
+			private double time;
+			
+			public QueueItem(Message message, int number) {
 				if (message == null) 
 					throw new ArgumentNullException("Message shouldn't be null.");
 				if (message.Destinations.Count != 1)
@@ -60,15 +61,16 @@ namespace MensagemWeb.Windows {
 				
 				this.message = message;
 				this.engine = PhoneBook.Get(message.Destinations[0]).RealEngine;
-				this.number = DateTime.Now.Ticks;
+				this.time = DateTime.Now.Ticks;
+				this.number = number;
 				
 				messageContents = Util.Split(message.Contents, 40);
 				destinationName = message.Destinations[0];
 			}
 			
-			public QueueItem Clone() {
-				QueueItem clone = new QueueItem(message);
-				clone.number = number * cloneProp;
+			public QueueItem Clone(int newNumber) {
+				QueueItem clone = new QueueItem(message, newNumber);
+				clone.time = this.time;
 				return clone;
 			}
 			
@@ -81,9 +83,9 @@ namespace MensagemWeb.Windows {
 			}
 			
 			public int CompareTo(QueueItem other) {
-				//int ret = status.CompareTo(other.status);
-				//if (ret != 0) return ret;
-				return number.CompareTo(other.number);
+				int ret = number.CompareTo(other.number);
+				if (ret != 0) return ret;
+				else return time.CompareTo(other.time);
 			}
 			
 			public EngineResult Result {
@@ -192,6 +194,7 @@ namespace MensagemWeb.Windows {
 	
 	
 		// The message queue, grouped by IEngine
+		private int number = 1000000;
 		private Dictionary<IEngine, Queue<QueueItem>> queue;
 		private NodeStore nodes;
 		private int msgCount = 0, sentCount = 0; // Used for progressbar
@@ -236,6 +239,7 @@ namespace MensagemWeb.Windows {
 		private Gtk.Action resendAction;
 		private Gtk.Action cancelAction;
 		private Gtk.Action clearAction;
+		private Gtk.CheckButton autoclosecheckbutton;
 #pragma warning restore 649
 			
 		
@@ -309,6 +313,12 @@ namespace MensagemWeb.Windows {
 				protectedEngines[engine] = prot; 
 			}
 			
+			// Autoclose checkbutton
+			autoclosecheckbutton.Active = MensagemWeb.Config.QueueConfig.AutoClose;
+			autoclosecheckbutton.Toggled += delegate {
+				MensagemWeb.Config.QueueConfig.AutoClose = autoclosecheckbutton.Active;
+			};
+			
 			// Updates our status
 			UpdateQueue();
 			UpdateStatus();
@@ -324,7 +334,6 @@ namespace MensagemWeb.Windows {
 				msgCount = sentCount = 0;
 			}
 		}
-		
 		
 		
 		public void AddMessage(Message message) {
@@ -344,9 +353,10 @@ namespace MensagemWeb.Windows {
 				
 				ResetCounters();
 				
+				number -= 1;
 				foreach (string dest in (IEnumerable<string>)message.Destinations)
 					foreach (Message msg in msgs) {
-						QueueItem item = new QueueItem(msg.ChangeDestination(dest));
+						QueueItem item = new QueueItem(msg.ChangeDestination(dest), number);
 						queue[item.engine].Enqueue(item);
 						msgCount += 1;
 					}
@@ -483,6 +493,8 @@ namespace MensagemWeb.Windows {
 					} else {
 						errorbox.Hide();
 						progressbox.Show();
+						if (autoclosecheckbutton.Active)
+							CloseWindow(null, null);
 					}
 				} else {
 					titleLabel.Markup = sendingTitle;
@@ -700,19 +712,20 @@ namespace MensagemWeb.Windows {
 				// Extract the items that will be resent
 				ITreeNode[] selection = nodeview.NodeSelection.SelectedNodes;
 				List<QueueItem> newItems = new List<QueueItem>(selection.Length);
+				number -= 1;
 				foreach (ITreeNode node in selection) {
 					QueueItem item = node as QueueItem;
 					switch (item.status) {
 						case QueueStatus.Waiting:
 							break;
 						case QueueStatus.Sending:
-							newItems.Add(item.Clone());
+							newItems.Add(item.Clone(number));
 							break;
 						default:
 							if (sent.Remove(item)) {
 								sentCount -= 1;
 								msgCount -= 1;
-								newItems.Add(item.Clone());
+								newItems.Add(item.Clone(number));
 							}
 							break;
 					}
@@ -781,9 +794,10 @@ namespace MensagemWeb.Windows {
 				}
 				
 				// Put the messages in the queue (like AddMessage)
+				number -= 1;
 				ResetCounters();
 				foreach (QueueItem item in newItems) {
-					queue[item.engine].Enqueue(item.Clone());
+					queue[item.engine].Enqueue(item.Clone(number));
 					++msgCount;
 				}
 				CheckQueue(true);

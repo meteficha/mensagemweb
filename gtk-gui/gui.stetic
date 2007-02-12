@@ -13,7 +13,7 @@
       </source>
     </icon-set>
   </icon-factory>
-  <widget class="Gtk.Window" id="MensagemWeb.Windows.QueueWindow" design-size="922 509">
+  <widget class="Gtk.Window" id="MensagemWeb.Windows.QueueWindow" design-size="634 470">
     <action-group name="Default">
       <action id="cancelAction">
         <property name="ShortLabel">Interromper</property>
@@ -313,36 +313,60 @@ enviadas e estão marcadas abaixo.</property>
           </packing>
         </child>
         <child>
-          <placeholder />
-        </child>
-        <child>
-          <widget class="Gtk.HButtonBox" id="hbuttonbox1">
-            <property name="Size">1</property>
-            <property name="LayoutStyle">End</property>
-            <property name="Spacing">6</property>
+          <widget class="Gtk.HBox" id="hbox1">
+            <property name="Spacing">20</property>
             <property name="Events">0</property>
             <property name="MemberName" />
             <child>
-              <widget class="Gtk.Button" id="closebutton">
-                <property name="UseStock">True</property>
-                <property name="Type">StockItem</property>
-                <property name="StockId">gtk-close</property>
-                <property name="IsDialogButton">False</property>
+              <widget class="Gtk.CheckButton" id="autoclosecheckbutton">
+                <property name="Label">Fechar esta janela após as mensagens serem enviadas</property>
+                <property name="Active">True</property>
+                <property name="DrawIndicator">True</property>
+                <property name="HasLabel">True</property>
                 <property name="CanFocus">True</property>
-                <property name="Tooltip" />
                 <property name="Events">0</property>
-                <property name="MemberName">closebutton</property>
-                <signal name="Clicked" handler="CloseWindow" />
-                <property name="label">gtk-close</property>
+                <property name="MemberName">autoclosecheckbutton</property>
               </widget>
               <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">False</property>
                 <property name="Expand">False</property>
-                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.HButtonBox" id="hbuttonbox1">
+                <property name="Size">1</property>
+                <property name="LayoutStyle">End</property>
+                <property name="Spacing">6</property>
+                <property name="Events">0</property>
+                <property name="MemberName" />
+                <child>
+                  <widget class="Gtk.Button" id="closebutton">
+                    <property name="UseStock">True</property>
+                    <property name="Type">StockItem</property>
+                    <property name="StockId">gtk-close</property>
+                    <property name="IsDialogButton">False</property>
+                    <property name="CanFocus">True</property>
+                    <property name="Tooltip" />
+                    <property name="Events">0</property>
+                    <property name="MemberName">closebutton</property>
+                    <signal name="Clicked" handler="CloseWindow" />
+                    <property name="label">gtk-close</property>
+                  </widget>
+                  <packing>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
               </packing>
             </child>
           </widget>
           <packing>
-            <property name="Position">4</property>
+            <property name="Position">3</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
