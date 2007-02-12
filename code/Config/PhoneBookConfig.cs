@@ -50,43 +50,54 @@ namespace MensagemWeb.Config {
 		}
 		
 		public void LoadConfiguration(XmlReader reader) {
-			while (reader.Read()) {
-				if (reader.NodeType == XmlNodeType.Element &&
-						reader.Name == "contact")
-					LoadContact(reader);
-				else if (reader.NodeType == XmlNodeType.EndElement &&
-						reader.Name == Section)
-					return;
+			PhoneBook.Hold();
+			try {
+				while (reader.Read()) {
+					switch (reader.NodeType) {
+						case XmlNodeType.Element:
+							if (reader.Name == "contact") LoadContact(reader);
+							break;
+						case XmlNodeType.EndElement:
+							if (reader.Name == Section) return;
+							break;
+					}
+				}
+			} finally {
+				PhoneBook.Thew();
 			}
 		}
 		
 		private void LoadContact(XmlReader reader) {
-			string name = null;
-			string ddd = null;
-			string number = null;
-			string engine = null;
-			reader.Read();
-			while (true) {
-				if (reader.NodeType == XmlNodeType.Element) {
-					// The order xmlname -> inner -> switch should not be changed
-					string xmlname = reader.Name;
-					string inner = reader.ReadInnerXml();
-					switch (xmlname) {
-						case "name":
-							name = XmlConvert.DecodeName(inner); break;
-						case "ddd":
-							ddd = inner; break;
-						case "number":
-							number = inner; break;
-						case "engine":
-							engine = inner; break;
-					}
-				} else if (reader.NodeType == XmlNodeType.EndElement && reader.Name == "contact")
-					break;
-				else if (reader.NodeType == XmlNodeType.EndElement && reader.Name == Section)
-					return;
-				else
-					reader.Read();
+			string name, ddd, number, engine;
+			name = ddd = number = engine = null;
+			bool inside = true;
+			while (inside && reader.Read()) {
+				switch (reader.NodeType) {
+					case XmlNodeType.Element:
+						string xmlname = reader.Name;
+						string inner = "";
+						if (reader.Read() && reader.NodeType == XmlNodeType.Text) {
+							inner = reader.Value;
+							reader.Read(); // -> EndElement
+						}
+						switch (xmlname) {
+							case "name":
+								name = XmlConvert.DecodeName(inner); break;
+							case "ddd":
+								ddd = inner; break;
+							case "number":
+								number = inner; break;
+							case "engine":
+								engine = inner; break;
+						}
+						break;
+					case XmlNodeType.EndElement:
+						if (reader.Name == "contact")
+							inside = false;
+						else if (reader.Name == Section)
+							return;
+						break;
+				}
 			}
 			PhoneBook.Add(name, ddd, number, engine);
 		}

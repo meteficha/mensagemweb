@@ -139,7 +139,7 @@ namespace MensagemWeb {
 			}	
 			
 			// Find all version tags
-			while (true) {
+			while (xml.Read()) {
 				if (xml.NodeType == XmlNodeType.Element &&
 						xml.Name == "version") {
 					string version = xml["number"];
@@ -148,8 +148,6 @@ namespace MensagemWeb {
 					array.Add(new Update(version, released, changes));
 				} else if (xml.NodeType == XmlNodeType.EndElement &&
 						xml.Name == "mensagemweb")
-					break;
-				else if (!xml.Read())
 					break;
 			}
 			
