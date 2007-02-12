@@ -23,10 +23,14 @@ using MensagemWeb;
 namespace MensagemWeb.Config {
 	public class QueueConfig : IConfigurable {
 		public static bool AutoClose = true;
+		public static int Width = 1, Height = 1;
+		
 		public string Section { get { return "queue"; } }
 				
 		public void SaveConfiguration(XmlWriter writer) {
 			Util.WriteProperty(writer, "AutoClose", XmlConvert.ToString(AutoClose));
+			Util.WriteProperty(writer, "Width", XmlConvert.ToString(Width));
+			Util.WriteProperty(writer, "Height", XmlConvert.ToString(Height));
 		}
 		
 		public void LoadConfiguration(XmlReader reader) {
@@ -40,8 +44,11 @@ namespace MensagemWeb.Config {
 					}
 					switch (name) {
 						case "AutoClose":
-							AutoClose = XmlConvert.ToBoolean(inner);
-							break;
+							AutoClose = XmlConvert.ToBoolean(inner); break;
+						case "Width":
+							Width = XmlConvert.ToInt32(inner); break;
+						case "Height":
+							Height = XmlConvert.ToInt32(inner); break;
 					}
 				} else if (reader.NodeType == XmlNodeType.EndElement &&
 						   reader.Name == Section)

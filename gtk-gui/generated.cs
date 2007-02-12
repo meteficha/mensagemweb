@@ -335,8 +335,8 @@ namespace Stetic {
                 w59.Fill = false;
                 bindings["vbox2"] = w7;
                 cobj.Add(w7);
-                cobj.DefaultWidth = 634;
-                cobj.DefaultHeight = 470;
+                cobj.DefaultWidth = 519;
+                cobj.DefaultHeight = 391;
                 bindings["MensagemWeb.Windows.QueueWindow"] = cobj;
                 w9.Show();
                 w12.Show();

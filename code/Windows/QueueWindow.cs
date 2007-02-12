@@ -160,7 +160,7 @@ namespace MensagemWeb.Windows {
 									case EngineResultType.MaxTryExceeded:
 										msg = "Servidor inacessível";
 										compl = "Verifique se sua conexão com a Internet está " +
-											"funcionando e se você precisa habilitar o proxy.";
+											"funcionando ou se você precisa habilitar o proxy.";
 										break;
 								
 								}
@@ -244,6 +244,11 @@ namespace MensagemWeb.Windows {
 		private Gtk.CheckButton autoclosecheckbutton;
 #pragma warning restore 649
 			
+		[GLib.ConnectBefore]
+		private void OnConfigureEvent(object o, ConfigureEventArgs args) {
+			MensagemWeb.Config.QueueConfig.Width = args.Event.Width;
+			MensagemWeb.Config.QueueConfig.Height = args.Event.Height;
+		}
 		
 		private QueueWindow() 
 				: base(String.Empty) 
@@ -259,6 +264,11 @@ namespace MensagemWeb.Windows {
 					CloseWindow(o, null);
 			};
 			
+			// The size
+			this.Resize(MensagemWeb.Config.QueueConfig.Width, MensagemWeb.Config.QueueConfig.Height);
+			this.ConfigureEvent += OnConfigureEvent;
+			
+			
 			// Initialize the nodeview
 			nodes = new NodeStore(typeof(QueueItem));
 			nodeview = new NodeView(nodes);
@@ -273,7 +283,7 @@ namespace MensagemWeb.Windows {
 			nodepanel.ShowAll();
 			
 			Gdk.Geometry geom = new Gdk.Geometry();
-			geom.MinWidth = 300;
+			geom.MinWidth = 150;
 			geom.MinHeight = 200;
 			this.SetGeometryHints(nodepanel, geom, Gdk.WindowHints.MinSize);
 			
@@ -497,8 +507,6 @@ namespace MensagemWeb.Windows {
 					} else {
 						errorbox.Hide();
 						progressbox.Show();
-						if (autoclosecheckbutton.Active)
-							CloseWindow(null, null);
 					}
 				} else {
 					titleLabel.Markup = sendingTitle;
@@ -650,6 +658,8 @@ namespace MensagemWeb.Windows {
 					}
 					item.Result = result;
 					CheckQueue(true); // calls UpdateStatus();
+					if (!progressbar.Visible && !errorbox.Visible && autoclosecheckbutton.Active)
+						CloseWindow(null, null);
 				});
 			});
 			worker.Name = "SendCode -- " + engine.Name;
