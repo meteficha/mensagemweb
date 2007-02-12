@@ -12,7 +12,10 @@ MensagemWeb 1.XX   XX/XX/2007
 	* Mostrar a janela de verificação como urgente para chamar a atenção
 	do usuário.
 	* Permitir reordenação dos contatos na janela de telefones.
-	* Corrigidos pequenos bugs que não comprometiam muito o funcionamento.
+	* Corrigida a forma de acesso à Oi (baseado no código do jSMS, 
+	corrige o bug #201169).
+	* Corrigidos pequenos bugs que não comprometiam muito o funcionamento,
+	além de algumas otimizações.
 
 MensagemWeb 1.7.2   10/12/2006
 	* Corrigido problema introduzido na versão 1.7.1 que fazia o
