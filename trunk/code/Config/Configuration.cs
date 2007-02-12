@@ -58,7 +58,8 @@ namespace MensagemWeb.Config {
 				new PhoneBookConfig(), 
 				new MainWindowConfig(),
 				new ProxyConfig(),
-				new UpdateConfig()
+				new UpdateConfig(),
+				new QueueConfig()
 			};
 		
 		private static bool held = false;

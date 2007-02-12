@@ -284,34 +284,56 @@ namespace Stetic {
                 Gtk.Box.BoxChild w50 = ((Gtk.Box.BoxChild)(w6[w41]));
                 w50.Position = 2;
                 // Container child vbox2.Gtk.Box+BoxChild
-                Gtk.HButtonBox w51 = new Gtk.HButtonBox();
-                w51.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
-                w51.Spacing = 6;
+                Gtk.HBox w51 = new Gtk.HBox();
+                w51.Spacing = 20;
                 w51.Events = ((Gdk.EventMask)(0));
-                w51.Name = "hbuttonbox1";
-                // Container child hbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
-                Gtk.Button w52 = new Gtk.Button();
-                w52.UseStock = true;
-                w52.UseUnderline = true;
+                w51.Name = "hbox1";
+                // Container child hbox1.Gtk.Box+BoxChild
+                Gtk.CheckButton w52 = new Gtk.CheckButton();
+                w52.Label = "Fechar esta janela após as mensagens serem enviadas";
+                w52.Active = true;
+                w52.DrawIndicator = true;
                 w52.CanFocus = true;
                 w52.Events = ((Gdk.EventMask)(0));
-                w52.Name = "closebutton";
-                w52.Label = "gtk-close";
-                bindings["closebutton"] = w52;
+                w52.Name = "autoclosecheckbutton";
+                bindings["autoclosecheckbutton"] = w52;
                 w51.Add(w52);
-                Gtk.ButtonBox.ButtonBoxChild w53 = ((Gtk.ButtonBox.ButtonBoxChild)(w51[w52]));
+                Gtk.Box.BoxChild w53 = ((Gtk.Box.BoxChild)(w51[w52]));
+                w53.Position = 0;
                 w53.Expand = false;
-                w53.Fill = false;
-                bindings["hbuttonbox1"] = w51;
+                // Container child hbox1.Gtk.Box+BoxChild
+                Gtk.HButtonBox w54 = new Gtk.HButtonBox();
+                w54.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
+                w54.Spacing = 6;
+                w54.Events = ((Gdk.EventMask)(0));
+                w54.Name = "hbuttonbox1";
+                // Container child hbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
+                Gtk.Button w55 = new Gtk.Button();
+                w55.UseStock = true;
+                w55.UseUnderline = true;
+                w55.CanFocus = true;
+                w55.Events = ((Gdk.EventMask)(0));
+                w55.Name = "closebutton";
+                w55.Label = "gtk-close";
+                bindings["closebutton"] = w55;
+                w54.Add(w55);
+                Gtk.ButtonBox.ButtonBoxChild w56 = ((Gtk.ButtonBox.ButtonBoxChild)(w54[w55]));
+                w56.Expand = false;
+                w56.Fill = false;
+                bindings["hbuttonbox1"] = w54;
+                w51.Add(w54);
+                Gtk.Box.BoxChild w57 = ((Gtk.Box.BoxChild)(w51[w54]));
+                w57.Position = 1;
+                bindings["hbox1"] = w51;
                 w6.Add(w51);
-                Gtk.Box.BoxChild w54 = ((Gtk.Box.BoxChild)(w6[w51]));
-                w54.Position = 4;
-                w54.Expand = false;
-                w54.Fill = false;
+                Gtk.Box.BoxChild w58 = ((Gtk.Box.BoxChild)(w6[w51]));
+                w58.Position = 3;
+                w58.Expand = false;
+                w58.Fill = false;
                 bindings["vbox2"] = w6;
                 cobj.Add(w6);
-                cobj.DefaultWidth = 922;
-                cobj.DefaultHeight = 509;
+                cobj.DefaultWidth = 634;
+                cobj.DefaultHeight = 470;
                 bindings["MensagemWeb.Windows.QueueWindow"] = cobj;
                 w8.Show();
                 w11.Show();
@@ -335,13 +357,15 @@ namespace Stetic {
                 w42.Show();
                 w41.Show();
                 w52.Show();
+                w55.Show();
+                w54.Show();
                 w51.Show();
                 w6.Show();
                 w3.Activated += ((System.EventHandler)(System.Delegate.CreateDelegate(typeof(System.EventHandler), cobj, "CancelClicked")));
                 w4.Activated += ((System.EventHandler)(System.Delegate.CreateDelegate(typeof(System.EventHandler), cobj, "ResendClicked")));
                 w5.Activated += ((System.EventHandler)(System.Delegate.CreateDelegate(typeof(System.EventHandler), cobj, "ClearClicked")));
                 w28.Clicked += ((System.EventHandler)(System.Delegate.CreateDelegate(typeof(System.EventHandler), cobj, "ResendWithError")));
-                w52.Clicked += ((System.EventHandler)(System.Delegate.CreateDelegate(typeof(System.EventHandler), cobj, "CloseWindow")));
+                w55.Clicked += ((System.EventHandler)(System.Delegate.CreateDelegate(typeof(System.EventHandler), cobj, "CloseWindow")));
             }
             System.Reflection.FieldInfo[] fields = obj.GetType().GetFields(((System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic) | System.Reflection.BindingFlags.Instance));
             for (int n = 0; (n < fields.Length); n = (n + 1)) {
