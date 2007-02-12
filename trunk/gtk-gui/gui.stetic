@@ -13,7 +13,7 @@
       </source>
     </icon-set>
   </icon-factory>
-  <widget class="Gtk.Window" id="MensagemWeb.Windows.QueueWindow" design-size="634 470">
+  <widget class="Gtk.Window" id="MensagemWeb.Windows.QueueWindow" design-size="519 391">
     <action-group name="Default">
       <action id="cancelAction">
         <property name="ShortLabel">Interromper</property>
