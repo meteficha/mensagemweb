@@ -59,17 +59,9 @@ namespace MensagemWeb {
 				Logger.Log(typeof(MainClass), e.ToString());
 				
 				// Then try to show something (remember, Gtk# may be screwed)
-				Util.ShowMessage(null, "Ocorreu algum erro inesperado",
-				                     "Isso significa que existe algum problema interno no " +
-				                     "MensagemWeb que ainda não foi identificado, então " +
-				                     "nós gostaríamos que você procurasse ajuda " +
-				                     "em nossos fóruns (visite nosso site em " +
-									 "<i>mensagemweb.codigolivre.org.br</i>) para que possamos " +
-									 "resolvê-lo e evitar novos transtornos." +
-									 "\n\n<b>Informações detalhadas" +
-									 " (se possível, copie e cole no seu pedido de ajuda):</b>\n" + 
-									 Util.Replace(e.ToString()),
-									 Gtk.MessageType.Error, false);
+				ErrorWindow w = new ErrorWindow(MainWindow.This, e);
+				w.Run();
+				w.Destroy();
 				
 				// Don't save anything, just exit
 				throw;
