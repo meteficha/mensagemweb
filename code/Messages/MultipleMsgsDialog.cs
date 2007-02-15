@@ -24,39 +24,39 @@ using MensagemWeb.Windows;
 
 namespace MensagemWeb.Messages {
 	public sealed class MultipleMsgsDialog : Dialog {
-		private static string title = "Envio de múltiplas mensagens";
 		private static DialogFlags dialog_flags = DialogFlags.DestroyWithParent |
 			DialogFlags.NoSeparator;
-		private static object[] button_data = new object[] {Stock.No, ResponseType.No,
-			Stock.Yes, ResponseType.Yes};
-	
-		private Message[] msgs;
-		private int current = 0;
-		
-		private Label msgsLabel;
-		private TextBuffer msgBuffer;
-		private Arrow leftArrow = new Arrow(ArrowType.Left, ShadowType.None);
-		private Arrow rightArrow = new Arrow(ArrowType.Right, ShadowType.None);
-		
+		private static object[] button_data = new object[] {Stock.Cancel, ResponseType.No,
+			"_Enviar", ResponseType.Yes};		
 		
 		
 		public MultipleMsgsDialog(Message[] msgsToSend)
-				: base(title, MainWindow.This, dialog_flags, button_data)
+				: base("", MainWindow.This, dialog_flags, button_data)
 		{
 			if (msgsToSend == null)
 				throw new ArgumentNullException("msgsToSend");
 			if (msgsToSend.Length < 2)
 				throw new ArgumentException("msgsToSend");
-			msgs = msgsToSend;
+				
+			foreach (Widget w in this.ActionArea.AllChildren) {
+				Button b = w as Button;
+				if (b != null && b.Label == (button_data[2] as string)) {
+					Util.SetProperty(b, "Image", new Image(Stock.GoForward, IconSize.Button));
+					break;
+				}
+			}
+			
+			ActionArea.BorderWidth = 12;
+			this.VBox.BorderWidth = 0;
 			
 			DefaultResponse = ResponseType.Yes;
-			Modal = false;
-			Resizable = false;
+			Modal = true;
+			Resizable = true;
 			
 			HBox hbox = new HBox();
 			VBox.Add(hbox);
-			hbox.BorderWidth = 10;
-			hbox.Spacing = 10;
+			hbox.BorderWidth = 12;
+			hbox.Spacing = 12;
 			
 			Image img = new Image(Stock.DialogQuestion, IconSize.Dialog);
 			img.Yalign = 0;
@@ -64,98 +64,65 @@ namespace MensagemWeb.Messages {
 			
 			VBox vbox = new VBox();
 			hbox.Add(vbox);
-			vbox.Spacing = 7;
+			vbox.Spacing = 12;
 			
-			Label label1 = new Label(
-				"Você está prestes a enviar mais de uma\n" +
-				"mensagem ao(s) destinatário(s):");
-			vbox.PackStart(label1, false, true, 0);
+			Label titleLabel = new Label("");
+			titleLabel.Markup = "<span size=\"large\" weight=\"bold\">Enviar mais de uma mensagem?</span>";
+			titleLabel.Xalign = 0.0f;
+			vbox.PackStart(titleLabel, false, true, 0);
 			
-			VBox msgsBox = new VBox();
-			Frame port = new Frame();
-			port.ShadowType = ShadowType.In;
-			port.Add(msgsBox);
-			vbox.PackStart(port, true, true, 0);
-				
-				HBox titleBox = new HBox();
-				msgsBox.PackStart(titleBox, false, true, 0);
-				
-					EventBox leftEventBox = new EventBox();
-					leftEventBox.ButtonReleaseEvent += delegate {
-						current -= 1;
-						UpdateMessage();
-					};
-					leftEventBox.Add(leftArrow);
-					titleBox.PackStart(leftEventBox, false, true, 0);
-					
-					msgsLabel = new Label(String.Empty);
-					titleBox.PackStart(msgsLabel, true, true, 0);
-					
-					EventBox rightEventBox = new EventBox();
-					rightEventBox.ButtonReleaseEvent += delegate {
-						current += 1;
-						UpdateMessage();
-					};
-					rightEventBox.Add(rightArrow);
-					titleBox.PackStart(rightEventBox, false, true, 0);
-				
-				TextView msgView = new TextView();
-				msgView.CursorVisible = false;
-				msgView.WrapMode = WrapMode.WordChar;
-				msgView.Editable = false;
-				msgView.KeyPressEvent += delegate (object o, KeyPressEventArgs args) {
-					switch (args.Event.Key) {
-						case Gdk.Key.space:
-							current += 1;
-							if (current >= msgs.Length)
-								current = 0;
-							UpdateMessage();
-							break;
-						case Gdk.Key.Escape:
-							this.Respond(ResponseType.No);
-							break;
-						case Gdk.Key.Return:
-						case Gdk.Key.KP_Enter:
-							this.Respond(ResponseType.Yes);
-							break;
-					}
-				};
-				msgBuffer = msgView.Buffer;
-				msgsBox.PackStart(msgView, true, true, 0);
+			Label explLabel = new Label("Seu texto é muito longo para ser enviado\nem uma " +
+			                            "mensagem apenas, por isso ele\nserá dividido em " +
+			                            Util.Number(msgsToSend.Length, false) + " mensagens:");
+			explLabel.Xalign = 0.0f;
+			explLabel.Wrap = false;
+			vbox.PackStart(explLabel, false, true, 0);
 			
-			Label label2 = new Label();
-			label2.Markup = "<b>Você deseja enviar essas mensagens?</b>";
-			vbox.PackStart(label2, false, true, 0);
 			
-			UpdateMessage();
+			Widget list = CreateList(msgsToSend);
+			vbox.PackStart(list, true, true, 0);
+			
+			Gdk.Geometry geom = new Gdk.Geometry();
+			geom.MinWidth = 150;
+			geom.MinHeight = 150;
+			this.SetGeometryHints(list, geom, Gdk.WindowHints.MinSize);
+			
 			hbox.ShowAll();
 		}
-	
-	
 		
-		private void UpdateMessage() {
-			// First assure that current is under the limit [0 .. msgs.Length[
-			int length = msgs.Length;
-			if (current < 0)
-				current = 0;
-			if (current >= length)
-				current = length - 1;
-			
-			// Update the texts
-			msgsLabel.Text = String.Format("Mensagem {0} de {1}", current + 1, length);
-			msgBuffer.Text = msgs[current].Contents;
-			
-			// Update the arrows
-			if (current == 0) {
-				leftArrow.Sensitive = false;
-				rightArrow.Sensitive = true;
-			} else if (current == (length - 1)) {
-				leftArrow.Sensitive = true;
-				rightArrow.Sensitive = false;
-			} else {
-				leftArrow.Sensitive = true;
-				rightArrow.Sensitive = true;
+		
+		private Widget CreateList(Message[] msgs) {
+			ListStore store = new ListStore(typeof(string), typeof(string));
+			int index = 0;
+			foreach (Message msg in msgs) {
+				store.AppendValues("<span size=\"xx-large\" weight=\"bold\">" + ++index + "</span>",
+				                   Util.Split(msg.Contents, 40));
 			}
+		
+			TreeView treeview = new TreeView();			
+			treeview.Model = store;
+			treeview.Selection.Mode = SelectionMode.None;
+			treeview.Reorderable = false;
+			treeview.HeadersVisible = false;
+			treeview.RulesHint = true;
+			treeview.SearchColumn = 1; // Model's column
+			
+			TreeViewColumn col = new TreeViewColumn();
+			col.Title = "Mensagem";
+			CellRendererText cell = new CellRendererText();
+			col.PackStart(cell, false);
+			col.AddAttribute(cell, "markup", 0);
+			cell = new CellRendererText();
+			col.PackStart(cell, true);
+			col.AddAttribute(cell, "text", 1);
+			treeview.AppendColumn(col);
+			
+			ScrolledWindow sw = new ScrolledWindow();
+			sw.BorderWidth = 0;
+			sw.ShadowType = ShadowType.In;
+			sw.Add(treeview);
+			
+			return sw;
 		}
 	}
 }

@@ -10,6 +10,8 @@ MensagemWeb 1.8   XX/XX/2007
 	* Mostrar mensagens explicativas quando alguma mensagem não puder ser
 	entregue devido a uma restrição imposta pela operadora (inclusive
 	a TIM).
+	* Nova janela mostrando de forma mais clara a divisão que será feita
+	nas mensagens ao enviá-las.
 	* Quando um destinatário não-reconhecido for selecionado dentre
 	vários, mostrar qual tem problemas (corrige o bug #200890).
 	* Mostrar a janela de verificação como urgente para chamar a atenção
