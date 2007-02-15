@@ -513,6 +513,19 @@ namespace MensagemWeb.Windows {
 			menu.ShowAll();
 		}
 		
+		public void QueueComplete(bool cancelled) {
+			// Called by QueueWindow when all messages were successfully sent (or canceled)
+			// XXX: Should we use delegates, events, or...?
+			
+			// If we say the message was not sent, it's because the user is typing another one,
+			// so we won't bother him.
+			if (!Sent) return;
+			string text = "Todas as mensagens foram enviadas com sucesso!";
+			if (cancelled) text += "\n(algumas tiveram o envio cancelado)";
+			msgNoLabel.Text = text;
+				                  
+		}
+		
 		private bool CheckSent(string question) {
 			if (!Sent) {
 				MessageDialog m = Util.CreateMessageDialog(this, DialogFlags.DestroyWithParent,

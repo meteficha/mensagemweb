@@ -32,22 +32,24 @@ namespace MensagemWeb.Windows {
 		// The status of each QueueItem
 		private enum QueueStatus {
 			Sending = 1,
-			Waiting,
-			Error,
-			Cancelled,
-			Sent
+			Waiting = 2,
+			Error = 3,
+			Cancelled = 4,
+			Sent = 5
 		}
 		
 		
 		// An item in the message queue
 		[TreeNode(ListOnly=true)]
-		private class QueueItem : TreeNode, IComparable<QueueItem> {
+		private sealed class QueueItem : TreeNode, IComparable<QueueItem> {
+			public readonly Message message;
+			public readonly IEngine engine;
 			public QueueStatus status = QueueStatus.Waiting;
-			public Message message;
-			public IEngine engine;
+			
+			private DateTime resultTime = DateTime.MinValue;
 			private EngineResult result = null;
-			public string sendingStatus = "???";
-			public double progress = 0.0;
+			private string sendingStatus = "???";
+			private double progress = 0.0;
 			
 			private int number;
 			private double time;
@@ -64,8 +66,8 @@ namespace MensagemWeb.Windows {
 				this.time = DateTime.Now.Ticks;
 				this.number = number;
 				
-				messageContents = Util.Split(message.Contents, 40);
-				destinationName = message.Destinations[0] + "\n<small><i>" +
+				MessageContents = Util.Split(message.Contents, 40);
+				DestinationName = message.Destinations[0] + "\n<small><i>" +
 				                  engine.Name + "</i></small>";
 			}
 			
@@ -75,18 +77,60 @@ namespace MensagemWeb.Windows {
 				return clone;
 			}
 			
-			public void FireChanged() {
+			public void UpdateProgress(QueueStatus? status, string sendingStatus, double progress) {
+				if (status.HasValue)
+					this.status = status.Value;
+				this.sendingStatus = sendingStatus;
+				this.progress = progress;
+				FireChanged();
+			}
+			
+			private void FireChanged() {
 				try {
 					OnChanged();
+					QueueWindow.This.ResortNodes();
 				} catch {
 					// Don't do anything
 				}
 			}
 			
-			public int CompareTo(QueueItem other) {
+			private int CompareToAux_Number(QueueItem other) {
 				int ret = number.CompareTo(other.number);
 				if (ret != 0) return ret;
 				else return time.CompareTo(other.time);
+			}
+			
+			public int CompareTo(QueueItem other) {
+				if (this == other) return 0;
+				int basic = this.status.CompareTo(other.status);
+				switch (this.status) {
+					case QueueStatus.Sending:
+						// Order by status, then by progress, then by number
+						if (basic == 0) {
+							int ret = this.progress.CompareTo(other.progress);
+							if (ret != 0) return (-ret);
+							else return CompareToAux_Number(other);
+						} else
+							return basic;
+						
+					case QueueStatus.Waiting:
+					case QueueStatus.Error:
+						// Order by status, then by number
+						if (basic == 0) 
+							return CompareToAux_Number(other);
+						else
+							return basic;
+					
+					//case QueueStatus.Cancelled:
+					//case QueueStatus.Sent:
+					default:
+						// Order by number, then by time when got the status
+						int ret = CompareToAux_Number(other);
+						if (ret != 0)
+							return ret;
+						else
+							return this.resultTime.CompareTo(other.resultTime);
+				}
 			}
 			
 			public EngineResult Result {
@@ -108,6 +152,7 @@ namespace MensagemWeb.Windows {
 							status = QueueStatus.Error;
 							break;
 					}
+					resultTime = DateTime.Now.ToLocalTime();
 					FireChanged();
 				}
 			}
@@ -132,11 +177,11 @@ namespace MensagemWeb.Windows {
 						case QueueStatus.Sending:
 							return sendingStatus;
 						case QueueStatus.Sent:
-							return "Enviada!";
+							return "Enviada!\n<small><i>" + Util.ToPrettyString(resultTime) + "</i></small>";
 						case QueueStatus.Waiting:
 							return "Esperando na fila";
 						case QueueStatus.Cancelled:
-							return "Cancelada";
+							return "Cancelada\n<small><i>" + Util.ToPrettyString(resultTime) + "</i></small>";
 						case QueueStatus.Error: 
 							string msg = "Erro desconhecido no envio";
 							string compl = null;
@@ -176,10 +221,13 @@ namespace MensagemWeb.Windows {
             }
             
             [TreeNodeValue(Column=2)]
-            public string destinationName;
+            public readonly string DestinationName;
             
             [TreeNodeValue(Column=3)]
-            public string messageContents;
+            public readonly string MessageContents;
+            
+            [TreeNodeValue(Column=4)]
+            public double Progress { get { return progress; } }
 		}
 		
 		
@@ -493,12 +541,14 @@ namespace MensagemWeb.Windows {
 					closebutton.Sensitive = true;
 					progressbar.Hide();
 					
-					bool errors = false;
+					bool errors = false, cancelled = false;
 					foreach (QueueItem item in sent) {
 						// XXX: Move this to the methods who change sent?
 						if (item.status == QueueStatus.Error) {
 							errors = true;
 							break;
+						} else if (item.status == QueueStatus.Cancelled) {
+							cancelled = true;
 						}
 					}
 					if (errors) {
@@ -507,6 +557,7 @@ namespace MensagemWeb.Windows {
 					} else {
 						errorbox.Hide();
 						progressbox.Show();
+						MainWindow.This.QueueComplete(cancelled);
 					}
 				} else {
 					titleLabel.Markup = sendingTitle;
@@ -516,18 +567,40 @@ namespace MensagemWeb.Windows {
 					progressbox.Show();
 					progressbar.Show();
 				}
-								
-				nodes.Clear();
+				
 				remaining.AddRange(sent);
 				remaining.Sort();
-				foreach (QueueItem item in (IEnumerable<QueueItem>)remaining)
-					nodes.AddNode(item);
-				nodeview.ColumnsAutosize();
+				nodeview.FreezeChildNotify();
+				try {
+					nodes.Clear();
+					foreach (QueueItem item in (IEnumerable<QueueItem>)remaining)
+						nodes.AddNode(item);
+				} finally {
+					nodeview.ThawChildNotify();
+					nodeview.ColumnsAutosize();
+				}
 			}
 			
 			UpdateStatus();
 		}
 		
+		private void ResortNodes() {
+			lock (queue) {
+				List<QueueItem> items = new List<QueueItem>(msgCount);
+				foreach (ITreeNode node in nodes)
+					items.Add(node as QueueItem);
+				items.Sort();
+				nodeview.FreezeChildNotify();
+				try {
+					nodes.Clear();
+					foreach (QueueItem item in (IEnumerable<QueueItem>)items)
+						nodes.AddNode(item);
+				} finally {
+					nodeview.ThawChildNotify();
+					nodeview.ColumnsAutosize();
+				}
+			}
+		}
 		
 		
 		// Updates our status (the progressbar, currently)
@@ -537,7 +610,7 @@ namespace MensagemWeb.Windows {
 				lock (queue)
 					foreach (Queue<QueueItem> q in queue.Values)
 						foreach (QueueItem item in q)
-							done += item.progress;
+							done += item.Progress;
 				progressbar.Fraction = done / msgCount;
 				
 				System.Text.StringBuilder text = new System.Text.StringBuilder(50);
@@ -564,10 +637,7 @@ namespace MensagemWeb.Windows {
 
 		// Start sending a message
 		private void Send(QueueItem item) {
-			item.status = QueueStatus.Sending;
-			item.sendingStatus = "Baixando código...";
-			item.progress = 0.0;
-			item.FireChanged();
+			item.UpdateProgress(QueueStatus.Sending, "Baixando código...", 0.0);
 			IEngine engine = protectedEngines[item.engine];
 			Thread worker = new Thread(delegate () {
 				engine.Clear();
@@ -594,9 +664,7 @@ namespace MensagemWeb.Windows {
 				return;
 			Gdk.Pixbuf pixbuf = new Gdk.Pixbuf(stream);
 			Application.Invoke(delegate {
-				item.sendingStatus = "Mostrando código...";
-				item.progress = 0.3333333333333;
-				item.FireChanged();
+				item.UpdateProgress(null, "Mostrando código...", 0.3333333333333);
 				UpdateStatus();
 				RequestVerification(item, engine, pixbuf);
 			});
@@ -637,9 +705,7 @@ namespace MensagemWeb.Windows {
 		
 		// This method is called from the Gtk#'s thread.
 		private void SendCodeDelegate(string code, IEngine engine, QueueItem item) {
-			item.sendingStatus = "Enviando código...";
-			item.progress = 0.666666666;
-			item.FireChanged();
+			item.UpdateProgress(null, "Enviando código...", 0.666666666);
 			UpdateStatus();
 			Thread worker = new Thread(delegate () {
 				EngineResult result = EngineResult.UserCancel;
@@ -773,23 +839,28 @@ namespace MensagemWeb.Windows {
 			lock (queue) {
 				bool changed = false, cancelVerification = false;
 				ITreeNode[] selected = nodeview.NodeSelection.SelectedNodes;
-				foreach (ITreeNode node in selected) {
-					QueueItem item = node as QueueItem;
-					switch (item.status) {
-						case QueueStatus.Sending:
-							changed = true;
-							item.engine.Abort();
-							item.Result = EngineResult.UserCancel;
-							if (verifying.HasValue && verifying.Value.ValueA == item)
-								cancelVerification = true;
-							break;
-						case QueueStatus.Waiting:
-							changed = true;
-							item.Result = EngineResult.UserCancel;
-							break;
+				nodeview.FreezeChildNotify();
+				try {
+					foreach (ITreeNode node in selected) {
+						QueueItem item = node as QueueItem;
+						switch (item.status) {
+							case QueueStatus.Sending:
+								changed = true;
+								item.engine.Abort();
+								item.Result = EngineResult.UserCancel;
+								if (verifying.HasValue && verifying.Value.ValueA == item)
+									cancelVerification = true;
+								break;
+							case QueueStatus.Waiting:
+								changed = true;
+								item.Result = EngineResult.UserCancel;
+								break;
+						}
 					}
+					CheckQueue(changed);
+				} finally {
+					nodeview.ThawChildNotify();
 				}
-				CheckQueue(changed);
 				if (cancelVerification) verificationWindow.Cancel();
 			}
 		}
@@ -853,32 +924,37 @@ namespace MensagemWeb.Windows {
 				}
 				
 				// Cancel the relevant messages
-				bool changed = false, cancelVerification = false;
-				foreach (ITreeNode node in selection) {
-					QueueItem item = node as QueueItem;
-					switch (item.status) {
-						case QueueStatus.Sending:
-							changed = true;
-							item.engine.Abort();
-							item.Result = EngineResult.UserCancel;
-							if (verifying.HasValue && verifying.Value.ValueA == item)
-								cancelVerification = true;
-							break;
-						case QueueStatus.Waiting:
-							changed = true;
-							item.Result = EngineResult.UserCancel;
-							break;
+				nodeview.FreezeChildNotify();
+				try {
+					bool changed = false, cancelVerification = false;
+					foreach (ITreeNode node in selection) {
+						QueueItem item = node as QueueItem;
+						switch (item.status) {
+							case QueueStatus.Sending:
+								changed = true;
+								item.engine.Abort();
+								item.Result = EngineResult.UserCancel;
+								if (verifying.HasValue && verifying.Value.ValueA == item)
+									cancelVerification = true;
+								break;
+							case QueueStatus.Waiting:
+								changed = true;
+								item.Result = EngineResult.UserCancel;
+								break;
+						}
 					}
+					CheckQueue(changed);
+					if (cancelVerification) verificationWindow.Cancel();
+					
+					// Remove them
+					foreach (ITreeNode node in selection) {
+						if (sent.Remove(node as QueueItem))
+							sentCount -= 1;
+					}
+					UpdateQueue();
+				} finally {
+					nodeview.ThawChildNotify();
 				}
-				CheckQueue(changed);
-				if (cancelVerification) verificationWindow.Cancel();
-				
-				// Remove them
-				foreach (ITreeNode node in selection) {
-					if (sent.Remove(node as QueueItem))
-						sentCount -= 1;
-				}
-				UpdateQueue();
 			}
 		}
 #pragma warning restore 169
