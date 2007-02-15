@@ -33,4 +33,4 @@ using System.Reflection;
                              "GNU General Public License version 2 or later)")]
 //[assembly: AssemblyTrademark("")]
 //[assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("1.7.3")]
+[assembly: AssemblyVersion("1.8")]
