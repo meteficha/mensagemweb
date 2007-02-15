@@ -17,6 +17,7 @@
  
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 using MensagemWeb.Messages;
 using MensagemWeb.Logging;
@@ -35,49 +36,146 @@ namespace MensagemWeb.Engines {
 		
 		private const string homeURL = "http://www.claroideias.com.br/portal/site/CIdeias/";
 		protected override string BaseURL { 
-			get { return "http://clarotorpedoweb.claro.com.br/ClaroTorpedoWeb/"; } 
+			get { return "http://clarotorpedoweb.claro.com.br/"; } 
 		}
 		
 		private Dictionary<string, string> postData;
-		private string imageSource;
-		private bool stage1 = false;
+		private string imageSource, codeTag;
 		
 		void IEngine.Clear() {
 			base.Clear();
-            imageSource = String.Empty;
-			stage1 = false;
+            imageSource = codeTag = String.Empty;
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		private static StringBuilder RemoveHtmlComments(string text) {
+			int text_Length = text.Length;
+			StringBuilder builder = new StringBuilder(text_Length);
+			bool comment = false;
+			for (int i = 0; i < text_Length; i++) {
+				char text_i = text[i];
+				if (!comment) {
+					if (text_i != '<')
+						builder.Append(text_i);
+					else if (text.Substring(i, 4) == "<!--")
+						comment = true;
+					else
+						builder.Append('<');
+				} else if (text_i == '-' && text.Substring(i, 3) == "-->") {
+					i += 2;
+					comment = false;
+				}
+			}
+			return builder;
+		}
+		
+		private delegate void TagDelegate(string name, Dictionary<string,string> attrs);
+		private static void ExtractTags(string text, TagDelegate callback) {
+			// We could use something like NParsec, but it won't be necessary for now
+			bool inTag, inName, inQuote, inValue;
+			char quote = '\0';
+			string name, propName, propValue;
+			Dictionary<string,string> attrs = null;
+			
+			inTag = inName = inQuote = inValue = false;
+			name = propName = propValue = null;
+			foreach (char c in text) {
+				if (!inTag) {
+					if (c == '<') {
+						inTag = inName = true;
+						inQuote = inValue = false;
+						name = propName = propValue = String.Empty;
+						attrs = new Dictionary<string,string>(10);
+					}
+				} else {
+					if (!inQuote && (c == '/' || c == '>')) {
+						callback(name.ToLower(), attrs);
+						inTag = false;
+					} else if (inName) {
+						if (Char.IsWhiteSpace(c)) 
+							inName = false;
+						else 
+							name += c;
+					} else if (inQuote) {
+						if (c == quote) {
+							attrs[propName.ToLower()] = propValue;
+							propName = propValue = String.Empty;
+							inQuote = false;
+						} else if (c != '\r' && c != '\n')
+							propValue += c;
+					} else if (inValue) {
+						if (c == '\'' || c == '"') {
+							inQuote = true;
+							inValue = false;
+							quote = c;
+						}
+					} else {
+						if (c == '=')
+							inValue = true;
+						else if (Char.IsLetterOrDigit(c))
+							propName += c;
+					}
+				}
+			}
+		}
+		
+		public void Parse(string text) {
+			TagDelegate callback = delegate (string name, Dictionary<string,string> attrs) {
+				if (name == "img") {
+					string possible = null;
+					if (attrs.TryGetValue("src", out possible) && possible.StartsWith("/ClaroTorpedoWeb/"))
+						imageSource = possible;
+				} else if (name == "input") {
+					string type = null;
+					if (attrs.TryGetValue("type", out type) && type.ToLower() == "text")
+						codeTag = attrs["name"];
+					else {
+						try {
+							postData[attrs["name"]] = attrs["value"];
+						} catch {
+							// Don't bother
+						}
+					}
+				}
+			};
+			
+			ExtractTags(RemoveHtmlComments(text).ToString(), callback);
 		}
 		
 		EngineResult IEngine.SendMessage(Message msg, VerificationDelegate callback) {
-			if (!stage1) {
-				postData = new Dictionary<string, string>();
-				postData["ddd_para"] = msg.Destination.DDD.ToString();
-				postData["telefone_para"] = msg.Destination.Number.ToString();
-				postData["nome_de"] = Util.ToSecureASCII(msg.FromName);
-				postData["ddd_de"] = msg.FromDDD;
-				postData["telefone_de"] = msg.FromNumber;
-				postData["msg"] = Util.ToSecureASCII(msg.Contents);
-				
-				using (Response response = Post("pwdForm.jsp", homeURL, postData)) {
-					string text = response.Text;
-					if (text.Contains("Sistema temporariamente indispon"))
-						return EngineResult.ServerMaintenence;
-					
-					//Example: src='imageCode/g1gX2f82LW4SYS0UPPReg16LUNdKMS5KS6bSL32SV4T7MSNVY9aQY' 
-					int start = text.IndexOf("src='imageCode/") + "src='".Length;
-					int end = text.IndexOf("'", start);
-					this.imageSource = text.Substring(start, end-start);
-					
-					stage1 = true;
-				}
-			} else
-				Logger.Log(this, "Skipping stage1"); 
+			postData = new Dictionary<string, string>();
+			postData["ddd_para"] = msg.Destination.DDD.ToString();
+			postData["telefone_para"] = msg.Destination.Number.ToString();
+			postData["nome_de"] = Util.ToSecureASCII(msg.FromName);
+			postData["ddd_de"] = msg.FromDDD;
+			postData["telefone_de"] = msg.FromNumber;
+			postData["msg"] = Util.ToSecureASCII(msg.Contents);
+			
+			using (Response response = Post("/ClaroTorpedoWeb/pwdForm.jsp", homeURL, postData)) {
+				string text = response.Text;
+				if (text.Contains("Sistema temporariamente indispon"))
+					return EngineResult.ServerMaintenence;
+				Parse(text);
+			}
 			
 			using (Response response = Get(imageSource))
 				response.CallVerification(callback);
 			
 			return EngineResult.Success;
 		}
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -110,14 +208,12 @@ namespace MensagemWeb.Engines {
 			if (code.Length != 4)
 				return EngineResult.WrongPassword;
 				
-			postData["Image2.x"] = String.Empty;
-			postData["Image2.y"] = String.Empty;
-			postData["tx_senha"] = code.ToUpper();
+			postData[codeTag] = code.ToUpper();
 			
 			bool found = false;
 			while (!found) {
 				string html;
-				using (Response response = Get("ValidDeliverer", BaseURL + "pwdForm.jsp", postData))
+				using (Response response = Get("/ClaroTorpedoWeb/ValidDeliverer", BaseURL + "pwdForm.jsp", postData))
 					html = response.Text;
 				
 				string id = RetornoIdMessage(html);

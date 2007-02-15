@@ -65,7 +65,9 @@ namespace MensagemWeb.Engines {
 		private HttpWebRequest NewWebRequest(string address) {
 			if (this.aborted)
 				throw new Exception("Operation aborted.");
-			this.webRequest = HttpWebRequest.Create(BaseURL + address) as HttpWebRequest;
+			string realAddr = BaseURL + address;
+			lastURL = realAddr;
+			this.webRequest = HttpWebRequest.Create(realAddr) as HttpWebRequest;
 			this.webRequest.CookieContainer = new CookieContainer();
 			if (this.cookies != null)
 				this.webRequest.CookieContainer.Add(this.cookies);
@@ -106,7 +108,6 @@ namespace MensagemWeb.Engines {
 		protected Response Get(string address, string referer, IDictionary<string, string> args) {
 			if (args != null) 
 				address += "?" + PrepareIDictionary(args);
-			lastURL = address;
 			HttpWebRequest webRequest = NewWebRequest(address);
 			webRequest.Method = "GET";
 			if (referer != null)
@@ -125,8 +126,6 @@ namespace MensagemWeb.Engines {
 		
 		
 		protected Response Post(string address, string referer, IDictionary<string, string> data) {
-			lastURL = address;
-			
 			// Get the bytes of the request
 			byte[] dataBytes = Util.ToBytes(PrepareIDictionary(data).ToString());
 			
