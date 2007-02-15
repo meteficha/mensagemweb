@@ -1,9 +1,12 @@
-MensagemWeb 1.XX   XX/XX/2007
+MensagemWeb 1.8   XX/XX/2007
 	* Novo sistema de fila de mensagens. Além de ser mais fácil visualizar
 	que mensagens já foram enviadas e que mensagens ainda faltam, o envio
 	para mais de um destinatário está muito mais rápido (operadoras
 	diferentes são usadas ao mesmo tempo) e robusto (nunca mais todas as
 	mensagens serão perdidas devido a um erro no meio delas).
+	* Corrigido novamente o envio para a operadora Claro.
+	* Corrigida a forma de acesso à Oi (baseado no código do jSMS, 
+	corrige o bug #201169).
 	* Mostrar mensagens explicativas quando alguma mensagem não puder ser
 	entregue devido a uma restrição imposta pela operadora (inclusive
 	a TIM).
@@ -12,8 +15,6 @@ MensagemWeb 1.XX   XX/XX/2007
 	* Mostrar a janela de verificação como urgente para chamar a atenção
 	do usuário.
 	* Permitir reordenação dos contatos na janela de telefones.
-	* Corrigida a forma de acesso à Oi (baseado no código do jSMS, 
-	corrige o bug #201169).
 	* Corrigidos pequenos bugs que não comprometiam muito o funcionamento,
 	além de algumas otimizações.
 
