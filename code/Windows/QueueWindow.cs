@@ -557,7 +557,8 @@ namespace MensagemWeb.Windows {
 					} else {
 						errorbox.Hide();
 						progressbox.Show();
-						MainWindow.This.QueueComplete(cancelled);
+						if (sentCount > 0)
+							MainWindow.This.QueueComplete(cancelled);
 					}
 				} else {
 					titleLabel.Markup = sendingTitle;
