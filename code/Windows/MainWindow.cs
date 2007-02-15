@@ -522,7 +522,7 @@ namespace MensagemWeb.Windows {
 			if (!Sent) return;
 			string text = "Todas as mensagens foram enviadas com sucesso!";
 			if (cancelled) text += "\n(algumas tiveram o envio cancelado)";
-			msgNoLabel.Text = text;
+			msgNoLabel.Markup = "<b>" + text + "</b>";
 				                  
 		}
 		
