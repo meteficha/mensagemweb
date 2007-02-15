@@ -13,6 +13,178 @@
       </source>
     </icon-set>
   </icon-factory>
+  <widget class="Gtk.Dialog" id="MensagemWeb.Windows.ErrorWindow" design-size="500 550">
+    <property name="Title" translatable="yes" />
+    <property name="Buttons">1</property>
+    <property name="HelpButton">False</property>
+    <property name="WindowPosition">CenterOnParent</property>
+    <property name="HasSeparator">False</property>
+    <property name="Events">ButtonPressMask</property>
+    <property name="MemberName" />
+    <child internal-child="VBox">
+      <widget class="Gtk.VBox" id="dialog_VBox">
+        <property name="Events">ButtonPressMask</property>
+        <property name="MemberName" />
+        <child>
+          <widget class="Gtk.HBox" id="hbox1">
+            <property name="Spacing">12</property>
+            <property name="BorderWidth">12</property>
+            <property name="Events">0</property>
+            <property name="MemberName" />
+            <child>
+              <widget class="Gtk.Image" id="image3">
+                <property name="Pixbuf">stock:gtk-dialog-error Dialog</property>
+                <property name="Yalign">0</property>
+                <property name="Events">0</property>
+                <property name="MemberName" />
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">False</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.VBox" id="vbox1">
+                <property name="Spacing">12</property>
+                <property name="Events">0</property>
+                <property name="MemberName" />
+                <child>
+                  <widget class="Gtk.Label" id="label1">
+                    <property name="LabelProp">&lt;span size="large" weight="bold"&gt;Ocorreu algum erro inesperado&lt;/span&gt;</property>
+                    <property name="UseMarkup">True</property>
+                    <property name="Selectable">True</property>
+                    <property name="Xalign">0</property>
+                    <property name="CanFocus">True</property>
+                    <property name="Events">0</property>
+                    <property name="MemberName" />
+                  </widget>
+                  <packing>
+                    <property name="Position">0</property>
+                    <property name="AutoSize">False</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Label" id="label2">
+                    <property name="LabelProp">Isso significa que existe algum problema interno no MensagemWeb que ainda não foi identificado, então nós gostaríamos que você procurasse ajuda em nossos site (&lt;i&gt;mensagemweb.codigolivre.org.br&lt;/i&gt;) para que possamos resolvê-lo e evitar novos transtornos.</property>
+                    <property name="UseMarkup">True</property>
+                    <property name="Wrap">True</property>
+                    <property name="Selectable">True</property>
+                    <property name="Xalign">0</property>
+                    <property name="CanFocus">True</property>
+                    <property name="Events">0</property>
+                    <property name="MemberName" />
+                  </widget>
+                  <packing>
+                    <property name="Position">1</property>
+                    <property name="AutoSize">False</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Label" id="label3">
+                    <property name="LabelProp">&lt;b&gt;Informações detalhadas (se possível, copie e cole no seu pedido de ajuda):&lt;/b&gt;</property>
+                    <property name="UseMarkup">True</property>
+                    <property name="Wrap">True</property>
+                    <property name="Selectable">True</property>
+                    <property name="Xalign">0</property>
+                    <property name="CanFocus">True</property>
+                    <property name="Events">0</property>
+                    <property name="MemberName" />
+                  </widget>
+                  <packing>
+                    <property name="Position">2</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.ScrolledWindow" id="scrolledwindow1">
+                    <property name="VscrollbarPolicy">Automatic</property>
+                    <property name="HscrollbarPolicy">Automatic</property>
+                    <property name="ShadowType">In</property>
+                    <property name="CanFocus">True</property>
+                    <property name="Events">0</property>
+                    <property name="MemberName" />
+                    <child>
+                      <widget class="Gtk.TextView" id="textview">
+                        <property name="Text" />
+                        <property name="Editable">False</property>
+                        <property name="CanFocus">True</property>
+                        <property name="Events">0</property>
+                        <property name="MemberName">textview</property>
+                      </widget>
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="Position">3</property>
+                    <property name="AutoSize">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Label" id="label4">
+                    <property name="LabelProp">&lt;i&gt;Se desejar, verifique se há informações pessoais acima e troque-as por "confidencial" antes de enviar o pedido de ajuda.&lt;/i&gt;</property>
+                    <property name="UseMarkup">True</property>
+                    <property name="Wrap">True</property>
+                    <property name="Xalign">0</property>
+                    <property name="Events">0</property>
+                    <property name="MemberName" />
+                  </widget>
+                  <packing>
+                    <property name="Position">4</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">False</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+    <child internal-child="ActionArea">
+      <widget class="Gtk.HButtonBox" id="MensagemWeb.ErrorWindow_ActionArea">
+        <property name="Size">1</property>
+        <property name="LayoutStyle">End</property>
+        <property name="Spacing">6</property>
+        <property name="BorderWidth">12</property>
+        <property name="Events">ButtonPressMask</property>
+        <property name="MemberName" />
+        <child>
+          <widget class="Gtk.Button" id="button5">
+            <property name="UseStock">True</property>
+            <property name="Type">StockItem</property>
+            <property name="StockId">gtk-quit</property>
+            <property name="IsDialogButton">True</property>
+            <property name="ResponseId">-5</property>
+            <property name="CanFocus">True</property>
+            <property name="Events">0</property>
+            <property name="MemberName" />
+            <property name="CanDefault">True</property>
+            <property name="label">gtk-quit</property>
+          </widget>
+          <packing>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
   <widget class="Gtk.Window" id="MensagemWeb.Windows.QueueWindow" design-size="519 391">
     <action-group name="Default">
       <action id="cancelAction">
@@ -374,178 +546,6 @@ enviadas e estão marcadas abaixo.</property>
           <packing>
             <property name="Position">3</property>
             <property name="AutoSize">True</property>
-            <property name="Expand">False</property>
-            <property name="Fill">False</property>
-          </packing>
-        </child>
-      </widget>
-    </child>
-  </widget>
-  <widget class="Gtk.Dialog" id="MensagemWeb.Windows.ErrorWindow" design-size="500 550">
-    <property name="Title" translatable="yes" />
-    <property name="Buttons">1</property>
-    <property name="HelpButton">False</property>
-    <property name="WindowPosition">CenterOnParent</property>
-    <property name="HasSeparator">False</property>
-    <property name="Events">ButtonPressMask</property>
-    <property name="MemberName" />
-    <child internal-child="VBox">
-      <widget class="Gtk.VBox" id="dialog_VBox">
-        <property name="Events">ButtonPressMask</property>
-        <property name="MemberName" />
-        <child>
-          <widget class="Gtk.HBox" id="hbox1">
-            <property name="Spacing">12</property>
-            <property name="BorderWidth">12</property>
-            <property name="Events">0</property>
-            <property name="MemberName" />
-            <child>
-              <widget class="Gtk.Image" id="image3">
-                <property name="Pixbuf">stock:gtk-dialog-error Dialog</property>
-                <property name="Yalign">0</property>
-                <property name="Events">0</property>
-                <property name="MemberName" />
-              </widget>
-              <packing>
-                <property name="Position">0</property>
-                <property name="AutoSize">False</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
-              </packing>
-            </child>
-            <child>
-              <widget class="Gtk.VBox" id="vbox1">
-                <property name="Spacing">12</property>
-                <property name="Events">0</property>
-                <property name="MemberName" />
-                <child>
-                  <widget class="Gtk.Label" id="label1">
-                    <property name="LabelProp">&lt;span size="large" weight="bold"&gt;Ocorreu algum erro inesperado&lt;/span&gt;</property>
-                    <property name="UseMarkup">True</property>
-                    <property name="Selectable">True</property>
-                    <property name="Xalign">0</property>
-                    <property name="CanFocus">True</property>
-                    <property name="Events">0</property>
-                    <property name="MemberName" />
-                  </widget>
-                  <packing>
-                    <property name="Position">0</property>
-                    <property name="AutoSize">False</property>
-                    <property name="Expand">False</property>
-                    <property name="Fill">False</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="Gtk.Label" id="label2">
-                    <property name="LabelProp">Isso significa que existe algum problema interno no MensagemWeb que ainda não foi identificado, então nós gostaríamos que você procurasse ajuda em nossos site (&lt;i&gt;mensagemweb.codigolivre.org.br&lt;/i&gt;) para que possamos resolvê-lo e evitar novos transtornos.</property>
-                    <property name="UseMarkup">True</property>
-                    <property name="Wrap">True</property>
-                    <property name="Selectable">True</property>
-                    <property name="Xalign">0</property>
-                    <property name="CanFocus">True</property>
-                    <property name="Events">0</property>
-                    <property name="MemberName" />
-                  </widget>
-                  <packing>
-                    <property name="Position">1</property>
-                    <property name="AutoSize">False</property>
-                    <property name="Expand">False</property>
-                    <property name="Fill">False</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="Gtk.Label" id="label3">
-                    <property name="LabelProp">&lt;b&gt;Informações detalhadas (se possível, copie e cole no seu pedido de ajuda):&lt;/b&gt;</property>
-                    <property name="UseMarkup">True</property>
-                    <property name="Wrap">True</property>
-                    <property name="Selectable">True</property>
-                    <property name="Xalign">0</property>
-                    <property name="CanFocus">True</property>
-                    <property name="Events">0</property>
-                    <property name="MemberName" />
-                  </widget>
-                  <packing>
-                    <property name="Position">2</property>
-                    <property name="AutoSize">True</property>
-                    <property name="Expand">False</property>
-                    <property name="Fill">False</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="Gtk.ScrolledWindow" id="scrolledwindow1">
-                    <property name="VscrollbarPolicy">Automatic</property>
-                    <property name="HscrollbarPolicy">Automatic</property>
-                    <property name="ShadowType">In</property>
-                    <property name="CanFocus">True</property>
-                    <property name="Events">0</property>
-                    <property name="MemberName" />
-                    <child>
-                      <widget class="Gtk.TextView" id="textview">
-                        <property name="Text" />
-                        <property name="Editable">False</property>
-                        <property name="CanFocus">True</property>
-                        <property name="Events">0</property>
-                        <property name="MemberName">textview</property>
-                      </widget>
-                    </child>
-                  </widget>
-                  <packing>
-                    <property name="Position">3</property>
-                    <property name="AutoSize">False</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="Gtk.Label" id="label4">
-                    <property name="LabelProp">&lt;i&gt;Se desejar, verifique se há informações pessoais acima e troque-as por "confidencial" antes de enviar o pedido de ajuda.&lt;/i&gt;</property>
-                    <property name="UseMarkup">True</property>
-                    <property name="Wrap">True</property>
-                    <property name="Xalign">0</property>
-                    <property name="Events">0</property>
-                    <property name="MemberName" />
-                  </widget>
-                  <packing>
-                    <property name="Position">4</property>
-                    <property name="AutoSize">True</property>
-                    <property name="Expand">False</property>
-                    <property name="Fill">False</property>
-                  </packing>
-                </child>
-              </widget>
-              <packing>
-                <property name="Position">1</property>
-                <property name="AutoSize">False</property>
-              </packing>
-            </child>
-          </widget>
-          <packing>
-            <property name="Position">0</property>
-            <property name="AutoSize">False</property>
-          </packing>
-        </child>
-      </widget>
-    </child>
-    <child internal-child="ActionArea">
-      <widget class="Gtk.HButtonBox" id="MensagemWeb.ErrorWindow_ActionArea">
-        <property name="Size">1</property>
-        <property name="LayoutStyle">End</property>
-        <property name="Spacing">6</property>
-        <property name="BorderWidth">12</property>
-        <property name="Events">ButtonPressMask</property>
-        <property name="MemberName" />
-        <child>
-          <widget class="Gtk.Button" id="button5">
-            <property name="UseStock">True</property>
-            <property name="Type">StockItem</property>
-            <property name="StockId">gtk-quit</property>
-            <property name="IsDialogButton">True</property>
-            <property name="ResponseId">-5</property>
-            <property name="CanFocus">True</property>
-            <property name="Events">0</property>
-            <property name="MemberName" />
-            <property name="CanDefault">True</property>
-            <property name="label">gtk-quit</property>
-          </widget>
-          <packing>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
           </packing>
