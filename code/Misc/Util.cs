@@ -59,6 +59,23 @@ namespace MensagemWeb {
 		
 		
 		
+		public static string ToPrettyString(DateTime date) {
+			string time = date.ToShortTimeString();
+			switch (DateTime.Now.Date.Subtract(date.Date).Days) {
+				case 0:
+					// Today
+					return "Hoje às " + time;
+				case 1:
+					// Yesterday
+					return "Ontem às " + time;
+				default:
+					// Any other day (including in the future -- there are bizarre wall clocks)
+					return "Em " + date.ToShortDateString() + " às " + time;
+			}
+		}
+		
+		
+		
 		// Strings
 		
 		public static byte[] ToBytes(string str) {
