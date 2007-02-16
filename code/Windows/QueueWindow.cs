@@ -341,7 +341,6 @@ namespace MensagemWeb.Windows {
 			nodeviewMenu.Append(new SeparatorMenuItem());
 			nodeviewMenu.Append(cancelAction.CreateMenuItem());
 			nodeviewMenu.Append(deleteAction.CreateMenuItem());
-			nodeviewMenu.Append(clearAction.CreateMenuItem());
 			nodeviewMenu.ShowAll();
 			nodeview.ButtonPressEvent += ShowNodeviewMenu;
 			

@@ -213,6 +213,7 @@ namespace Stetic {
                     bindings["clearAction"] = w5;
                     w2.Add(w5, null);
                     Gtk.Action w6 = new Gtk.Action("deleteAction", null, null, "gtk-delete");
+                    w6.Sensitive = false;
                     bindings["deleteAction"] = w6;
                     w2.Add(w6, null);
                     w1.InsertActionGroup(w2, 0);
