@@ -217,6 +217,7 @@
         <signal name="Activated" handler="ClearClicked" />
       </action>
       <action id="deleteAction">
+        <property name="Sensitive">False</property>
         <property name="Label" />
         <property name="Type">Action</property>
         <property name="StockId">gtk-delete</property>
