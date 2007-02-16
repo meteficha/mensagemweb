@@ -190,8 +190,10 @@ namespace MensagemWeb.Messages {
 			int max = maxContentsSize;
 			if (expected <= 9)
 				max -= 4; // "X/Y>"
-			else
+			else if (expected <= 99)
 				max -= 6; // "XX/YY>"
+			else
+				max -= 8; // "XXX/YYY>"
 			
 			// Each line is a separate message
 			int number = 0;     // Number of messages
@@ -237,7 +239,7 @@ namespace MensagemWeb.Messages {
 			
 			// maxContentsSize will have to be limited even more because of
 			// the indications of more than one message
-			double expected = ((double)Contents.Length)/maxContentsSize + (lines.Length - 1);
+			double expected = ((double)Contents.Length) / maxContentsSize + (lines.Length - 1);
 			expected *= 1.05;
 			int max = maxContentsSize;
 			if (expected <= 9)
