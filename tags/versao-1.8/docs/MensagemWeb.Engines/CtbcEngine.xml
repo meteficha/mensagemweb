@@ -1,0 +1,42 @@
+<Type Name="CtbcEngine" FullName="MensagemWeb.Engines.CtbcEngine">
+  <TypeSignature Language="C#" Value="public sealed class CtbcEngine : MensagemWeb.Engines.HttpEngine, MensagemWeb.Engines.IEngine" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>MensagemWeb.Engines.HttpEngine</BaseTypeName>
+  </Base>
+  <Interfaces>
+    <Interface>
+      <InterfaceName>MensagemWeb.Engines.IEngine</InterfaceName>
+    </Interface>
+  </Interfaces>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public CtbcEngine ();" />
+      <MemberType>Constructor</MemberType>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="BaseURL">
+      <MemberSignature Language="C#" Value="protected override string BaseURL { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <summary>Sends messages through CTBC.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>

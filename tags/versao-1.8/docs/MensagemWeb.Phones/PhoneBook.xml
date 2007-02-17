@@ -1,0 +1,283 @@
+<Type Name="PhoneBook" FullName="MensagemWeb.Phones.PhoneBook">
+  <TypeSignature Language="C#" Value="public abstract sealed class PhoneBook" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName="Add">
+      <MemberSignature Language="C#" Value="public static void Add (string name, MensagemWeb.Phones.Phone number, MensagemWeb.Engines.IEngine engine);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="name" Type="System.String" />
+        <Parameter Name="number" Type="MensagemWeb.Phones.Phone" />
+        <Parameter Name="engine" Type="MensagemWeb.Engines.IEngine" />
+      </Parameters>
+      <Docs>
+        <param name="name">To be added.</param>
+        <param name="number">To be added.</param>
+        <param name="engine">To be added.</param>
+        <remarks>To be added.</remarks>
+        <summary>
+            Adds a new phone number to the phone book.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Add">
+      <MemberSignature Language="C#" Value="public static void Add (string name, string ddd, string number, string engine);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="name" Type="System.String" />
+        <Parameter Name="ddd" Type="System.String" />
+        <Parameter Name="number" Type="System.String" />
+        <Parameter Name="engine" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="name">To be added.</param>
+        <param name="ddd">To be added.</param>
+        <param name="number">To be added.</param>
+        <param name="engine">To be added.</param>
+        <remarks>To be added.</remarks>
+        <summary>
+            Adds a new phone number to the phone book.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Contains">
+      <MemberSignature Language="C#" Value="public static bool Contains (string name);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="name" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="name">To be added.</param>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+        <summary>
+            Returns true if there is this name on the phone book.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Count">
+      <MemberSignature Language="C#" Value="public static int Count { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            Returns the number of phones.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="DefaultDDD">
+      <MemberSignature Language="C#" Value="public static System.Nullable&lt;int&gt; DefaultDDD { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Nullable&lt;System.Int32&gt;</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            If there's only one DDD, return it. Otherwise, return null.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="FindName">
+      <MemberSignature Language="C#" Value="public static string FindName (MensagemWeb.Phones.Phone number);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="number" Type="MensagemWeb.Phones.Phone" />
+      </Parameters>
+      <Docs>
+        <param name="number">To be added.</param>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+        <summary>
+            Returns the name associated with this phone number. If more than
+            one name has this phone number, the first one found is returned.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Get">
+      <MemberSignature Language="C#" Value="public static MensagemWeb.Phones.PhoneContainer Get (string name);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Phones.PhoneContainer</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="name" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="name">To be added.</param>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+        <summary>
+            Returns the PhoneContainer corresponding to the person with this name.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Hold">
+      <MemberSignature Language="C#" Value="public static void Hold ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <remarks>To be added.</remarks>
+        <summary>
+            Holds any save actions until Thew is called.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Names">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Names { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            Returns the names of the phones in this phone book sorted alphabetically.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="NamesPhones">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.KeyValuePair&lt;string,MensagemWeb.Phones.PhoneContainer&gt;&gt; NamesPhones { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.KeyValuePair&lt;System.String,MensagemWeb.Phones.PhoneContainer&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            Iterate over names and phones sorted alphabetically.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="OldLoad">
+      <MemberSignature Language="C#" Value="public static void OldLoad ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <remarks>To be added.</remarks>
+        <summary>
+            Loads the phone book from the old file.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Remove">
+      <MemberSignature Language="C#" Value="public static void Remove (string name);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="name" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="name">To be added.</param>
+        <remarks>To be added.</remarks>
+        <summary>
+            Remove this person from the phone book.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Thew">
+      <MemberSignature Language="C#" Value="public static void Thew ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <remarks>To be added.</remarks>
+        <summary>
+            Unhold everything.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="TryGet">
+      <MemberSignature Language="C#" Value="public static MensagemWeb.Phones.PhoneContainer TryGet (string name);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Phones.PhoneContainer</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="name" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="name">To be added.</param>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+        <summary>
+            Returns the PhoneContainer corresponding to the person with this name.
+            If the name is not found, return null.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Updated">
+      <MemberSignature Language="C#" Value="public static event System.EventHandler Updated;" />
+      <MemberType>Event</MemberType>
+      <ReturnValue>
+        <ReturnType>System.EventHandler</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <remarks>To be added.</remarks>
+        <summary>
+            Fired everytime the phone book is changed (insertions and deletions).
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="TryGet">
+      <MemberSignature Language="C#" Value="public static MensagemWeb.Phones.PhoneContainer TryGet (string name, MensagemWeb.Phones.PhoneContainer default_);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Phones.PhoneContainer</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="name" Type="System.String" />
+        <Parameter Name="default_" Type="MensagemWeb.Phones.PhoneContainer" />
+      </Parameters>
+      <Docs>
+        <param name="name">To be added.</param>
+        <param name="default_">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <remarks>To be added.</remarks>
+    <summary>
+            The phone book of the user.
+            </summary>
+  </Docs>
+</Type>

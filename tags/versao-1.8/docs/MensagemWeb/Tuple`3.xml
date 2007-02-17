@@ -1,0 +1,93 @@
+<Type Name="Tuple&lt;A,B,C&gt;" FullName="MensagemWeb.Tuple&lt;A,B,C&gt;">
+  <TypeSignature Language="C#" Value="public struct Tuple&lt;A,B,C&gt;" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <TypeParameters>
+    <TypeParameter>A</TypeParameter>
+    <TypeParameter>B</TypeParameter>
+    <TypeParameter>C</TypeParameter>
+  </TypeParameters>
+  <Base>
+    <BaseTypeName>System.ValueType</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public Tuple (A valueA, B valueB, C valueC);" />
+      <MemberType>Constructor</MemberType>
+      <Parameters>
+        <Parameter Name="valueA" Type="A" />
+        <Parameter Name="valueB" Type="B" />
+        <Parameter Name="valueC" Type="C" />
+      </Parameters>
+      <Docs>
+        <param name="valueA">First value.</param>
+        <param name="valueB">Second value.</param>
+        <param name="valueC">Third value.</param>
+        <summary>Creates a new tuple.</summary>
+        <remarks>
+          <para>The newly created tuple is immutable.</para>
+          <para>To access the values given to the constructor, see <see cref="F:MensagemWeb.Tuple&lt;A,B,C&gt;.ValueA" />, <see cref="F:MensagemWeb.Tuple&lt;A,B,C&gt;.ValueB" /> and <see cref="F:MensagemWeb.Tuple&lt;A,B,C&gt;.ValueC" />.</para>
+        </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValueA">
+      <MemberSignature Language="C#" Value="public readonly A ValueA;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>A</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>The first value inside the tuple.</summary>
+        <remarks />
+      </Docs>
+    </Member>
+    <Member MemberName="ValueB">
+      <MemberSignature Language="C#" Value="public readonly B ValueB;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>B</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>The second value inside the tuple.</summary>
+        <remarks />
+      </Docs>
+    </Member>
+    <Member MemberName="ValueC">
+      <MemberSignature Language="C#" Value="public readonly C ValueC;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>C</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>The third value inside the tuple.</summary>
+        <remarks />
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <typeparam name="A">The type of the first item.</typeparam>
+    <typeparam name="B">The type of the second item.</typeparam>
+    <typeparam name="C">The type of the third item.</typeparam>
+    <summary>A tuple of three items (a triple).</summary>
+    <remarks>
+      <para>
+Tuples are imutable types that contain two or more items. 
+Its main difference with an array is that each item has a 
+meaning and, possibly, a different type (which is why tuples 
+aren't resizeable). They are usually used to store together two or more related
+ objects in a type-safe way without creating a new type and can 
+also be used instead of <see langword="out" /> parameters.
+</para>
+      <para>
+        <example>
+	A tuple may be used to store the first and last names of a person:
+  <code lang="C#">Tuple&lt;string,string&gt; full_name = new Tuple&lt;string,string&gt; ("Lessa", "Felipe");
+System.Console.WriteLine("Hello, Mr. {0}!", full_name.ItemA);</code></example>
+      </para>
+      <para>See also <see cref="T:MensagemWeb.Tuple&lt;A,B&gt;" /> for a tuple of two items (a pair).</para>
+    </remarks>
+  </Docs>
+</Type>

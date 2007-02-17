@@ -1,0 +1,129 @@
+<Type Name="Logger" FullName="MensagemWeb.Logging.Logger">
+  <TypeSignature Language="C#" Value="public abstract sealed class Logger" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName="AppendLogs">
+      <MemberSignature Language="C#" Value="public static void AppendLogs (System.Collections.Generic.IEnumerable&lt;string&gt; newlogs);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="newlogs" Type="System.Collections.Generic.IEnumerable&lt;System.String&gt;" />
+      </Parameters>
+      <Docs>
+        <param name="newlogs">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetLogs">
+      <MemberSignature Language="C#" Value="public static string[] GetLogs ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String[]</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+        <summary>
+            Retrieves what was logged until now.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Log">
+      <MemberSignature Language="C#" Value="public static void Log (object sender, string message);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="sender" Type="System.Object" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="sender">To be added.</param>
+        <param name="message">To be added.</param>
+        <remarks>To be added.</remarks>
+        <summary>
+            Logs a message.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Log">
+      <MemberSignature Language="C#" Value="public static void Log (object sender, string message, System.DateTime time);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="sender" Type="System.Object" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="time" Type="System.DateTime" />
+      </Parameters>
+      <Docs>
+        <param name="sender">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="time">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Log">
+      <MemberSignature Language="C#" Value="public static void Log (object sender, string formatString, object[] args);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="sender" Type="System.Object" />
+        <Parameter Name="formatString" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="sender">To be added.</param>
+        <param name="formatString">To be added.</param>
+        <param name="args">To be added.</param>
+        <remarks>To be added.</remarks>
+        <summary>
+            Logs a formatted message.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Logged">
+      <MemberSignature Language="C#" Value="public static event MensagemWeb.Logging.LoggedEventHandler Logged;" />
+      <MemberType>Event</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Logging.LoggedEventHandler</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <remarks>To be added.</remarks>
+        <summary>
+            Activated everytime someone calls Log() on this class.
+            This event is always called from the main thread, don't
+            worry about threading issues.
+            </summary>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <remarks>To be added.</remarks>
+    <summary>
+            Logs and saves debug messages.
+            </summary>
+  </Docs>
+</Type>

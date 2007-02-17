@@ -1,0 +1,79 @@
+<Type Name="IConfigurable" FullName="MensagemWeb.Config.IConfigurable">
+  <TypeSignature Language="C#" Value="public interface IConfigurable" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Interfaces />
+  <Members>
+    <Member MemberName="DefaultConfiguration">
+      <MemberSignature Language="C#" Value="public void DefaultConfiguration ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <remarks />
+        <summary>
+            Called when the configuration file could not be loaded.
+            This class should then provide default values to the
+            user.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="LoadConfiguration">
+      <MemberSignature Language="C#" Value="public void LoadConfiguration (System.Xml.XmlReader reader);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="reader" Type="System.Xml.XmlReader" />
+      </Parameters>
+      <Docs>
+        <param name="reader">The <see cref="T:System.Xml.XmlReader" /> that contains the information.</param>
+        <remarks>Speacial care should be taken to read only the section that could be previously written by this class, as the <paramref name="reader" /> is not limited to this section but represents the whole configuration file.</remarks>
+        <summary>
+            Load its configuration from the given <paramref name="reader" />.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="SaveConfiguration">
+      <MemberSignature Language="C#" Value="public void SaveConfiguration (System.Xml.XmlWriter writer);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="writer" Type="System.Xml.XmlWriter" />
+      </Parameters>
+      <Docs>
+        <param name="writer">The <see cref="T:System.Xml.XmlWriter" /> to which the information is going to be saved.</param>
+        <remarks />
+        <summary>
+            Save its configuration to the given <paramref name="writer" />.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Section">
+      <MemberSignature Language="C#" Value="public string Section { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>The name of the tag this configuration handles.</value>
+        <remarks>The names should be unique across the program to avoid clashing.</remarks>
+        <summary>
+            The name of the XML tag.
+            </summary>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <remarks />
+    <summary>
+            Interface that classes that have to save/load their configurations
+            need implement.
+            </summary>
+  </Docs>
+</Type>

@@ -1,0 +1,78 @@
+<Type Name="EditPhoneWindow" FullName="MensagemWeb.Windows.EditPhoneWindow">
+  <TypeSignature Language="C#" Value="public class EditPhoneWindow : MensagemWeb.Windows.NewPhoneWindow" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>MensagemWeb.Windows.NewPhoneWindow</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="protected EditPhoneWindow ();" />
+      <MemberType>Constructor</MemberType>
+      <Parameters />
+      <Docs>
+        <remarks>To be added.</remarks>
+        <summary>
+            Creates a new instance of this class.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="ClearAndShow">
+      <MemberSignature Language="C#" Value="public void ClearAndShow ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <remarks>To be added.</remarks>
+        <summary>
+            Do not call this method, call Edit instead.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Edit">
+      <MemberSignature Language="C#" Value="public void Edit (string name);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="name" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="name">To be added.</param>
+        <remarks>To be added.</remarks>
+        <summary>
+            Present to the user the editing window for a certain name in
+            the phone book.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="This">
+      <MemberSignature Language="C#" Value="public static MensagemWeb.Windows.EditPhoneWindow This { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Windows.EditPhoneWindow</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            Creates or reuses an instance of this class. Use Edit()
+            to present it to the user.
+            </summary>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <remarks>To be added.</remarks>
+    <summary>
+            Window responsible for presenting the user a way of editing
+            the phones of his/her phone book.
+            </summary>
+  </Docs>
+</Type>

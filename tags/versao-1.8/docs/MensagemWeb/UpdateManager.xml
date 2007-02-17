@@ -1,0 +1,167 @@
+<Type Name="UpdateManager" FullName="MensagemWeb.UpdateManager">
+  <TypeSignature Language="C#" Value="public abstract sealed class UpdateManager" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName="LastAutomaticCheck">
+      <MemberSignature Language="C#" Value="public static System.DateTime LastAutomaticCheck { set; get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.DateTime</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>
+          <para>A <see cref="T:System.DateTime" /> representing the time when the
+last automatic check was made. </para>
+        </value>
+        <remarks>
+          <para>Automatic checks are made on the program's
+startup regularly, usually by
+<see cref="T:MensagemWeb.Windows.MainWindow" />.
+</para>
+          <block subset="none" type="note">
+            <para>
+You should not set this property unless you know what you are doing.
+  </para>
+          </block>
+        </remarks>
+        <summary>
+The time when we last automatically checked for updates.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="LastUpdate">
+      <MemberSignature Language="C#" Value="public static System.DateTime LastUpdate { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.DateTime</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>
+          <para>A <see cref="T:System.DateTime" /> representing the time when the
+last check was made. </para>
+        </value>
+        <remarks>
+          <para>
+This property accounts not only for checks forced by the user
+(i.e. by <see cref="T:MensagemWeb.Windows.UpdateWindow" />)
+but also for automatic checks 
+(<see cref="P:MensagemWeb.UpdateManager.LastAutomaticCheck" />).
+
+</para>
+        </remarks>
+        <summary>The time when we last checked for updates.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="NewVersions">
+      <MemberSignature Language="C#" Value="public static bool NewVersions { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>
+          <see langword="true" /> if a new version was found on MensagemWeb's site, 
+or <see langword="false" /> if this is the latest version or if it was not
+possible to check for new versions (e.g. the site is down).</value>
+        <remarks>This property calls <see cref="M:MensagemWeb.UpdateManager.CheckForUpdates()" /> so it may block for an underteminate time.</remarks>
+        <summary>Existence of newer versions.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="UpdateFromConfig">
+      <MemberSignature Language="C#" Value="public static void UpdateFromConfig (MensagemWeb.Config.UpdateConfig config);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="config" Type="MensagemWeb.Config.UpdateConfig" />
+      </Parameters>
+      <Docs>
+        <param name="config">The configuration containing the updates.</param>
+        <remarks>
+          <para>
+This method is called by <see cref="T:MensagemWeb.Config.UpdateConfig" />
+itself.
+</para>
+        </remarks>
+        <summary>
+            Retrieves the list of updates from a <see cref="T:MensagemWeb.Config.UpdateConfig" />.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Updates">
+      <MemberSignature Language="C#" Value="public static MensagemWeb.Update[] Updates { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Update[]</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>A list of <see cref="T:MensagemWeb.Update" /> representing the
+know released versions of the program, obtained from the Internet, 
+or <see langword="null" /> if there was a problem looking for the updates.</value>
+        <remarks>
+          <para> This array is sorted with older versions first (they have lower version numbers).</para>
+          <block subset="none" type="note">
+            <para>
+Unlike <see cref="P:MensagemWeb.UpdateManager.NewVersions" />, accessing this property
+does not automatically calls <see cref="M:MensagemWeb.UpdateManager.CheckForUpdates()" />,
+so you must call it by yourself to make sure you got the latest information.
+  </para>
+          </block>
+        </remarks>
+        <summary>List of known released versions.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="CurrentVersion">
+      <MemberSignature Language="C#" Value="public static System.Version CurrentVersion;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Version</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>The version of MensagemWeb being run now.</summary>
+        <remarks>
+          <para>
+This information is taken by look at the assembly version via reflection.
+</para>
+        </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CheckForUpdates">
+      <MemberSignature Language="C#" Value="public static void CheckForUpdates ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>Checks for update on MensagemWeb's website.</summary>
+        <remarks>
+          <para>
+See also <see cref="P:MensagemWeb.UpdateManager.NewVersions" /> and 
+<see cref="P:MensagemWeb.UpdateManager.Updates" />.
+</para>
+        </remarks>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <remarks>
+      <para>
+This class is used by <see cref="T:MensagemWeb.Windows.UpdateWindow" />
+ to look for updates on the Internet and tell the user when there's one 
+available.
+</para>
+    </remarks>
+    <summary>
+            Finds and parses update files on MensagemWeb's website.
+            </summary>
+  </Docs>
+</Type>

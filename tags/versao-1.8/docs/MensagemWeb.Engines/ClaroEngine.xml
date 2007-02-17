@@ -1,0 +1,43 @@
+<Type Name="ClaroEngine" FullName="MensagemWeb.Engines.ClaroEngine">
+  <TypeSignature Language="C#" Value="public sealed class ClaroEngine : MensagemWeb.Engines.HttpEngine, MensagemWeb.Engines.IEngine" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>MensagemWeb.Engines.HttpEngine</BaseTypeName>
+  </Base>
+  <Interfaces>
+    <Interface>
+      <InterfaceName>MensagemWeb.Engines.IEngine</InterfaceName>
+    </Interface>
+  </Interfaces>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public ClaroEngine ();" />
+      <MemberType>Constructor</MemberType>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="BaseURL">
+      <MemberSignature Language="C#" Value="protected override string BaseURL { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <remarks>To be added.</remarks>
+    <summary>Sends messages through Claro.
+            </summary>
+  </Docs>
+</Type>

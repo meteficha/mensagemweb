@@ -1,0 +1,47 @@
+<Type Name="HelpWindow" FullName="MensagemWeb.Windows.HelpWindow">
+  <TypeSignature Language="C#" Value="public sealed class HelpWindow : Gtk.Window" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>Gtk.Window</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName="ShowThis">
+      <MemberSignature Language="C#" Value="public void ShowThis ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <remarks>To be added.</remarks>
+        <summary>
+            Shows the help window.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="This">
+      <MemberSignature Language="C#" Value="public static MensagemWeb.Windows.HelpWindow This { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Windows.HelpWindow</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            Creates or reuses an instance of this class.
+            </summary>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <remarks>To be added.</remarks>
+    <summary>
+            The window that is shown when the user clicks on the Help button.
+            </summary>
+  </Docs>
+</Type>

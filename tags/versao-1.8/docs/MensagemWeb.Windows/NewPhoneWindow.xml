@@ -1,0 +1,240 @@
+<Type Name="NewPhoneWindow" FullName="MensagemWeb.Windows.NewPhoneWindow">
+  <TypeSignature Language="C#" Value="public class NewPhoneWindow : Gtk.Window" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>Gtk.Window</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="protected NewPhoneWindow ();" />
+      <MemberType>Constructor</MemberType>
+      <Parameters />
+      <Docs>
+        <remarks>To be added.</remarks>
+        <summary>
+            Private constructor. Use the NewPhoneWindow.This.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="automaticEngine">
+      <MemberSignature Language="C#" Value="protected const string automaticEngine;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Check">
+      <MemberSignature Language="C#" Value="protected virtual void Check (object sender, System.EventArgs args);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="sender" Type="System.Object" />
+        <Parameter Name="args" Type="System.EventArgs" />
+      </Parameters>
+      <Docs>
+        <param name="sender">To be added.</param>
+        <param name="args">To be added.</param>
+        <remarks>To be added.</remarks>
+        <summary>
+            Checks if the user typed the correct informations and
+            act accordingly.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="CheckEngine">
+      <MemberSignature Language="C#" Value="protected bool CheckEngine (MensagemWeb.Engines.IEngine selected);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="selected" Type="MensagemWeb.Engines.IEngine" />
+      </Parameters>
+      <Docs>
+        <param name="selected">To be added.</param>
+        <remarks>To be added.</remarks>
+        <summary>
+            Prints a warning if the user forced an engine.
+            </summary>
+        <returns> false if he wants to cancel the operation, true otherwise. </returns>
+      </Docs>
+    </Member>
+    <Member MemberName="ClearAndShow">
+      <MemberSignature Language="C#" Value="public void ClearAndShow ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <remarks>To be added.</remarks>
+        <summary>
+            Clear the fields and show the window to the user.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="ddd">
+      <MemberSignature Language="C#" Value="protected Gtk.Entry ddd;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Gtk.Entry</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="engine">
+      <MemberSignature Language="C#" Value="protected Gtk.ComboBox engine;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Gtk.ComboBox</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="name">
+      <MemberSignature Language="C#" Value="protected Gtk.Entry name;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Gtk.Entry</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="number">
+      <MemberSignature Language="C#" Value="protected Gtk.Entry number;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Gtk.Entry</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Save">
+      <MemberSignature Language="C#" Value="protected virtual void Save (object sender, System.EventArgs a);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="sender" Type="System.Object" />
+        <Parameter Name="a" Type="System.EventArgs" />
+      </Parameters>
+      <Docs>
+        <param name="sender">To be added.</param>
+        <param name="a">To be added.</param>
+        <remarks>To be added.</remarks>
+        <summary>
+            Tries to save the information and close the window.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="saveButton">
+      <MemberSignature Language="C#" Value="protected Gtk.Button saveButton;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Gtk.Button</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SelectedEngine">
+      <MemberSignature Language="C#" Value="protected MensagemWeb.Engines.IEngine SelectedEngine { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Engines.IEngine</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            The currently selected engine or null for automatic.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="SetTip">
+      <MemberSignature Language="C#" Value="protected void SetTip (Gtk.Widget wd, string text);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="wd" Type="Gtk.Widget" />
+        <Parameter Name="text" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="wd">To be added.</param>
+        <param name="text">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="This">
+      <MemberSignature Language="C#" Value="public static MensagemWeb.Windows.NewPhoneWindow This { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Windows.NewPhoneWindow</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            Creates or reuses an instance of this class. Use ClearAndShow()
+            to present it to the user.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="tooltips">
+      <MemberSignature Language="C#" Value="protected Gtk.Tooltips tooltips;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Gtk.Tooltips</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Check">
+      <MemberSignature Language="C#" Value="protected void Check (string allowedName);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="allowedName" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="allowedName">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <remarks>To be added.</remarks>
+    <summary>
+            Window responsible for presenting the user a way of adding
+            new phones to his/her phone book.
+            </summary>
+  </Docs>
+</Type>

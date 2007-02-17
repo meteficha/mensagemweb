@@ -1,0 +1,136 @@
+<Type Name="MainWindow" FullName="MensagemWeb.Windows.MainWindow">
+  <TypeSignature Language="C#" Value="public class MainWindow : Gtk.Window" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>Gtk.Window</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName="AboutOpenLink">
+      <MemberSignature Language="C#" Value="public static void AboutOpenLink (object about, string link);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="about" Type="System.Object" />
+        <Parameter Name="link" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="about">To be added.</param>
+        <param name="link">To be added.</param>
+        <remarks>To be added.</remarks>
+        <summary>
+            Opens a link ignoring its first parameter =).
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Contents">
+      <MemberSignature Language="C#" Value="public string Contents { set; get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Destinations">
+      <MemberSignature Language="C#" Value="public System.Collections.Generic.IList&lt;string&gt; Destinations { set; get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IList&lt;System.String&gt;</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            Returns or sets the destinations.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="FromName">
+      <MemberSignature Language="C#" Value="public string FromName { set; get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            Returns the name of the sender.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="FromPhone">
+      <MemberSignature Language="C#" Value="public MensagemWeb.Phones.Phone FromPhone { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Phones.Phone</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            Returns or sets the Phone corresponding to what the user typed on the GUI.
+            If the user didn't type correct informations or didn't type anything
+            at all, null is returned.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="FromPhoneDDD">
+      <MemberSignature Language="C#" Value="public string FromPhoneDDD { set; get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            Returns or set the DDD of the sender.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="FromPhoneNumber">
+      <MemberSignature Language="C#" Value="public string FromPhoneNumber { set; get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            Returns or set the number of the sender.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="This">
+      <MemberSignature Language="C#" Value="public static MensagemWeb.Windows.MainWindow This { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Windows.MainWindow</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            Reuses an instance of this class.
+            </summary>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <remarks>To be added.</remarks>
+    <summary>
+            This is the main window and also where everything begins.
+            </summary>
+  </Docs>
+</Type>

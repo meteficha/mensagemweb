@@ -1,0 +1,101 @@
+<Type Name="DestinationWidget" FullName="MensagemWeb.Windows.DestinationWidget">
+  <TypeSignature Language="C#" Value="public sealed class DestinationWidget : Gtk.ScrolledWindow" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>Gtk.ScrolledWindow</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public DestinationWidget ();" />
+      <MemberType>Constructor</MemberType>
+      <Parameters />
+      <Docs>
+        <remarks>To be added.</remarks>
+        <summary>
+            Creates a new DestinationWidget.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Changed">
+      <MemberSignature Language="C#" Value="public event System.EventHandler Changed;" />
+      <MemberType>Event</MemberType>
+      <ReturnValue>
+        <ReturnType>System.EventHandler</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <remarks>To be added.</remarks>
+        <summary>
+            Fired everytime a different destination is picked up.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="MnemonicWidget">
+      <MemberSignature Language="C#" Value="public Gtk.Widget MnemonicWidget { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>Gtk.Widget</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            Returns the widget that should receive focus for us.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="NumberOfDestinations">
+      <MemberSignature Language="C#" Value="public int NumberOfDestinations { set; get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            Returns or sets the number of possible destinations avaible to the
+            user.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Selected">
+      <MemberSignature Language="C#" Value="public System.Collections.Generic.IList&lt;string&gt; Selected { set; get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IList&lt;System.String&gt;</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            Returns the currently selected destinations.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Sensitive">
+      <MemberSignature Language="C#" Value="public bool Sensitive { set; get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            Returns or sets the current sensitive state of the widgets
+            </summary>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <remarks>To be added.</remarks>
+    <summary>
+            Contains the code that creates and manipulates the destination
+            widget on the MainWindow.
+            </summary>
+  </Docs>
+</Type>

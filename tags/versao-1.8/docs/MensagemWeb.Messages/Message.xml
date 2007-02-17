@@ -1,0 +1,243 @@
+<Type Name="Message" FullName="MensagemWeb.Messages.Message">
+  <TypeSignature Language="C#" Value="public class Message" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName="ChangeDestination">
+      <MemberSignature Language="C#" Value="public MensagemWeb.Messages.Message ChangeDestination (MensagemWeb.Phones.Destination newDest);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Messages.Message</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="newDest" Type="MensagemWeb.Phones.Destination" />
+      </Parameters>
+      <Docs>
+        <param name="newDest">To be added.</param>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+        <summary>
+            Returns the same message but with a different destination.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="ChangeDestination">
+      <MemberSignature Language="C#" Value="public MensagemWeb.Messages.Message ChangeDestination (System.Collections.Generic.IList&lt;MensagemWeb.Phones.Destination&gt; newDests);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Messages.Message</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="newDests" Type="System.Collections.Generic.IList&lt;MensagemWeb.Phones.Destination&gt;" />
+      </Parameters>
+      <Docs>
+        <param name="newDests">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Contents">
+      <MemberSignature Language="C#" Value="public string Contents { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            The contents of the message (the message itself).
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Destination">
+      <MemberSignature Language="C#" Value="public MensagemWeb.Phones.Phone Destination { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Phones.Phone</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            If there's only one destination, returns its phone. If not,
+            it throws an ArgumentException. As such, it's meant to be
+            used only inside IEngine, where they expect only one
+            destination (and they only care about the Phone).
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Destinations">
+      <MemberSignature Language="C#" Value="public System.Collections.Generic.IList&lt;string&gt; Destinations { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IList&lt;string&gt;</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            The destinations.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="FromDDD">
+      <MemberSignature Language="C#" Value="public string FromDDD { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            Returns a string with the sender's DDD. If the sender's Phone
+            is null, returns "".
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="FromName">
+      <MemberSignature Language="C#" Value="public string FromName { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            The name of the person who's sending the message.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="FromNumber">
+      <MemberSignature Language="C#" Value="public string FromNumber { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            Returns a string with the sender's number. If the sender's Phone
+            is null, returns "".
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="FromPhone">
+      <MemberSignature Language="C#" Value="public MensagemWeb.Phones.Phone FromPhone { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Phones.Phone</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <summary>
+            Phone number from the person who's sending the message.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Split">
+      <MemberSignature Language="C#" Value="public MensagemWeb.Messages.Message[] Split ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Messages.Message[]</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+        <summary>
+            Split the message so that it can fit on the maximum sizes.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="SplitN">
+      <MemberSignature Language="C#" Value="public int SplitN ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+        <summary>
+            Try to estimate the number of messages to be sent.
+            This is a modified version of Split made to be faster.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="ToString">
+      <MemberSignature Language="C#" Value="public string ToString (string formatString, bool forMarkup);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="formatString" Type="System.String" />
+        <Parameter Name="forMarkup" Type="System.Boolean" />
+      </Parameters>
+      <Docs>
+        <param name="formatString">
+            {0} will become the sender, {1} the destinations and {2}
+            the message itself.
+            </param>
+        <param name="forMarkup">To be added.</param>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+        <summary>
+            Format this instance with this format string.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="WithoutAccentuation">
+      <MemberSignature Language="C#" Value="public MensagemWeb.Messages.Message WithoutAccentuation ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>MensagemWeb.Messages.Message</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+        <summary>
+            Returns the same message but with all accentuation removed (for pt_BR)
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public Message (System.Collections.Generic.IList&lt;string&gt; destinations, MensagemWeb.Phones.Phone fromPhone, string fromName, string contents);" />
+      <MemberType>Constructor</MemberType>
+      <Parameters>
+        <Parameter Name="destinations" Type="System.Collections.Generic.IList&lt;System.String&gt;" />
+        <Parameter Name="fromPhone" Type="MensagemWeb.Phones.Phone" />
+        <Parameter Name="fromName" Type="System.String" />
+        <Parameter Name="contents" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="destinations">To be added.</param>
+        <param name="fromPhone">To be added.</param>
+        <param name="fromName">To be added.</param>
+        <param name="contents">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <remarks>To be added.</remarks>
+    <summary>
+            A message to be sent.
+            </summary>
+  </Docs>
+</Type>

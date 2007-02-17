@@ -1,0 +1,128 @@
+<Overview>
+  <Assemblies>
+    <Assembly Name="MensagemWeb" Version="1.7.3.0">
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.RuntimeCompatibility(WrapNonExceptionThrows=true)</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyCopyright("Copyright (C) 2005-2007 Felipe Almeida Lessa (licensed under the GNU General Public License version 2 or later)")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyCompany("http://mensagemweb.codigolivre.org.br/")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyDescription("Envia mensagens de texto a celulares de diversas operadoras gratuitamente pela Internet.")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyProduct("MensagemWeb")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyTitle("MensagemWeb")</AttributeName>
+        </Attribute>
+      </Attributes>
+    </Assembly>
+  </Assemblies>
+  <Remarks>
+    <para>
+MensagemWeb program capable of sending SMS messages to 
+Brazilian cellular phones. See 
+http://mensagemweb.codigolivre.org.br/.
+</para>
+    <para>  
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+</para>
+    <para>  
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+</para>
+    <para>  
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+</para>
+  </Remarks>
+  <Copyright>Copyright (C) 2005-2007 Felipe Almeida Lessa &lt;felipe.lessa@gmail.com&gt;</Copyright>
+  <Types>
+    <Namespace Name="MensagemWeb.Config">
+      <Type Name="IConfigurable" />
+      <Type Name="Configuration" />
+      <Type Name="MainWindowConfig" />
+      <Type Name="PhoneBookConfig" />
+      <Type Name="ProxyConfig" />
+      <Type Name="UpdateConfig" />
+    </Namespace>
+    <Namespace Name="MensagemWeb.Engines">
+      <Type Name="IEngine" />
+      <Type Name="ISupported" />
+      <Type Name="AmazoniaCelularEngine" />
+      <Type Name="TelemigEngine" />
+      <Type Name="HttpEngine" />
+      <Type Name="HttpEngine+Response" />
+      <Type Name="BrasilTelecomEngine" />
+      <Type Name="ClaroEngine" />
+      <Type Name="CtbcEngine" />
+      <Type Name="EngineCatalog" />
+      <Type Name="EngineContainer" />
+      <Type Name="EngineResult" />
+      <Type Name="NextelEngine" />
+      <Type Name="NovoVivoEngine" />
+      <Type Name="OiEngine" />
+      <Type Name="RetryEngine" />
+      <Type Name="TimEngine" />
+      <Type Name="WaitEngine" />
+      <Type Name="VerificationDelegate" />
+      <Type Name="EngineResultType" />
+      <Type Name="SupportedRange" />
+      <Type Name="SupportedXRange" />
+      <Type Name="SupportedList" />
+    </Namespace>
+    <Namespace Name="MensagemWeb">
+      <Type Name="MainClass" />
+      <Type Name="SmartStringComparer" />
+      <Type Name="Tuple`2" DisplayName="Tuple&lt;A,B&gt;" />
+      <Type Name="Tuple`3" DisplayName="Tuple&lt;A,B,C&gt;" />
+      <Type Name="Update" />
+      <Type Name="UpdateManager" />
+      <Type Name="Util" />
+    </Namespace>
+    <Namespace Name="MensagemWeb.Logging">
+      <Type Name="LoggedEventArgs" />
+      <Type Name="Logger" />
+      <Type Name="LoggedEventHandler" />
+    </Namespace>
+    <Namespace Name="MensagemWeb.Messages">
+      <Type Name="Message" />
+      <Type Name="MultipleMsgsDialog" />
+    </Namespace>
+    <Namespace Name="MensagemWeb.Phones">
+      <Type Name="PhoneBook" />
+      <Type Name="PhoneContainer" />
+      <Type Name="Phone" />
+      <Type Name="VCard" />
+    </Namespace>
+    <Namespace Name="MensagemWeb.Windows">
+      <Type Name="DestinationWidget" />
+      <Type Name="EditPhoneWindow" />
+      <Type Name="NewPhoneWindow" />
+      <Type Name="HelpWindow" />
+      <Type Name="InfoWindow" />
+      <Type Name="MainWindow" />
+      <Type Name="PhoneBookWindow" />
+      <Type Name="ProxyWindow" />
+      <Type Name="QueueWindow" />
+      <Type Name="RichTextBuffer" />
+      <Type Name="UpdateWindow" />
+      <Type Name="VerificationWindow" />
+      <Type Name="CodeDelegate" />
+    </Namespace>
+  </Types>
+  <Title>MensagemWeb</Title>
+</Overview>

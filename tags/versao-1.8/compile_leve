@@ -1,0 +1,16 @@
+#!/bin/bash
+gmcs \
+	/define:LITE \
+        /win32icon:images/icon.ico \
+        /warn:4 \
+        /r:System.Xml \
+	/r:System.Drawing \
+	/r:System.Windows.Forms \
+        /out:MensagemLeve.exe \
+        /target:winexe \
+        /codepage:utf8 \
+        /optimize \
+        /debug \
+        ./code/{Config,Engines,Logging,Messages,Misc,Phones,Leve}/*.cs
+
+exit $?

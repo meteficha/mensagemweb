@@ -1,0 +1,46 @@
+<Type Name="WaitEngine" FullName="MensagemWeb.Engines.WaitEngine">
+  <TypeSignature Language="C#" Value="public sealed class WaitEngine : MensagemWeb.Engines.EngineContainer" />
+  <AssemblyInfo>
+    <AssemblyName>MensagemWeb</AssemblyName>
+    <AssemblyVersion>1.7.3.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>MensagemWeb.Engines.EngineContainer</BaseTypeName>
+  </Base>
+  <Interfaces>
+  </Interfaces>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public WaitEngine (MensagemWeb.Engines.IEngine engine);" />
+      <MemberType>Constructor</MemberType>
+      <Parameters>
+        <Parameter Name="engine" Type="MensagemWeb.Engines.IEngine" />
+      </Parameters>
+      <Docs>
+        <param name="engine">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public WaitEngine (MensagemWeb.Engines.IEngine engine, int waitTime);" />
+      <MemberType>Constructor</MemberType>
+      <Parameters>
+        <Parameter Name="engine" Type="MensagemWeb.Engines.IEngine" />
+        <Parameter Name="waitTime" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="engine">To be added.</param>
+        <param name="waitTime">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <remarks>To be added.</remarks>
+    <summary>
+            This EngineContainer ensures some wait time between successive messages.
+            </summary>
+  </Docs>
+</Type>

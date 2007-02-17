@@ -1,0 +1,17 @@
+<Combine name="MensagemWeb" fileversion="2.0">
+  <Configurations active="Debug">
+    <Configuration name="Debug" ctype="CombineConfiguration">
+      <Entry build="True" name="MensagemWeb" configuration="Debug" />
+    </Configuration>
+    <Configuration name="Release" ctype="CombineConfiguration">
+      <Entry build="True" name="MensagemWeb" configuration="Debug" />
+    </Configuration>
+  </Configurations>
+  <DeployTargets />
+  <StartMode startupentry="MensagemWeb" single="True">
+    <Execute type="None" entry="MensagemWeb" />
+  </StartMode>
+  <Entries>
+    <Entry filename="./MensagemWeb.mdp" />
+  </Entries>
+</Combine>
