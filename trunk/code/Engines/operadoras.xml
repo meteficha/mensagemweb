@@ -279,7 +279,7 @@
       <switch>
         <case>
           <not>
-            <string-equals string="$from_phone" other="" />
+            <string-equals string="$from_number" other="" />
           </not>
           <assign var="$from_name">
             <string-concat>
