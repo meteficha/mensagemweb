@@ -29,6 +29,8 @@ namespace MensagemWeb {
 			public ExitException()
 				: base("\n\n\nThis exception is harmless, we're just exiting...\n\n")
 			{ }
+			
+			public override string ToString() { return String.Empty; }
 		}
 		
 		

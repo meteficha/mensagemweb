@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Engines das operadoras brasileiras -->
+
+<!-- Copyright (C) 2007 Felipe Almeida Lessa
+     Porções baseadas em código do jSMS de Renato Costa
+    
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA -->
+    
+<engines enginesVersion="1.0" langVersion="1.0">
+  <engine name="BrasilTelecom" host="gsm.brasiltelecom.com.br" chars="140">
+    <support>
+      <prefix ddd="41:49" number="84" />
+      <prefix ddd="51:55" number="84" />
+      <prefix ddd="61:69" number="84" />
+    </support>
+
+    <vars />
+
+    <stages>
+      <!-- Faz um POST para 'href' com as entradas abaixo -->
+      <retrive method="post" href="/gsm/site/home/mostrarHome.do" referrer="http://www.brasiltelecom.com.br/home/Index.do">
+        <entry name="iCanal" value="1" />
+        <entry name="iEstado" value="00000000000000000000000000000000000000RS" />
+      </retrive>
+
+      <!-- Executa algumas funções simples com base no resultado anterior -->
+      <switch>
+        <case>
+          <string-contains string="$result" contained="Sistema indispon&amp;iacute" />
+          <exit return="busy" />
+        </case>
+      </switch>
+
+      <retrive method="post" href="/gsm/site/home/sendSmsVertical.do">
+        <entry name="sms.dddDestino" value="$to_ddd" />
+        <entry name="sms.numeroDestino" value="$to_number" />
+        <entry name="sms.remetente" value="$from_name" />
+        <entry name="sms.dddOrigem" value="$from_ddd" />
+        <entry name="sms.numeroOrigem" value="$from_number" />
+        <entry name="sms.mensagem" value="$message" />
+      </retrive>
+
+      <!-- Faz um pedido GET simples e o mostra como uma imagem.
+           Depois disso, cria a variável 'code' para os próximos estágios
+           contendo o código digitado pelo usuário -->
+      <image method="get" href="/gsm/secureImage?position=012345" />
+
+      <retrive method="post" href="/gsm/site/home/sendSms.do" referrer="http://www.brasiltelecom.com.br/gsm/site/home/sendSmsVertical.do">
+        <entry name="secure" value="$code" />
+      </retrive>
+      
+      <switch>
+        <case>
+          <string-contains string="$result"  contained="Sua mensagem foi enviada com sucesso" />
+          <exit return="ok" />
+        </case>
+        
+        <case>
+          <string-contains string="$result" contained="vel enviar sua mensagem, alguns dos dados podem estar inv" />
+          <exit return="not supported" />
+        </case>
+
+        <case>
+          <string-contains string="$result" contained="Digite no campo abaixo a seq" />
+          <exit return="invalid code" />
+        </case>
+
+        <case>
+          <string-contains string="$result" contained="Sistema indispon&amp;iacute" />
+          <exit return="busy" />
+        </case>
+
+        <!-- 
+        Terminar todos os 'estagios' sem 'sair' retorna um erro desconhecido.
+        <default>
+          <exit return="unknown" />
+        </default>
+        -->
+      </switch>
+
+    </stages>
+  </engine> <!-- BrasilTelecom -->
+
+
+
+
+
+
+
+  <engine name="Claro" host="clarotorpedoweb.claro.com.br" chars="154">
+    <support>
+      <prefix ddd="11"    number="76"    />
+      <prefix ddd="11:19" number="91:94" />
+      <prefix ddd="21:28" number="91:94" />
+      <prefix ddd="31:38" number="84"    />
+      <prefix ddd="41:49" number="88"    />
+      <prefix ddd="51:55" number="91:94" />
+      <prefix ddd="61:69" number="91:95" />
+      <prefix ddd="71:79" number="81"    />
+      <prefix ddd="81:89" number="91:94" />
+    </support>
+
+    <vars>
+      <var type="dict" name="form" />
+      <var type="string" name="codeTag" />
+      <var type="string" name="imagePath" />
+      <var type="string" name="id" />
+    </vars>
+
+    <stages>
+      <retrive method="post" href="/ClaroTorpedoWeb/pwdForm.jsp" referrer="http://www.claro.com.br/portal/site/siteTA/?epi_menuItemID=61dc49d73ce89f4b020fdda1908051a0&amp;epi_menuID=05341fa85af675a8020fdda1908051a0&amp;epi_baseMenuID=05341fa85af675a8020fdda1908051a0&amp;idlocal=52">
+        <entry name="ddd_para"      value="$to_ddd"      />
+        <entry name="telefone_para" value="$to_number"   />
+        <entry name="nome_de"       value="$from_name"   />
+        <entry name="ddd_de"        value="$from_ddd"    />
+        <entry name="telefone_de"   value="$from_number" />
+        <entry name="msg"           value="$message"     />
+      </retrive>
+
+      <!-- Executa algumas operações manipulando os dados como um pipeline -->
+      <switch>
+        <case>
+          <string-contains string="$result" contained="Sistema temporariamente indispon" />
+          <exit return="busy" />
+        </case>
+      </switch>
+      
+      <regexp-replace regexp="&lt;!(--([^\\-]|-[^\\-])*--)*&gt;" input="$result" replacement="" output="$result"/>
+      
+      <dict-clear var="$form" />
+      
+      <sgml-extractTags value="$result">
+        <switch>
+        
+          <case>
+            <string-equals string="$tag_name" other="input" />
+            <switch>
+              <case>
+                <string-equals string="$tag_attr[type]" other="text" />
+                <assign var="$codeTag" value="$tag_attr[name]" />
+              </case>
+              <default>
+                <dict-update var="$form" key="$tag_attr[name]" value="$tag_attr[value]" />
+              </default>
+            </switch>
+          </case>
+
+          <case>
+            <string-equals string="$tag_name" other="img" />
+            <switch>
+              <case>
+                <string-startsWith string="$tag_attr[src]" start="/ClaroTorpedoWeb" />
+                <assign var="$imagePath" value="$tag_attr[src]" />
+                <log var="$imagePath" />
+              </case>
+            </switch>
+          </case> 
+                     
+        </switch>
+      </sgml-extractTags>
+      
+
+      <image method="get" href="$imagePath" />
+
+      <retrive method="post" href="/ClaroTorpedoWeb/ValidDeliverer" referrer="http://clarotorpedoweb.claro.com.br/pwdForm.jsp">
+        <dict-entries var="$form" />
+        <entry name="$codeTag" value="$code" />
+      </retrive>
+      
+      <assign var="$id" value="" />
+      
+      <while>
+        <or>
+          <regexp-match input="$result" output="$id" group="1" regexp="parent.retornoIdMessage\('(.*)'\);" />
+          <string-contains string="$result" contained="1111" />
+        </or>
+        
+        <switch>
+          <case>
+            <string-equals string="$id" other="" />
+            <exit return="unknown" />
+          </case>
+        </switch>
+        
+        <retrive method="post" href="/ClaroTorpedoWeb/ValidDeliverer">
+          <entry name="idmessage" value="$id" />
+        </retrive>
+      </while>
+
+      <log var="$result" />
+      <switch>
+        <case>
+          <regexp-match input="$result" output="$id" group="1" regexp="parent.retorno\([^0-9]*([0-9]+)[^0-9]*\);" />
+          <assign var="$result" value="$id" />
+        </case>
+      </switch>
+      <log var="$result" />    
+      
+      <switch>
+        <case>
+          <string-equals string="$result" other="0" />
+          <exit return="ok" />
+        </case>
+        
+        <case>
+          <string-equals string="$result" other="5" />
+          <exit return="invalid code" />
+        </case>
+        
+        <case>
+          <string-equals string="$result" other="10" />
+          <exit return="not supported" />
+        </case>
+        
+        <case>
+          <or>
+            <string-equals string="$result" other="26" />
+            <string-equals string="$result" other="27" />
+            <string-equals string="$result" other="28" />
+            <string-equals string="$result" other="29" />
+          </or>
+          <exit return="limits exceeded" />
+        </case>
+      </switch>
+
+    </stages>
+  </engine> <!-- Claro -->
+  
+
+
+
+
+
+
+
+
+
+
+  <engine name="CTBC" host="www2.ctbcnet.com.br" chars="149">
+    <support>
+      <prefix ddd="16" number="9965:9969" />
+      <prefix ddd="16" number="9971:9972" />
+      <prefix ddd="16" number="9978:9979" />
+      <prefix ddd="16" number="9989"      />
+      <prefix ddd="16" number="9995:9999" />
+      <prefix ddd="17" number="9979"      />
+      <prefix ddd="34" number="9661:9665" />
+      <prefix ddd="34" number="996:997"   />
+      <prefix ddd="34" number="999"       />
+      <prefix ddd="35" number="9991"      />
+      <prefix ddd="37" number="997"       />
+      <prefix ddd="64" number="9661"      />
+      <prefix ddd="64" number="9966"      />
+      <prefix ddd="64" number="9992"      />
+      <prefix ddd="64" number="9999"      />
+      <prefix ddd="67" number="9966"      />
+    </support>
+
+    <vars>
+      <var type="string" name="imagePath" />
+    </vars>
+
+    <stages>
+      <!-- Esta operadora não aceita os campos de telefone do remetente, 
+           portanto nós o simulamos adicionando ao nome do remetente. -->
+      <switch>
+        <case>
+          <not>
+            <string-equals string="$from_phone" other="" />
+          </not>
+          <assign var="$from_name">
+            <string-concat>
+              <value var="$from_name" />
+              <value var=" " />
+              <value var="$from_ddd" />
+              <value var="$from_number" />
+            </string-concat>
+          </assign>
+        </case>
+      </switch>
+      
+      <retrive method="post" href="/webcel/enviarnovo.php" referrer="http://www2.ctbcnet.com.br/webcel/">
+        <entry name="pre1"   value="$to_ddd"    />
+        <entry name="min"    value="$to_number" />
+        <entry name="sender" value="$from_name" />
+        <entry name="msg"    value="$message"   />
+      </retrive>
+      
+      <regexp-match input="$result" output="$imagePath" group="1" regexp="geraimagem.php([^&quot;]*)&quot;" />
+      <assign var="$imagePath">
+        <string-concat>
+          <value var="/webcel/geraimagem.php" />
+          <value var="$imagePath" />
+        </string-concat>
+      </assign>
+      <log var="$imagePath" />
+      
+      <image method="get" href="$imagePath" />
+      
+      <retrive method="post" href="/webcel/enviar2.php" referrer="http://www2.ctbcnet.com.br/webcel/enviarnovo.php">
+        <entry name="txtCode" value="$code"      />
+        <entry name="ddd"     value="$to_ddd"    />
+        <entry name="min"     value="$to_number" />
+        <entry name="sender"  value="$from_name" />
+        <entry name="msg"     value="$message"   />
+      </retrive>
+      
+      <switch>
+        <case>
+          <string-contains string="$result"  contained="Mensagem enviada com sucesso" />
+          <exit return="ok" />
+        </case>
+        
+        <case>
+          <string-contains string="$result" contained="o WEBCel ativado" />
+          <exit return="not supported" />
+        </case>
+
+        <case>
+          <string-contains string="$result" contained="digo da figura informado est" />
+          <exit return="invalid code" />
+        </case>
+      </switch>
+
+    </stages>
+  </engine> <!-- CTBC -->
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+  <engine name="Oi" host="torpedo.oiloja.com.br" chars="150">
+    <support>
+      <prefix ddd="21:28" number="86:89" />
+      <prefix ddd="31:38" number="86:89" />
+      <prefix ddd="71:79" number="86:89" />
+      <prefix ddd="81:89" number="86:89" />
+      <prefix ddd="91:99" number="86:89" />
+    </support>
+    
+    <vars />
+
+    <stages>
+      <image method="get" href="/captcha.jsp" referrer="http://torpedo.oiloja.com.br/wb/POi/POi_oi_torpedo_mundooi" />
+           
+      <retrive method="post" href="/wb/POi/POi_oi_torpedo_mundooi" referrer="http://www.oiloja.com.br/index.jsp">
+        <entry name="captcha"     value="$code" />
+        <entry name="para_ddd"    value="$to_ddd" />
+        <entry name="para_numero" value="$to_number" />
+        <entry name="de_nome"     value="$from_name" />
+        <entry name="de_ddd"      value="$from_ddd" />
+        <entry name="de_numero"   value="$from_number" />
+        <entry name="mensagem"    value="$message" />
+      </retrive>
+      
+      <switch>
+        <case>
+          <string-contains string="$result"  contained="window.alert(&quot;Torpedo enviado com sucesso!&quot;)" />
+          <exit return="ok" />
+        </case>
+
+        <case>
+          <string-contains string="$result" contained="digo informado n" />
+          <exit return="invalid code" />
+        </case>
+      </switch>
+
+    </stages>
+  </engine> <!-- Oi -->
+  
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+  <engine name="Vivo" host="www.portal-sva.vivo.com.br" chars="75">
+    <support>
+      <prefix ddd="11:15" number="95:99" />
+      <prefix ddd="11:71" number="74"    />
+      <prefix ddd="18:19" number="95:99" />
+      <prefix ddd="21:28" number="95:99" />
+      <prefix ddd="41:49" number="91:92" />
+      <prefix ddd="51:55" number="95:99" />
+      <prefix ddd="61:69" number="96:99" />
+      <prefix ddd="71:79" number="96:99" />
+      <prefix ddd="91:99" number="91:94" />
+    </support>
+    
+    <vars>
+      <var type="string" name="estados" />
+    </vars>
+
+    <stages>
+      <assign var="$estados" value="Observe que a Vivo não permite o envio de mensagens para celulares dos estados de Espírito Santo, Paraná, Rio de Janeiro, Santa Catarina e São Paulo." />
+    
+      <retrive method="get" href="/torpedo/TorpedoForm.do" referrer="http://www.vivo.com.br/portal/home.php">
+        <entry name="operadora"          value="$to_ddd"      />
+        <entry name="numTelefone"        value="$to_number"   />
+        <entry name="nome"               value="$from_name"   />
+        <entry name="operadoraContato"   value="$from_ddd"    />
+        <entry name="numTelefoneContato" value="$from_number" />
+        <entry name="mensagem"           value="$message"     />        
+      </retrive>
+      
+      <switch>
+        <case>
+          <string-contains string="$result" contained="rio invalido" />
+          <exit return="not supported" message="$estados" />
+        </case>
+      </switch>
+      
+      <image method="get" href="/torpedo/imagenumber?a=d" />
+      
+      <log var="$code" />
+      <assign var="$code">
+        <string-upper string="$code" />
+      </assign>
+      <log var="$code" />
+           
+      <retrive method="post" href="/torpedo/SendSMS.do" referrer="http://www.portal-sva.vivo.com.br/torpedo/TorpedoForm.do">
+        <entry name="password"           value="$code"        />
+        <entry name="operadora"          value="$to_ddd"      />
+        <entry name="numTelefone"        value="$to_number"   />
+        <entry name="nome"               value="$from_name"   />
+        <entry name="operadoraContato"   value="$from_ddd"    />
+        <entry name="numTelefoneContato" value="$from_number" />
+        <entry name="mensagem"           value="$message"     />  
+      </retrive>
+      
+      <switch>
+        <case>
+          <string-contains string="$result"  contained="Torpedo enviado com sucesso!" />
+          <exit return="ok" />
+        </case>
+
+        <case>
+          <string-contains string="$result" contained="A palavra informada deve ser igual a imagem gerada no for" />
+          <exit return="invalid code" />
+        </case>
+        
+        <case>
+          <string-contains string="$result" contained="rio invalido" />
+          <exit return="not supported" message="$estados" />
+        </case>
+        
+        <case>
+          <string-contains string="$result" contained="o encontra-se indisponivel no momento. Tente Mais tarde." />
+          <exit return="busy" />
+        </case>
+      </switch>
+
+    </stages>
+  </engine> <!-- Vivo -->
+  
+  
+  
+  
+  <!-- TODO: Amazônia, Nextel, Telemig -->
+  
+</engines>

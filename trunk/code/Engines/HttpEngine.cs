@@ -42,7 +42,8 @@ namespace MensagemWeb.Engines {
 		protected string lastURL = null;
 		private CookieCollection cookies = null;
 		private HttpWebRequest webRequest = null;
-		private bool aborted = false, abortable = true;
+		protected bool aborted = false;
+		private bool abortable = true;
 		
 		public void Abort() {
 			this.aborted = true;
