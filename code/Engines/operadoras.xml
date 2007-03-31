@@ -92,7 +92,7 @@
       </switch>
 
     </stages>
-  </engine> <!-- BrasilTelecom -->
+  </engine>
 
 
 
@@ -237,7 +237,7 @@
       </switch>
 
     </stages>
-  </engine> <!-- Claro -->
+  </engine>
   
 
 
@@ -336,7 +336,7 @@
       </switch>
 
     </stages>
-  </engine> <!-- CTBC -->
+  </engine>
   
   
   
@@ -388,7 +388,7 @@
       </switch>
 
     </stages>
-  </engine> <!-- Oi -->
+  </engine>
   
   
     
@@ -480,11 +480,137 @@
       </switch>
 
     </stages>
-  </engine> <!-- Vivo -->
+  </engine>
   
   
   
+    
   
-  <!-- TODO: Amazônia, Nextel, Telemig -->
+
+
+
+
+
+
+
+
+
+
+  <engine name="Nextel" host="www.nextel.com.br" chars="119">
+    <support>
+      <prefix ddd="11"    number="77:78" />
+      <prefix ddd="12"    number="78"    />
+      <prefix ddd="13"    number="78"    />
+      <prefix ddd="15"    number="78"    />
+      <prefix ddd="19"    number="78"    />
+      <prefix ddd="21:22" number="78"    />
+      <prefix ddd="24"    number="78"    />
+      <prefix ddd="31"    number="78"    />
+      <prefix ddd="41"    number="78"    />
+      <prefix ddd="61:62" number="78"    />
+    </support>
+    
+    <vars>
+      <var type="string" name="viewstate" />
+    </vars>
+
+    <stages>
+      <retrive method="get" href="/default.aspx?page=SDTorpedoWeb" />
+      
+      <switch>
+        <case>
+          <not>
+            <regexp-match input="$result" output="$viewstate" group="1"
+                          regexp="name=&quot;__VIEWSTATE&quot; value=&quot;([^&quot;]*)&quot;" />
+          </not>
+          <exit return="unknown" />
+        </case>
+      </switch>
+      
+      
+      
+      
+      <!-- Esta operadora não aceita os campos de telefone do remetente, 
+           portanto nós o simulamos adicionando ao nome do remetente. -->
+      <switch>
+        <case>
+          <not>
+            <string-equals string="$from_number" other="" />
+          </not>
+          <assign var="$from_name">
+            <string-concat>
+              <value var="$from_name" />
+              <value var=" " />
+              <value var="$from_ddd" />
+              <value var="$from_number" />
+            </string-concat>
+          </assign>
+        </case>
+      </switch>
+      
+      <assign var="$estados" value="Observe que a Vivo não permite o envio de mensagens para celulares dos estados de Espírito Santo, Paraná, Rio de Janeiro, Santa Catarina e São Paulo." />
+    
+      <retrive method="get" href="/torpedo/TorpedoForm.do" referrer="http://www.vivo.com.br/portal/home.php">
+        <entry name="operadora"          value="$to_ddd"      />
+        <entry name="numTelefone"        value="$to_number"   />
+        <entry name="nome"               value="$from_name"   />
+        <entry name="operadoraContato"   value="$from_ddd"    />
+        <entry name="numTelefoneContato" value="$from_number" />
+        <entry name="mensagem"           value="$message"     />        
+      </retrive>
+      
+      <switch>
+        <case>
+          <string-contains string="$result" contained="rio invalido" />
+          <exit return="not supported" message="$estados" />
+        </case>
+      </switch>
+      
+      <image method="get" href="/torpedo/imagenumber?a=d" />
+      
+      <log var="$code" />
+      <assign var="$code">
+        <string-upper string="$code" />
+      </assign>
+      <log var="$code" />
+           
+      <retrive method="post" href="/torpedo/SendSMS.do" referrer="http://www.portal-sva.vivo.com.br/torpedo/TorpedoForm.do">
+        <entry name="password"           value="$code"        />
+        <entry name="operadora"          value="$to_ddd"      />
+        <entry name="numTelefone"        value="$to_number"   />
+        <entry name="nome"               value="$from_name"   />
+        <entry name="operadoraContato"   value="$from_ddd"    />
+        <entry name="numTelefoneContato" value="$from_number" />
+        <entry name="mensagem"           value="$message"     />  
+      </retrive>
+      
+      <switch>
+        <case>
+          <string-contains string="$result"  contained="Torpedo enviado com sucesso!" />
+          <exit return="ok" />
+        </case>
+
+        <case>
+          <string-contains string="$result" contained="A palavra informada deve ser igual a imagem gerada no for" />
+          <exit return="invalid code" />
+        </case>
+        
+        <case>
+          <string-contains string="$result" contained="rio invalido" />
+          <exit return="not supported" message="$estados" />
+        </case>
+        
+        <case>
+          <string-contains string="$result" contained="o encontra-se indisponivel no momento. Tente Mais tarde." />
+          <exit return="busy" />
+        </case>
+      </switch>
+
+    </stages>
+  </engine>
+  
+  
+  
+  <!-- TODO: Amazônia, Telemig -->
   
 </engines>

@@ -49,6 +49,11 @@ namespace MensagemWeb.Engines {
 				using (Response response = Get("/default.aspx?page=SDTorpedoWeb")) {
 					string text = response.Text;
 					
+					int start = text.IndexOf("name=\"__VIEWSTATE\" value=\"");
+					start += "name=\"__VIEWSTATE\" value=\"".Length;
+					int stop = text.IndexOf("\"", start + 1);
+					postData["__VIEWSTATE"] = Util.ToSecureASCII(text.Substring(start, stop - start)); 
+					
 					postData = new Dictionary<string, string>(15);
 					postData["rddNextel:_ctl2:Radpanelbar1value"] = String.Empty;
 					postData["rddNextel:_ctl4:ddi"] = "55";
@@ -67,11 +72,6 @@ namespace MensagemWeb.Engines {
 					postData["rddNextel:_ctl4:count"] = (119 - count).ToString();
 					postData["rddNextel:_ctl4:btnOk.x"] = "24";
 					postData["rddNextel:_ctl4:btnOk.y"] = "3";
-					
-					int start = text.IndexOf("name=\"__VIEWSTATE\" value=\"");
-					start += "name=\"__VIEWSTATE\" value=\"".Length;
-					int stop = text.IndexOf("\"", start + 1);
-					postData["__VIEWSTATE"] = Util.ToSecureASCII(text.Substring(start, stop - start)); 
 					
 					stage1 = true;
 				}
