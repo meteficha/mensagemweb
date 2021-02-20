@@ -1,5 +1,5 @@
 #!/bin/bash
-gmcs \
+mcs \
         /resource:images/emblem-people.png,emblem-people.png \
         /resource:images/icone64.png,icone64.png \
         /resource:images/icone16.png,icone16.png \
